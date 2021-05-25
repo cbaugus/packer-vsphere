@@ -48,3 +48,12 @@ Thumbs.db
 *.mov
 *.wmv
 
+# Terraform
+.terraform/
+.terraform.d/
+.terraformrc
+.terraform.lock.hcl
+*secrets.auto.tfvars
+*.secrets
+*.state
+*.plan
