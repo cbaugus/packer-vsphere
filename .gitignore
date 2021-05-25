@@ -53,6 +53,7 @@ Thumbs.db
 .terraform.d/
 .terraformrc
 .terraform.lock.hcl
-secrets.tfvars
+*secrets.auto.tfvars
+*.secrets
 *.state
 *.plan
