@@ -41,3 +41,7 @@ variable "vsphere_template" {
   description = "vSphere template for creating VM"
   type        = string
 }
+variable "name_prefix" {
+  description = "Prefix for naming convention of VMs"
+  type        = string
+}
