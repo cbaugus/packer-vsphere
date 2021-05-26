@@ -17,12 +17,16 @@ variable "vsphere_datacenter" {
   description = "vSphere datacenter"
   type        = string
 }
-variable "vsphere_datastore" {
-  description = "vSphere datastore"
+variable "vsphere_compute_cluster" {
+  description = "vSphere compute cluser"
   type        = string
 }
 variable "vsphere_resource_pool" {
   description = "vSphere resource pool"
+  type        = string
+}
+variable "vsphere_datastore" {
+  description = "vSphere datastore"
   type        = string
 }
 variable "vsphere_network" {

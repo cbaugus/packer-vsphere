@@ -8,7 +8,7 @@ resource "vsphere_virtual_machine" "vm" {
   folder = var.vsphere_folder
   network_interface {
     network_id = data.vsphere_network.network.id
-    adapter_type = "${data.vsphere_virtual_machine.template.network_interface_types[0]}"
+    adapter_type = data.vsphere_virtual_machine.template.network_interface_types[0]
   }
   disk {
     label = "disk0"

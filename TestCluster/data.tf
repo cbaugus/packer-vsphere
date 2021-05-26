@@ -3,8 +3,8 @@ data "vsphere_datacenter" "dc" {
 }
 
 data "vsphere_compute_cluster" "compute_cluster" {
-  name          = "dal-w01-cl01"
-  datacenter_id = "${data.vsphere_datacenter.dc.id}"
+  name          = var.vsphere_compute_cluster
+  datacenter_id = data.vsphere_datacenter.dc.id
 }
 
 data "vsphere_datastore" "datastore" {
