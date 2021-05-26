@@ -5,6 +5,7 @@ resource "vsphere_virtual_machine" "vm" {
   num_cpus = 2
   memory   = 1024
   guest_id = data.vsphere_virtual_machine.template.guest_id
+  folder = var.vsphere_folder
   network_interface {
     network_id = data.vsphere_network.network.id
   }

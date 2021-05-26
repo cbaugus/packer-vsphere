@@ -29,3 +29,11 @@ variable "vsphere_network" {
   description = "vSphere network"
   type        = string
 }
+variable "vsphere_folder" {
+  description = "vSphere folder"
+  type        = string
+}
+variable "vsphere_template" {
+  description = "vSphere template for creating VM"
+  type        = string
+}

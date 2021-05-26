@@ -18,6 +18,6 @@ data "vsphere_network" "network" {
 }
 
 data "vsphere_virtual_machine" "template" {
-  name          = "linux-server-ubuntu-20-lts-server-jsm"
+  name          = var.vsphere_template
   datacenter_id = data.vsphere_datacenter.dc.id
 }
