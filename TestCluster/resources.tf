@@ -1,5 +1,6 @@
 resource "vsphere_virtual_machine" "vm" {
-  name             = "terraform-base1"
+  count            = 3
+  name             = "terraform-base-${count.index}"
   resource_pool_id = data.vsphere_compute_cluster.compute_cluster.resource_pool_id
   datastore_id     = data.vsphere_datastore.datastore.id
   num_cpus = 2
@@ -19,7 +20,7 @@ resource "vsphere_virtual_machine" "vm" {
 
     customize {
       linux_options {
-        host_name = "terraform-base1"
+        host_name = "terraform-base-${count.index}"
         domain    = "local.domain"
       }
 
