@@ -3,12 +3,12 @@ resource "vsphere_virtual_machine" "vm" {
   name             = "${var.name_prefix}-${count.index}"
   resource_pool_id = data.vsphere_compute_cluster.compute_cluster.resource_pool_id
   datastore_id     = data.vsphere_datastore.datastore.id
-  num_cpus = 2
-  memory   = 1024
-  guest_id = data.vsphere_virtual_machine.template.guest_id
-  folder = var.vsphere_folder
+  num_cpus         = 2
+  memory           = 1024
+  guest_id         = data.vsphere_virtual_machine.template.guest_id
+  folder           = var.vsphere_folder
   network_interface {
-    network_id = data.vsphere_network.network.id
+    network_id   = data.vsphere_network.network.id
     adapter_type = data.vsphere_virtual_machine.template.network_interface_types[0]
   }
   disk {
