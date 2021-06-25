@@ -135,6 +135,7 @@ resource "vsphere_virtual_machine" "Linux" {
     linked_clone  = var.linked_clone
     timeout       = var.timeout
 
+    /*
     customize {
       linux_options {
         host_name    = "%{if var.vmnameliteral != ""}${var.vmnameliteral}%{else}${var.vmname}${count.index + 1}${var.vmnamesuffix}%{endif}"
@@ -153,7 +154,10 @@ resource "vsphere_virtual_machine" "Linux" {
       dns_suffix_list = var.dns_suffix_list
       ipv4_gateway    = var.vmgateway
     }
+    */
+    
   }
+
 
   // Advanced options
   hv_mode                          = var.hv_mode
