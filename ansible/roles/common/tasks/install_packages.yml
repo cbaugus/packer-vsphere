@@ -1,0 +1,15 @@
+---
+- name: Install OS packages
+  package:
+    name: "{{ common_os_packages.keys() | list }}"
+    state: present
+    update_cache: true
+  tags: installation
+  when: ansible_facts['os_family'] != "VMware Photon OS"
+
+- name: Install VMware Photon OS Packages
+  command: "{{ item.value.installer }} -y install {{ item.key }}"
+  with_dict: "{{common_os_packages}}"
+  args:
+    creates: "{{ item.value.creates }}"
+  when: ansible_facts['os_family'] == "VMware Photon OS"

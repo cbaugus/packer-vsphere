@@ -166,6 +166,28 @@ resource "vsphere_virtual_machine" "Linux" {
 
   shutdown_wait_timeout = var.shutdown_wait_timeout
   force_power_off       = var.force_power_off
+
+  provisioner "remote-exec" {
+    //Some dummy install to delay execution of local-exec
+    inline = ["echo Running the remote exec provisioner"]
+
+    connection {
+      type = "ssh"
+      host = self.default_ip_address
+      user = "cicduser"
+      private_key = file("~/.ssh/keys/key.pem")
+      timeout = "2m"
+    }
+  }
+
+  provisioner "local-exec" {
+    command = "ssh-keyscan -H ${self.default_ip_address} >> ~/.ssh/known_hosts"
+  }
+
+  provisioner "local-exec" {
+    command = "ansible-playbook -u cicduser -i '${self.default_ip_address},' --private-key ~/.ssh/keys/key.pem ${path.root}/../ansible/main.yml -b"
+  }
+
 }
 
 resource "vsphere_virtual_machine" "Windows" {

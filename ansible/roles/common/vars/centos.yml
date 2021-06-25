@@ -1,0 +1,15 @@
+---
+# File: vars/centos.yml - CentOS vars for Common Install
+
+common_os_packages:
+  wget:
+  curl:
+#  software-properties-common:
+#  screen:
+  git:
+  tmux:
+#  nmon:
+  dnsmasq:
+  sudo:
+  python3:
+  python3-pip:

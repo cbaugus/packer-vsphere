@@ -33,10 +33,10 @@ module "example_cluster" {
   cpu_number = "2"
   ram_size   = "1024"
   ### required
-  dc         = var.vsphere_datacenter
+  dc = var.vsphere_datacenter
   ### required
-  vmrp       = data.vsphere_resource_pool.resource_pool.name
-  vmfolder   = var.vsphere_folder
+  vmrp     = data.vsphere_resource_pool.resource_pool.name
+  vmfolder = var.vsphere_folder
 
   ### Global Customization Variables # TODO : Figure out tagging, think we need to build these first
   //  tags = {
@@ -46,4 +46,10 @@ module "example_cluster" {
 
   ### Linux Customization Variables
   vmdomain = "local.domain"
+  extra_config = {
+    "guestinfo.metadata"          = base64encode(file("${path.module}/../configs/ubuntu-server/meta-data"))
+    "guestinfo.metadata.encoding" = "base64"
+    "guestinfo.userdata"          = base64encode(file("${path.module}/../configs/ubuntu-server/user-data"))
+    "guestinfo.userdata.encoding" = "base64"
+  }
 }

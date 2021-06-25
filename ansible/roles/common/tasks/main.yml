@@ -1,0 +1,16 @@
+---
+# File: main.yml - Main tasks for common role
+#
+
+- name: debug ansible_distribution_filtered
+  debug:
+    msg: "{{ ansible_distribution_filtered }}"
+
+- name: Set OS specific variables
+  include_vars: "{{ ansible_distribution_filtered }}.yml"
+
+- include: set_timezone.yml
+- include: set_hostname.yml
+- include: create_cicduser.yml
+- include: set_authorized_keys.yml
+- include: install_packages.yml
