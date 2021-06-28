@@ -1,0 +1,13 @@
+---
+# File: main.yml - vars for common role
+
+hostname: localhost
+keyfile: /root/.ssh/id_rsa.pub
+cicduser: cicduser
+timezone: America/Chicago
+
+ansible_distribution_filtered: "{{ ansible_distribution | regex_replace(' ', '_') | lower }}"
+
+common_os_packages:
+  - wget
+  - curl

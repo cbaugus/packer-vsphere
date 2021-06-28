@@ -10,6 +10,6 @@ vsphere_network = "dal-w01-cl01-vds01-pg-ops-203"
 
 vsphere_folder = "Infrastructure/TerraformTesting"
 
-vsphere_template = "linux-server-ubuntu-20-lts-base"
+vsphere_template = "linux-ubuntu-server-20-04-lts"
 
 name_prefix = "terraform-template-base"
