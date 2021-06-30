@@ -10,9 +10,9 @@ vsphere_network = "dal-w01-cl01-vds01-pg-ops-203"
 
 vsphere_folder = "Infrastructure/Ansible"
 
-vsphere_template = "linux-server-ubuntu-20-lts-base-template"
+vsphere_template = "linux-ubuntu-server-20-04-lts"
 
-vsphere_template_ubuntu = "linux-server-ubuntu-20-lts-base-template"
+vsphere_template_ubuntu = "linux-ubuntu-server-20-04-lts"
 
 vsphere_template_debian = "linux-server-debian-10-base-template"
 
