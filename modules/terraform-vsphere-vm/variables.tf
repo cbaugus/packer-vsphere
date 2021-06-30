@@ -413,3 +413,43 @@ variable "force_power_off" {
   type        = bool
   default     = null
 }
+
+variable "remote_exec_command" {
+  description = "Command for remote-exec provisioner to run on new target"
+  type = string
+}
+
+variable "remote_exec_user" {
+  description = "User for remote-exec provisioner to authenticate as"
+  type = string
+}
+
+variable "remote_exec_ssh_key_file" {
+  description = "Location of SSH key for remote-exec provisioner"
+  type        = string
+}
+
+variable "remote_exec_timeout" {
+  description = "Amount of time remote-exec provisiner will wait to establish connection before failing"
+  type = string
+}
+
+variable "local_exec_user" {
+  description = "User for local-exec provisioner to authenticate as with Ansible"
+  type = string
+}
+
+variable "local_exec_ssh_key_file" {
+  description = "Location of SSH key for local-exec provisioner to use with Ansible"
+  type        = string
+}
+
+variable "path_to_ansible" {
+  description = "Location of Ansible playbook"
+  type = string
+}
+
+variable "ansible_args" {
+  description = "Additional argument to pass to Ansible"
+  type = string
+}

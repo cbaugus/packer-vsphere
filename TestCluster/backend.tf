@@ -2,11 +2,11 @@
 # https://www.terraform.io/docs/language/settings/backends/remote.html#prefix
 terraform {
   backend "remote" {
-
+    hostname = "app.terraform.io"
     organization = "JohnstonHowse"
 
     workspaces {
-      name = "cli-vsphere-testing2"
+      name = "iac-e2e-testing-joe"
     }
   }
 }

@@ -1,6 +1,0 @@
----
-- name: Set authorized key from file
-  authorized_key:
-    user: "{{ cicduser }}"
-    state: present
-    key: "{{ lookup('file', keyfile ) }}"

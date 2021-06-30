@@ -173,23 +173,20 @@ resource "vsphere_virtual_machine" "Linux" {
 
   provisioner "remote-exec" {
     //Some dummy install to delay execution of local-exec
-    inline = ["echo Running the remote exec provisioner"]
+    inline = [var.remote_exec_command]
 
     connection {
       type = "ssh"
       host = self.default_ip_address
-      user = "cicduser"
-      private_key = file("~/.ssh/keys/key.pem")
-      timeout = "2m"
+      user = var.remote_exec_user
+      private_key = file(var.remote_exec_ssh_key_file)
+      timeout = var.remote_exec_timeout
     }
   }
 
   provisioner "local-exec" {
-    command = "ssh-keyscan -H ${self.default_ip_address} >> ~/.ssh/known_hosts"
-  }
-
-  provisioner "local-exec" {
-    command = "ansible-playbook -u cicduser -i '${self.default_ip_address},' --private-key ~/.ssh/keys/key.pem ${path.root}/../ansible/main.yml -b"
+    command = "ansible-playbook -u ${var.local_exec_user} -i '${self.default_ip_address},' --private-key ${var.local_exec_ssh_key_file} ${var.path_to_ansible} ${var.ansible_args} -b"
+    #command = var.local_exec_command
   }
 
 }

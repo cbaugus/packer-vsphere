@@ -1,5 +1,5 @@
 module "example_cluster" {
-  source = "../modules/terraform-vsphere-vm"
+  source = "./modules/terraform-vsphere-vm"
   ### matches count of instances, To use DHCP create Empty list ["",""]
   network = {
     (data.vsphere_network.network.name) = [
@@ -52,4 +52,15 @@ module "example_cluster" {
     "guestinfo.userdata"          = base64encode(file("${path.module}/../configs/ubuntu-server/user-data"))
     "guestinfo.userdata.encoding" = "base64"
   }
+
+  //Provisioning configurations
+  remote_exec_command = "echo Running the remote-exec provisioner"
+  remote_exec_user = "cicduser"
+  remote_exec_ssh_key_file = "/opt/devops-local/ssl/keys/key.pem"
+  remote_exec_timeout = "1m"
+  local_exec_user = "cicduser"
+  local_exec_ssh_key_file = "/opt/devops-local/ssl/keys/key.pem"
+  path_to_ansible = ""
+  ansible_args = "-e 'ansible_python_interpreter=/usr/bin/python3.8' -vvv"
+  #local_exec_command = "ansible-playbook -u cicduser -i '${self.default_ip_address},' --private-key ~/.ssh/keys/key.pem ${path.root}/../../ansible-deployments/main.yml -b"
 }
