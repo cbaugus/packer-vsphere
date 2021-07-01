@@ -58,7 +58,7 @@ module "ubuntu_testing_cluster" {
   local_exec_user = "cicduser"
   local_exec_ssh_key_file = "/opt/devops-local/ssl/keys/key.pem"
   path_to_ansible = "../../ansible-deployments/main.yml"
-  ansible_args = "-e 'ansible_python_interpreter=/usr/bin/python3.9' -vvv" #Photon
+  ansible_args = "-e 'ansible_python_interpreter=/usr/bin/python3 hostname=ansible-deployment-testing-ubuntu-1 consul_group_name=all consul_group=consul_instances' -vvv -b" #Photon
 
 
 }
