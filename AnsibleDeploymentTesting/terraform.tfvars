@@ -14,10 +14,10 @@ vsphere_template = "linux-ubuntu-server-20-04-lts"
 
 vsphere_template_ubuntu = "linux-ubuntu-server-20-04-lts"
 
+vsphere_template_photon = "linux-photon-server-4"
+
 vsphere_template_debian = "linux-server-debian-10-base-template"
 
 vsphere_template_centos = "linux-server-centos-8-base-template"
-
-vsphere_template_photon = "linux-server-photon-4-base-template"
 
 name_prefix = "ansible-deployment-testing"
