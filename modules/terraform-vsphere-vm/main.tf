@@ -135,7 +135,6 @@ resource "vsphere_virtual_machine" "Linux" {
     linked_clone  = var.linked_clone
     timeout       = var.timeout
 
-    /*
     customize {
       linux_options {
         host_name    = "%{if var.vmnameliteral != ""}${var.vmnameliteral}%{else}${var.vmname}${count.index + 1}${var.vmnamesuffix}%{endif}"
@@ -154,10 +153,7 @@ resource "vsphere_virtual_machine" "Linux" {
       dns_suffix_list = var.dns_suffix_list
       ipv4_gateway    = var.vmgateway
     }
-    */
-    
   }
-
 
   // Advanced options
   hv_mode                          = var.hv_mode
@@ -185,7 +181,7 @@ resource "vsphere_virtual_machine" "Linux" {
   }
 
   provisioner "local-exec" {
-    command = "ansible-playbook -u ${var.local_exec_user} -i '${self.default_ip_address},' --private-key ${var.local_exec_ssh_key_file} ${var.path_to_ansible} ${var.ansible_args} -b"
+    command = "ansible-playbook -u ${var.local_exec_user} -i '${self.default_ip_address},' --private-key ${var.local_exec_ssh_key_file} ${var.path_to_ansible} ${var.ansible_args} "
     #command = var.local_exec_command
   }
 
