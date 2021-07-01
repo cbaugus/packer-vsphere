@@ -57,8 +57,8 @@ module "ubuntu_testing_cluster" {
   remote_exec_timeout = "1m"
   local_exec_user = "cicduser"
   local_exec_ssh_key_file = "/opt/devops-local/ssl/keys/key.pem"
-  path_to_ansible = ""
-  ansible_args = "-e 'ansible_python_interpreter=/usr/bin/python3.8' -vvv"
+  path_to_ansible = "../../ansible-deployments/main.yml"
+  ansible_args = "-e 'ansible_python_interpreter=/usr/bin/python3.9' -vvv" #Photon
 
 
 }
