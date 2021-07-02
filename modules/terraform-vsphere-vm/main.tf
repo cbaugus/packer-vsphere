@@ -56,7 +56,7 @@ locals {
 
 // Cloning a Linux VM from a given template. Note: This is the default option!!
 resource "vsphere_virtual_machine" "Linux" {
-  count      = var.is_windows_image ? 0 : var.instances
+  count      = var.is_windows_image ? 0 : tonumber(var.instances)
   depends_on = [var.vm_depends_on]
   name       = "%{if var.vmnameliteral != ""}${var.vmnameliteral}%{else}${var.vmname}${count.index + 1}${var.vmnamesuffix}%{endif}"
 
@@ -145,7 +145,9 @@ resource "vsphere_virtual_machine" "Linux" {
       dynamic "network_interface" {
         for_each = keys(var.network)
         content {
-          ipv4_address = var.network[keys(var.network)[network_interface.key]][count.index]
+          ipv4_address = var.network[keys(var.network)[network_interface.key]] != null ? var.network[keys(var.network)[network_interface.key]][count.index] : ""
+          //ipv4_address = var.network[keys(var.network)[network_interface.key]][count.index] != null ? var.network[keys(var.network)[network_interface.key]][count.index] : ""
+          //ipv4_address = var.network[keys(var.network)[network_interface.key]][count.index]
           ipv4_netmask = "%{if length(var.ipv4submask) == 1}${var.ipv4submask[0]}%{else}${var.ipv4submask[network_interface.key]}%{endif}"
         }
       }

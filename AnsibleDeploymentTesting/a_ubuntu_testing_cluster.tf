@@ -43,4 +43,22 @@ module "ubuntu_testing_cluster" {
 
   ### Linux Customization Variables
   vmdomain = "local.domain"
+  extra_config = {
+    "guestinfo.metadata"          = base64encode(file("${path.module}/../configs/ubuntu-server/meta-data"))
+    "guestinfo.metadata.encoding" = "base64"
+    "guestinfo.userdata"          = base64encode(file("${path.module}/../configs/ubuntu-server/user-data"))
+    "guestinfo.userdata.encoding" = "base64"
+  }
+
+  //Provisioning configurations
+  remote_exec_command = "echo Running the remote-exec provisioner"
+  remote_exec_user = "cicduser"
+  remote_exec_ssh_key_file = "/opt/devops-local/ssl/keys/key.pem"
+  remote_exec_timeout = "1m"
+  local_exec_user = "cicduser"
+  local_exec_ssh_key_file = "/opt/devops-local/ssl/keys/key.pem"
+  path_to_ansible = "../../ansible-deployments/main.yml"
+  ansible_args = "-e 'ansible_python_interpreter=/usr/bin/python3 hostname=ansible-deployment-testing-ubuntu-1 consul_group_name=all consul_group=consul_instances' -vvv -b" #Photon
+
+
 }

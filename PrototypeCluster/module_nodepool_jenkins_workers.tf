@@ -1,11 +1,8 @@
-module "example_cluster" {
+module "jenkins_workers" {
   source = "./modules/terraform-vsphere-vm"
   ### matches count of instances, To use DHCP create Empty list ["",""]
   network = {
-    (data.vsphere_network.network.name) = [
-      "",
-      ""
-    ]
+    (data.vsphere_network.network.name) = var.ip_addresses
     ### "Network02" = ["10.13.113.2", "10.13.113.3"] # Second Network will use the static
   }
   ### matches count of instances
@@ -18,7 +15,7 @@ module "example_cluster" {
 
   ### Disks section
   disk_label     = ["${var.name_prefix}-dlg-disk0"]      ### disk0
-  disk_size_gb   = ["35"]                                ### disk0
+  disk_size_gb   = [var.disk_size[var.resource_pool_type]]                                ### disk0
   disk_datastore = data.vsphere_datastore.datastore.name ### disk0
   scsi_type      = "lsilogic"
   //  storage_policy_id = "" # TODO : Target storage policy for placements
@@ -29,9 +26,9 @@ module "example_cluster" {
   //  vmnameliteral = ""
   ### required
   vmtemp     = data.vsphere_virtual_machine.template.name
-  instances  = "2"
-  cpu_number = "2"
-  ram_size   = "1024"
+  instances  = var.num_instances
+  cpu_number = var.num_cores[var.resource_pool_type]
+  ram_size   = var.mem_size[var.resource_pool_type]
   ### required
   dc = var.vsphere_datacenter
   ### required
@@ -54,14 +51,12 @@ module "example_cluster" {
   }
 
   //Provisioning configurations
-  remote_exec_command = "echo Running the remote-exec provisioner"
-  remote_exec_user = "cicduser"
-  remote_exec_ssh_key_file = "/opt/devops-local/ssl/keys/key.pem"
-  remote_exec_timeout = "1m"
-  local_exec_user = "cicduser"
-  local_exec_ssh_key_file = "/opt/devops-local/ssl/keys/key.pem"
-  path_to_ansible = "../../ansible-deployments/main.yml"
-  ansible_args = "-e 'ansible_python_interpreter=/usr/bin/python3.9' -vvv" #Photon
-  #ansible_args = "-e 'ansible_python_interpreter=/usr/bin/python3.8' -vvv -b" #Ubuntu
-  #local_exec_command = "ansible-playbook -u cicduser -i '${self.default_ip_address},' --private-key ~/.ssh/keys/key.pem ${path.root}/../../ansible-deployments/main.yml -b"
+  remote_exec_command = var.remote_exec_command
+  remote_exec_user = var.remote_exec_user
+  remote_exec_ssh_key_file = var.remote_exec_ssh_key_file
+  remote_exec_timeout = var.remote_exec_timeout
+  local_exec_user = var.local_exec_user
+  local_exec_ssh_key_file = var.local_exec_ssh_key_file
+  path_to_ansible = var.path_to_ansible
+  ansible_args = var.ansible_arguments
 }
