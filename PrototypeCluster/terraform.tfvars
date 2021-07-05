@@ -13,3 +13,5 @@ vsphere_folder = "Infrastructure/TerraformTesting"
 vsphere_template = "linux-ubuntu-server-20-04-lts"
 
 name_prefix = "terraform-template-base"
+
+resource_pool_type = "small"
