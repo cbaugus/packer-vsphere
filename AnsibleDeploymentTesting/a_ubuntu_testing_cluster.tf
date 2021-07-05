@@ -60,5 +60,4 @@ module "ubuntu_testing_cluster" {
   path_to_ansible = "../../ansible-deployments/main.yml"
   ansible_args = "-e 'ansible_python_interpreter=/usr/bin/python3 hostname=ansible-deployment-testing-ubuntu-1 consul_group_name=all consul_group=consul_instances vault_backend=consul vault_service_restart=false nomad_group_name=all' -vvv -b" #Photon
 
-
 }
