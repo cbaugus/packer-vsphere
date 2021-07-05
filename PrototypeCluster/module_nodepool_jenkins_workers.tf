@@ -1,5 +1,6 @@
 module "jenkins_workers" {
-  source = "./modules/terraform-vsphere-vm"
+  source = "app.terraform.io/JohnstonHowse/vm-module/vsphere"
+  version = "1.0.0"
   ### matches count of instances, To use DHCP create Empty list ["",""]
   network = {
     (data.vsphere_network.network.name) = var.ip_addresses
