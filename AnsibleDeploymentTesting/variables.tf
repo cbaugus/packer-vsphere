@@ -62,7 +62,7 @@ variable "name_prefix" {
   type        = string
 }
 variable "ansible_extra_vars" {
-  type = list(object({
+  type = object({
     ansible_python_interpreter = string
     hostname = string
     consul_group_name = string
@@ -70,5 +70,5 @@ variable "ansible_extra_vars" {
     vault_backend = string
     vault_service_restart = string
     nomad_group_name = string
-  }))
+  })
 }
