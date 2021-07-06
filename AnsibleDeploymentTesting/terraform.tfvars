@@ -29,5 +29,6 @@ ansible_extra_vars = {
   "consul_group"                = "consul_instances"
   "vault_backend"               = "consul"
   "vault_service_restart"       = "false"
-  "nomad_group_name"            = "nomad"
+  "nomad_group_name"            = "all"
+  "nomad_group"                 = "nomad"
 }
