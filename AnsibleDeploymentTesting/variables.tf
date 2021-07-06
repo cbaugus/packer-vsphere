@@ -64,11 +64,12 @@ variable "name_prefix" {
 variable "ansible_extra_vars" {
   type = object({
     ansible_python_interpreter = string
-    hostname = string
-    consul_group_name = string
-    consul_group = string
-    vault_backend = string
-    vault_service_restart = string
-    nomad_group_name = string
+    hostname                   = string
+    consul_group_name          = string
+    consul_group               = string
+    vault_backend              = string
+    vault_service_restart      = string
+    nomad_group_name           = string
+    nomad_group                = string
   })
 }
