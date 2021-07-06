@@ -21,3 +21,13 @@ vsphere_template_debian = "linux-server-debian-10-base-template"
 vsphere_template_centos = "linux-server-centos-8-base-template"
 
 name_prefix = "ansible-deployment-testing"
+
+ansible_extra_vars = {
+  "ansible_python_interpreter"  = "/usr/bin/python3"
+  "hostname"                    = "ansible-deployment-testing-ubuntu-1"
+  "consul_group_name"           = "all"
+  "consul_group"                = "consul_instances"
+  "vault_backend"               = "consul"
+  "vault_service_restart"       = "false"
+  "nomad_group_name"            = "nomad"
+}

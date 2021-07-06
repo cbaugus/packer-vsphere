@@ -61,3 +61,14 @@ variable "name_prefix" {
   description = "Prefix for naming convention of VMs"
   type        = string
 }
+variable "ansible_extra_vars" {
+  type = list(object({
+    ansible_python_interpreter = string
+    hostname = string
+    consul_group_name = string
+    consul_group = string
+    vault_backend = string
+    vault_service_restart = string
+    nomad_group_name = string
+  }))
+}
