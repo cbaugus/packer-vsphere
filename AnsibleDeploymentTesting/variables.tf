@@ -61,15 +61,13 @@ variable "name_prefix" {
   description = "Prefix for naming convention of VMs"
   type        = string
 }
-variable "ansible_extra_vars" {
-  type = object({
-    ansible_python_interpreter = string
-    hostname                   = string
-    consul_group_name          = string
-    consul_group               = string
-    vault_backend              = string
-    vault_service_restart      = string
-    nomad_group_name           = string
-    nomad_group                = string
-  })
+variable "consul_user" {
+  description = "vSphere consul username"
+  type        = string
+  sensitive   = true
+}
+variable "consul_pass" {
+  description = "vSphere consul  password"
+  type        = string
+  sensitive   = true
 }
