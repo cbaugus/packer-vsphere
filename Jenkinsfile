@@ -1,4 +1,4 @@
-String pipelineVersion = "feature/FI-424-infra-pipeline-fixes"
+String pipelineVersion = "feature/FI-435-terraform-ansible-provisioning"
 library("jenkins-pipeline@${pipelineVersion}")
 
 loglevel = "DEBUG"
