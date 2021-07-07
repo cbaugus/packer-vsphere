@@ -71,3 +71,8 @@ variable "consul_pass" {
   type        = string
   sensitive   = true
 }
+variable "consul_raw_key" {
+  description = "Consul gossip key"
+  type        = string
+  sensitive   = true
+}

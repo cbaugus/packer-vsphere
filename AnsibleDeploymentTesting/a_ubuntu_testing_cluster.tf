@@ -22,7 +22,7 @@ locals {
   	"nomad_group_name"                    = "all"
   	"nomad_group"                         = "bin"
   	"auto_encrypt"                        = { "enabled" = "true" }
-  	"consul_raw_key"                      = "T/BZE9pgOadq/fGuWTreaUV1AEi5J3tXxzcslZ8txa8="
+  	"consul_raw_key"                      = "${var.consul_raw_key}"
   } 
 }
 
