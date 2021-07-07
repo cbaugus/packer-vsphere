@@ -17,12 +17,13 @@ locals {
   	"consul_tls_verify_incoming"          = "true"
   	"consul_tls_verify_outgoing"          = "true"
   	"consul_tls_verify_server_hostname"   = "false"
+  	"consul_raw_key"                      = "${var.consul_raw_key}"
+  	"consul_connect_enabled"              = "true"
+  	"auto_encrypt"                        = { "enabled" = "true" }
   	"vault_backend"                       = "consul"
   	"vault_service_restart"               = "false"
   	"nomad_group_name"                    = "all"
   	"nomad_group"                         = "bin"
-  	"auto_encrypt"                        = { "enabled" = "true" }
-  	"consul_raw_key"                      = "${var.consul_raw_key}"
   } 
 }
 
