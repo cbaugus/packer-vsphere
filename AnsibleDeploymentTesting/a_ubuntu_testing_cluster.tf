@@ -24,6 +24,9 @@ locals {
   	"vault_service_restart"               = "false"
   	"nomad_group_name"                    = "all"
   	"nomad_group"                         = "bin"
+    "nomad_vault_enabled"                 = "yes"
+    "nomad_vault_address"                 = "https://vault.service.consul:8200"
+    "nomad_vault_create_from_role"        = "nomad-cluster"
   } 
 }
 
