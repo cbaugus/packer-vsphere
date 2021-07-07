@@ -24,9 +24,12 @@ locals {
   	"vault_service_restart"               = "false"
   	"nomad_group_name"                    = "all"
   	"nomad_group"                         = "bin"
-    "nomad_vault_enabled"                 = "yes"
-    "nomad_vault_address"                 = "https://vault.service.consul:8200"
-    "nomad_vault_create_from_role"        = "nomad-cluster"
+	"nomad_vault_enabled"                 = "yes"
+	"nomad_vault_address"                 = "https://vault.service.consul:8200"
+        "nomad_vault_create_from_role"        = "nomad-cluster"
+	"nomad_node_name"                     = "ansible-deployment-testing-ubuntu-1"
+	"nomad_node_class"                    = "production"
+	"nomad_datacenter"                    = "${var.vsphere_datacenter}"
   } 
 }
 
