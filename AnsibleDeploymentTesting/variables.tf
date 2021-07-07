@@ -61,3 +61,18 @@ variable "name_prefix" {
   description = "Prefix for naming convention of VMs"
   type        = string
 }
+variable "consul_user" {
+  description = "vSphere consul username"
+  type        = string
+  sensitive   = true
+}
+variable "consul_pass" {
+  description = "vSphere consul  password"
+  type        = string
+  sensitive   = true
+}
+variable "consul_raw_key" {
+  description = "Consul gossip key"
+  type        = string
+  sensitive   = true
+}
