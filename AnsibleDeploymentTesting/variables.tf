@@ -76,3 +76,47 @@ variable "consul_raw_key" {
   type        = string
   sensitive   = true
 }
+variable "num_instances" {
+  description = "Number of VMs to provision"
+  type        = string
+}
+variable "ip_addresses" {
+  description = "IP addresses of VMs to create, empty string for DHCP"
+  type = list(string)
+  default = null
+}
+variable "remote_exec_command" {
+  description = "Command for remote exec provisioner to run"
+  type = string
+  default = "echo Running the remote-exec provisioner"
+}
+variable "remote_exec_user" {
+  description = "User for remote exec provisioner to connect as"
+  type = string
+  default = "cicduser"
+}
+variable "remote_exec_ssh_key_file" {
+  description = "Path to the SSH key to connect to created VMs, located on the Terraform runner"
+  type        = string
+  default     = "/opt/devops-local/ssl/keys/key.pem"
+}
+variable "remote_exec_timeout" {
+  description = "Timeout value for remote exec provisioner to conenct to VM"
+  type = string
+  default = "1m"
+}
+variable "local_exec_user" {
+  description = "User for local exec provisioner to connect as with Ansible"
+  type        = string
+  default = "cicduser"
+}
+variable "local_exec_ssh_key_file" {
+  description = "Path to the SSH key to connect to created VMs, located on the Terraform runner"
+  type        = string
+  default     = "/opt/devops-local/ssl/keys/key.pem"
+}
+variable "path_to_ansible" {
+  description = "Location of Ansible playook on Terraform runner"
+  type = string
+  default = "../../ansible-deployments/main.yml"
+}

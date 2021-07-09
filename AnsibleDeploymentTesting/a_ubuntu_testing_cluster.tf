@@ -39,9 +39,8 @@ module "ubuntu_testing_cluster" {
   
   ### matches count of instances, To use DHCP create Empty list ["",""]
   network = {
-    (data.vsphere_network.network.name) = [
-      ""
-    ]
+    (data.vsphere_network.network.name) = var.ip_addresses
+    ### "Network02" = ["10.13.113.2", "10.13.113.3"] # Second Network will use the static
   }
   ### matches count of instances
   network_type = [
@@ -63,7 +62,7 @@ module "ubuntu_testing_cluster" {
   //  vmnameliteral = ""
   ### required
   vmtemp     = data.vsphere_virtual_machine.template_ubuntu.name
-  instances  = "1"
+  instances  = var.num_instances
   cpu_number = "2"
   ram_size   = "1024"
   ### required
@@ -87,14 +86,14 @@ module "ubuntu_testing_cluster" {
     "guestinfo.userdata.encoding" = "base64"
   }
 
-  ### Provisioning configurations
-  remote_exec_command = "echo Running the remote-exec provisioner"
-  remote_exec_user = "cicduser"
-  remote_exec_ssh_key_file = "/opt/devops-local/ssl/keys/key.pem"
-  remote_exec_timeout = "1m"
-  local_exec_user = "cicduser"
-  local_exec_ssh_key_file = "/opt/devops-local/ssl/keys/key.pem"
-  path_to_ansible = "../../ansible-deployments/main.yml"
+  //Provisioning configurations
+  remote_exec_command = var.remote_exec_command
+  remote_exec_user = var.remote_exec_user
+  remote_exec_ssh_key_file = var.remote_exec_ssh_key_file
+  remote_exec_timeout = var.remote_exec_timeout
+  local_exec_user = var.local_exec_user
+  local_exec_ssh_key_file = var.local_exec_ssh_key_file
+  path_to_ansible = var.path_to_ansible
   ansible_args = format("-e '%#v' -vvv -b", local.ansible_extra_vars) 
 
 }

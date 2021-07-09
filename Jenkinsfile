@@ -12,7 +12,7 @@ components = [
         config: [
             infrastructureType: "vsphere",
             terraformDirectories: [
-                directory1: "PrototypeCluster"
+                directory1: "AnsibleDeploymentTesting"
             ],
             terraformVars: [
                 num_instances: "1"
@@ -25,7 +25,11 @@ components = [
              current: [
                  repoName: "terraform-vsphere",
                  branchName: "${env.BRANCH_NAME}"
-             ]
+             ],
+             ansible: [
+                  repoName: "ansible-deployments",
+                  branchName: "develop"
+              ]
         ]
     ]
     //TODO: Clone ansible-deployments for provisioning
@@ -43,15 +47,20 @@ stages = [
             targetEnv: "dalDC01", //TODO: Create environment generic from Packer or Terraform for both to use
             targets: [
                 vsphereVMs: [
-                    name: "prototypeCluster",
+                    name: "AnsibleDeploymentTesting",
                     strategy: "terraform"
                 ]
             ]
         ],
         withScm: [
-            scmEnv: "frankBitBucketRepoHost",
-            scmName: "current"
-            //TODO: Add ansible-deployments
+            primaryScm: [
+                scmEnv: "frankBitBucketRepoHost",
+                scmName: "current"
+            ],
+            extraScm1: [
+                scmEnv: "frankBitBucketRepoHost",
+                scmName: "ansible"
+            ]
         ]
     ]
 ]
