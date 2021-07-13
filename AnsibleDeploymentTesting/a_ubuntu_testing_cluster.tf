@@ -36,6 +36,10 @@ locals {
       "docker.cleanup.image"     = "false"
       "docker.volumes.enabled"   = "true"
     }
+  "nomad_meta"                          = { 
+      "node-switcher"            = "on"
+      "systen-fab-lb"            = "on"
+    }
   } 
 }
 
