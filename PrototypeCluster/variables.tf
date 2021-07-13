@@ -121,6 +121,7 @@ variable "path_to_ansible" {
 variable "ansible_arguments" {
   description = "Arguments to be passed to Ansible playbook run"
   type = string
-  default = "-e 'ansible_python_interpreter=/usr/bin/python3.8' -vvv -b" #Ubuntu
+  default = "-e ansible_python_interpreter=/usr/bin/python3.8 -vvv -b"
+  #default = "-e 'ansible_python_interpreter=/usr/bin/python3.8' -vvv -b" #Ubuntu
   #ansible_args = "-e 'ansible_python_interpreter=/usr/bin/python3.9' -vvv" #Photon
 }

@@ -12,7 +12,7 @@ components = [
         config: [
             infrastructureType: "vsphere",
             terraformDirectories: [
-                directory1: "AnsibleDeploymentTesting"
+                directory1: "PrototypeCluster"
             ],
             terraformVars: [
                 num_instances: "1"
@@ -28,7 +28,7 @@ components = [
              ],
              ansible: [
                   repoName: "ansible-deployments",
-                  branchName: "develop"
+                  branchName: "feature/FI-435-ansible-terraform-pipeline"
               ]
         ]
     ]
@@ -47,8 +47,9 @@ stages = [
             targetEnv: "dalDC01", //TODO: Create environment generic from Packer or Terraform for both to use
             targets: [
                 vsphereVMs: [
-                    name: "AnsibleDeploymentTesting",
-                    strategy: "terraform"
+                    name: "PrototypeCluster",
+                    strategy: "terraform",
+                    graphFlag: false
                 ]
             ]
         ],
