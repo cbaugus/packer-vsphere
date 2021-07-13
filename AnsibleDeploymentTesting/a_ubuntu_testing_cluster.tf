@@ -30,6 +30,12 @@ locals {
 	"nomad_node_name"                     = "ansible-deployment-testing-ubuntu-1"
 	"nomad_node_class"                    = "production"
 	"nomad_datacenter"                    = "${var.vsphere_datacenter}"
+  "nomad_options"                       = { 
+      "driver.raw_exec.enable"   = "1"
+      "driver.java.enable"       = "0"
+      "docker.cleanup.image"     = "false"
+      "docker.volumes.enabled"   = "true"
+    }
   } 
 }
 
