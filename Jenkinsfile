@@ -44,7 +44,7 @@ stages = [
         title: "Deploy VM cluster",
         description: "Deploy Prototype VM cluster to vSphere",
         type: "install",
-        agent: "agent-deploytools-test",
+        agent: "agent-deploytools",
         config: [
             installType: "infrastructure_install",
             infrastructure: "vsphereVMs",
