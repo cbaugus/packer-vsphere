@@ -1,5 +1,5 @@
 consul_domain                     = "consul."
-consul_group_name                 = "consul"
+consul_group_name                 = "consul_instances"
 consul_group                      = "consul"
 consul_cloud_autodiscovery        = "True"
 consul_src_def                    = "/root/.ssh"

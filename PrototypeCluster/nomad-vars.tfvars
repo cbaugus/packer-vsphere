@@ -1,5 +1,5 @@
 nomad_user                         = "nomad"
-nomad_group_name                   = "nomad"
+nomad_group_name                   = "nomad_instances"
 nomad_group                        = "nomad"
 nomad_leave_on_terminate           = "yes"
 nomad_leave_on_interrupt           = "yes"
