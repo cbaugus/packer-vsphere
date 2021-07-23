@@ -315,6 +315,21 @@ variable "nomad_vault_tls_skip_verify" {
   type        = string
   default     = "True"
 }
+variable "nomad_telemetry" {
+  description = ""
+  type        = string
+  default     = "true"
+}
+variable "nomad_telemetry_prometheus_metrics" {
+  description = ""
+  type        = string
+  default     = "true"
+}
+variable "nomad_docker_enable" {
+  description = ""
+  type        = string
+  default     = "yes"
+}
 variable "nomad_options" {
   description = ""
   type        = map(any)
