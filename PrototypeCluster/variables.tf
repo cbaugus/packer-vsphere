@@ -265,6 +265,11 @@ variable "nomad_group" {
   type        = string
   default     = "all"
 }
+variable "nomad_manage_group" {
+  description = ""
+  type        = string
+  default     = "yes"
+}
 variable "nomad_vault_enabled" {
   description = ""
   type        = string
