@@ -76,9 +76,9 @@ variable "disk_size" {
 variable "mem_size" {
   description = "Amount of memory to be applied to VM(s)"
   default = {
-    small  = "1024"
-    medium = "2048"
-    large  = "4096"
+    small  = "2048"
+    medium = "4096"
+    large  = "8192"
   }
 }
 variable "ip_address" {
@@ -124,21 +124,6 @@ variable "path_to_ansible" {
   type        = string
   default     = "../../ansible-deployments/main.yml"
 }
-variable "consul_user" {
-  description = "vSphere Consul username"
-  type        = string
-  sensitive   = false
-}
-variable "consul_pass" {
-  description = "vSphere Consul password"
-  type        = string
-  sensitive   = false
-}
-variable "consul_raw_key" {
-  description = "Consul gossip key"
-  type        = string
-  sensitive   = false
-}
 variable "provisioner_hostname_flag" {
   description = "Flag to indicate if the two variables hostname and nomad_node_name should be supplied to the local-exec provisioner with the VM name"
   type        = string
@@ -153,6 +138,32 @@ variable "ansible_python_interpreter" {
   description = "Python interpreter to be used on target machine"
   type        = string
   default     = "/usr/bin/python3"
+}
+variable "consul_user" {
+  description = "vSphere Consul username"
+  type        = string
+  sensitive   = true
+}
+variable "consul_pass" {
+  description = "vSphere Consul password"
+  type        = string
+  sensitive   = true
+}
+variable "consul_raw_key" {
+  description = "Consul gossip key"
+  type        = string
+  sensitive   = true
+}
+variable "consul_tls_enable" {
+  description = "Consul gossip key"
+  type        = string
+  sensitive   = true
+  default     = "True"
+}
+variable "consul_tls_ca_crt" {
+  description = "Consul CA certificate file name"
+  type        = string
+  sensitive   = true
 }
 variable "consul_domain" {
   description = "Domain for Consul DNS"
@@ -177,11 +188,144 @@ variable "consul_cloud_autodiscovery" {
 variable "consul_src_def" {
   description = ""
   type        = string
-  default     = "/tmp"
+  default     = "/root/.ssh"
 }
 variable "consul_tls_src_files" {
   description = ""
   type        = string
-  default     = "/tmp"
+  default     = "/root/.ssh"
 }
-
+variable "consul_tls_verify_incoming" {
+  description = ""
+  type        = string
+  default     = "False"
+}
+variable "consul_tls_verify_outgoing" {
+  description = ""
+  type        = string
+  default     = "True"
+}
+variable "consul_tls_verify_server_hostname" {
+  description = ""
+  type        = string
+  default     = "False"
+}
+variable "consul_node_role" {
+  description = ""
+  type        = string
+  default     = "client"
+}
+variable "consul_connect_enabled" {
+  description = ""
+  type        = string
+  default     = "True"
+}
+variable "consul_sylog_enable" {
+  description = ""
+  type        = string
+  default     = "True"
+}
+variable "consul_acl_enable" {
+  description = ""
+  type        = string
+  default     = "True"
+}
+variable "consul_acl_default_policy" {
+  description = ""
+  type        = string
+  default     = "allow"
+}
+variable "consul_version" {
+  description = ""
+  type        = string
+  default     = "1.9.4"
+}
+variable "auto_encrypt" {
+  description = ""
+  type        = map(any)
+  default     = { "enabled" = "True" }
+}
+variable "consul_ports" {
+  description = ""
+  type        = map(any)
+  default     = { "grpc" = "8502", "dns" = "8600", "http" = "8500", "https" = "-1", "rpc" = "8400", "serf_lan" = "8301", "serf_wan" = "8302", "server" = "8300" }
+}
+variable "nomad_group_name" {
+  description = ""
+  type        = string
+  default     = "all"
+}
+variable "nomad_group" {
+  description = ""
+  type        = string
+  default     = "bin"
+}
+variable "nomad_vault_enabled" {
+  description = ""
+  type        = string
+  default     = "yes"
+}
+variable "nomad_vault_address" {
+  description = ""
+  type        = string
+  default     = "https://vault.service.consul:8200"
+}
+variable "nomad_vault_create_from_role" {
+  description = ""
+  type        = string
+  default     = "nomad-cluster"
+}
+variable "nomad_node_class" {
+  description = ""
+  type        = string
+  default     = "production"
+}
+variable "nomad_leave_on_terminate" {
+  description = ""
+  type        = string
+  default     = "yes"
+}
+variable "nomad_leave_on_interrupt" {
+  description = ""
+  type        = string
+  default     = "yes"
+}
+variable "nomad_version" {
+  description = ""
+  type        = string
+  default     = "1.1.2"
+}
+variable "nomad_vault_cert_file" {
+  description = ""
+  type        = string
+  default     = "/opt/vault/tls/tls.crt"
+}
+variable "nomad_vault_key_file" {
+  description = ""
+  type        = string
+  default     = "/opt/vault/tls/tls.key"
+}
+variable "nomad_vault_tls_skip_verify" {
+  description = ""
+  type        = string
+  default     = "True"
+}
+variable "nomad_options" {
+  description = ""
+  type        = map(any)
+  default = {
+    "driver.raw_exec.enable" = "1"
+    "driver.java.enable"     = "0"
+    "docker.cleanup.image"   = "false"
+    "docker.volumes.enabled" = "true"
+  }
+}
+variable "nomad_meta" {
+  description = ""
+  type        = map(any)
+  default = {
+    "node-switcher" = "on"
+    "system-fab-lb" = "on"
+    "purpose"       = "operations"
+  }
+}

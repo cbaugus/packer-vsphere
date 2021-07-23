@@ -15,30 +15,15 @@ components = [
                 directory1: "PrototypeCluster"
             ],
             terraformVars: [
-                num_instances: "2",
-                name_prefix: "ops-pool-a-small",
-                resource_pool_type: "small",
-                vsphere_datacenter: "dal-w01-dc01",
-                vsphere_compute_cluster: "dal-w01-cl01",
-                vsphere_resource_pool: "dal-w01-dc01/dal-w01-cl01/Resources",
-                vsphere_datastore: "dal-w01-cl01-ds-vsan01",
-                vsphere_network: "dal-w01-cl01-vds01-pg-ops-203",
-                vsphere_folder: "Infrastructure/TerraformTesting",
-                vsphere_template: "linux-ubuntu-server-20-04-lts",
-                remote_exec_user: "cicduser",
-                remote_exec_timeout: "3m",
-                remote_exec_command: "curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add - && sudo apt-add-repository 'deb [arch=amd64] https://apt.releases.hashicorp.com \$(lsb_release -cs) main' && sudo apt-get update && sudo apt-get install -y vault",
-                local_exec_user: "cicduser",
-                path_to_ansible: "../../ansible-deployments/main.yml",
-                ansible_python_interpreter: "/usr/bin/python3",
-                consul_domain: "consul.",
-                consul_group_name: "all",
-                consul_group: "consul_instances",
-                consul_cloud_autodiscovery: "True",
-                consul_src_def: "tmp"
+                num_instances: "1",
+                name_prefix: "ops-pool-a-large",
+                resource_pool_type: "large"
             ],
             terraformVarsFiles: [
-                file1: "" //Not yet supported
+                vsphereVarFile: "./vsphere-vars.tfvars",
+                provisionerVarFile: "./provisioner-vars.tfvars",
+                consulVarFile: "./consul-vars.tfvars",
+                nomadVarFile: "./nomad-vars.tfvars"
             ]
         ],
         scm: [
@@ -48,7 +33,7 @@ components = [
              ],
              ansible: [
                   repoName: "ansible-deployments",
-                  branchName: "feature/add-playbook-logging"
+                  branchName: "develop"
               ]
         ]
     ]
@@ -68,7 +53,13 @@ stages = [
                 vsphereVMs: [
                     name: "PrototypeCluster",
                     strategy: "terraform",
-                    graphFlag: false
+                    graphFlag: false,
+                    terraformVarsFiles: [
+                        "vsphereVarFile",
+                        "provisionerVarFile",
+                        "consulVarFile",
+                        "nomadVarFile"
+                    ]
                 ]
             ]
         ],
