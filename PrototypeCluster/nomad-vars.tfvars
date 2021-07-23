@@ -1,3 +1,6 @@
+nomad_user = "nomad"
+nomad_group_name = "nomad"
+nomad_group = "all"
 nomad_datacenter             = "dal-w01-dc01"
 nomad_leave_on_terminate     = "yes"
 nomad_leave_on_interrupt     = "yes"

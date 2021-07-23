@@ -1,6 +1,6 @@
 consul_domain                     = "consul."
-consul_group_name                 = "all"
-consul_group                      = "consul_instances"
+consul_group_name                 = "consul"
+consul_group                      = "all"
 consul_cloud_autodiscovery        = "True"
 consul_src_def                    = "/root/.ssh"
 consul_tls_enable                 = "True"

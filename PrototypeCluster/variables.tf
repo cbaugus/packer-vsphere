@@ -250,15 +250,20 @@ variable "consul_ports" {
   type        = map(any)
   default     = { "grpc" = "8502", "dns" = "8600", "http" = "8500", "https" = "-1", "rpc" = "8400", "serf_lan" = "8301", "serf_wan" = "8302", "server" = "8300" }
 }
+variable "nomad_user" {
+  description = ""
+  type        = string
+  default     = "nomad"
+}
 variable "nomad_group_name" {
   description = ""
   type        = string
-  default     = "all"
+  default     = "nomad"
 }
 variable "nomad_group" {
   description = ""
   type        = string
-  default     = "bin"
+  default     = "all"
 }
 variable "nomad_vault_enabled" {
   description = ""
