@@ -5,7 +5,7 @@ locals {
     "consul_domain"                      = var.consul_domain
     "consul_datacenter"                  = var.vsphere_datacenter
     "consul_group_name"                  = var.consul_group_name
-    "consul_group"                       = var.consul_group_name
+    "consul_group"                       = var.consul_group
     "consul_cloud_autodiscovery"         = var.consul_cloud_autodiscovery
     "consul_cloud_autodiscovery_string"  = local.consul_cloud_autodiscovery_string
     "consul_ports"                       = var.consul_ports
