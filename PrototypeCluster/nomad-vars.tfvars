@@ -1,6 +1,7 @@
 nomad_user                         = "nomad"
 nomad_group_name                   = "all"
 nomad_group                        = "nomad"
+nomad_manage_group                 = "yes"
 nomad_leave_on_terminate           = "yes"
 nomad_leave_on_interrupt           = "yes"
 nomad_version                      = "1.1.2"

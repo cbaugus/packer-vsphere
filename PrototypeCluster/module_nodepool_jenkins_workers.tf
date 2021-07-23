@@ -26,6 +26,7 @@ locals {
     "auto_encrypt"                       = var.auto_encrypt
     "nomad_group_name"                   = var.nomad_group_name
     "nomad_group"                        = var.nomad_group
+    "nomad_manage_group"                 = var.nomad_manage_group
     "nomad_vault_enabled"                = var.nomad_vault_enabled
     "nomad_vault_address"                = var.nomad_vault_address
     "nomad_vault_create_from_role"       = var.nomad_vault_create_from_role
