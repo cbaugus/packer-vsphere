@@ -6,18 +6,18 @@ loglevel = "DEBUG"
 components = [
     vsphereVMs: [
         name: "vsphereVMs",
-        description: "Prototype cluster of VMs",
+        description: "Photon worker fleet",
         version: "latest",
         type: "infrastructure",
         config: [
             infrastructureType: "vsphere",
             terraformDirectories: [
-                directory1: "PrototypeCluster"
+                directory1: "PhotonCluster"
             ],
             terraformVars: [
                 num_instances: "1",
-                name_prefix: "ops-pool-a-large",
-                resource_pool_type: "large"
+                name_prefix: "photon-pool-a-small",
+                resource_pool_type: "small"
             ],
             terraformVarsFiles: [
                 vsphereVarFile: "./vsphere-vars.tfvars",
@@ -41,8 +41,8 @@ components = [
 
 stages = [
     deployVMs_vsphere: [
-        title: "Deploy VM cluster",
-        description: "Deploy Prototype VM cluster to vSphere",
+        title: "Deploy Photon Fleet",
+        description: "Deploy cluster of Photon OS VMs",
         type: "install",
         agent: "agent-deploytools",
         config: [
@@ -51,7 +51,7 @@ stages = [
             targetEnv: "dalDC01", //TODO: Create environment generic from Packer or Terraform for both to use
             targets: [
                 vsphereVMs: [
-                    name: "PrototypeCluster",
+                    name: "PhotonCluster",
                     strategy: "terraform",
                     graphFlag: false,
                     terraformVarsFiles: [

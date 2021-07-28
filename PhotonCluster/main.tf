@@ -19,7 +19,7 @@ locals {
     "consul_node_role"                   = var.consul_node_role
     "consul_raw_key"                     = var.consul_raw_key
     "consul_connect_enabled"             = var.consul_connect_enabled
-    "consul_syslog_enable"                = var.consul_syslog_enable
+    "consul_syslog_enable"               = var.consul_syslog_enable
     "consul_acl_enable"                  = var.consul_acl_enable
     "consul_acl_default_policy"          = var.consul_acl_default_policy
     "consul_version"                     = var.consul_version
@@ -46,7 +46,7 @@ locals {
   }
 }
 
-module "jenkins_workers" {
+module "photon_workers" {
   source  = "app.terraform.io/JohnstonHowse/vm-module/vsphere"
   version = "1.0.9"
   count   = tonumber(var.num_instances)
@@ -107,3 +107,11 @@ module "jenkins_workers" {
   path_to_ansible          = var.path_to_ansible
   ansible_args             = format("--extra-vars '%#v' -e 'hostname=${var.name_prefix}-${count.index}' -e 'nomad_node_name=${var.name_prefix}-${count.index}' -vvv -b", local.ansible_extra_vars)
 }
+
+/*
+resource "vsphere_folder" "photon-folder" {
+  path = "Infrastructure/PhotonCluster"
+  type = "vm"
+  datacenter_id = data.vsphere_datacenter.dc.id
+}
+*/

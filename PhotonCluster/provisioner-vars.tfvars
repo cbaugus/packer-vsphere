@@ -1,0 +1,6 @@
+remote_exec_user           = "cicduser"
+remote_exec_timeout        = "3m"
+remote_exec_command        = "echo Running the remote exec provisioner"
+local_exec_user            = "cicduser"
+path_to_ansible            = "../../ansible-deployments/main.yml"
+ansible_python_interpreter = "/usr/bin/python3"
