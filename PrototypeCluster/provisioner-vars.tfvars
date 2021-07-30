@@ -1,0 +1,6 @@
+remote_exec_user           = "cicduser"
+remote_exec_timeout        = "3m"
+remote_exec_command        = "curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add - && sudo apt-add-repository \"deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main\" && sudo apt-get update && sudo apt-get install -y vault"
+local_exec_user            = "cicduser"
+path_to_ansible            = "../../ansible-deployments/main.yml"
+ansible_python_interpreter = "/usr/bin/python3"

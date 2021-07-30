@@ -1,0 +1,3 @@
+[submodule "submodules/terraform-nomad-minio"]
+	path = submodules/terraform-nomad-minio
+	url = https://github.com/Skatteetaten/terraform-nomad-minio.git

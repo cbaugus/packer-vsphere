@@ -6,7 +6,7 @@ terraform {
     organization = "JohnstonHowse"
 
     workspaces {
-      name = "iac-e2e-testing-joe"
+      name = "photon-worker-fleet"
     }
   }
 }

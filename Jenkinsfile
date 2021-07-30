@@ -1,4 +1,4 @@
-String pipelineVersion = "feature/FI-435-terraform-ansible-provisioning"
+String pipelineVersion = "development"
 library("jenkins-pipeline@${pipelineVersion}")
 
 loglevel = "DEBUG"
@@ -6,19 +6,24 @@ loglevel = "DEBUG"
 components = [
     vsphereVMs: [
         name: "vsphereVMs",
-        description: "Prototype cluster of VMs",
+        description: "Photon worker fleet",
         version: "latest",
         type: "infrastructure",
         config: [
             infrastructureType: "vsphere",
             terraformDirectories: [
-                directory1: "AnsibleDeploymentTesting"
+                directory1: "PhotonCluster"
             ],
             terraformVars: [
-                num_instances: "1"
+                num_instances: "1",
+                name_prefix: "photon-pool-a-small",
+                resource_pool_type: "small"
             ],
             terraformVarsFiles: [
-                file1: ""
+                vsphereVarFile: "./vsphere-vars.tfvars",
+                provisionerVarFile: "./provisioner-vars.tfvars",
+                consulVarFile: "./consul-vars.tfvars",
+                nomadVarFile: "./nomad-vars.tfvars"
             ]
         ],
         scm: [
@@ -32,13 +37,12 @@ components = [
               ]
         ]
     ]
-    //TODO: Clone ansible-deployments for provisioning
 ]
 
 stages = [
     deployVMs_vsphere: [
-        title: "Deploy VM cluster",
-        description: "Deploy Prototype VM cluster to vSphere",
+        title: "Deploy Photon Fleet",
+        description: "Deploy cluster of Photon OS VMs",
         type: "install",
         agent: "agent-deploytools",
         config: [
@@ -47,8 +51,15 @@ stages = [
             targetEnv: "dalDC01", //TODO: Create environment generic from Packer or Terraform for both to use
             targets: [
                 vsphereVMs: [
-                    name: "AnsibleDeploymentTesting",
-                    strategy: "terraform"
+                    name: "PhotonCluster",
+                    strategy: "terraform",
+                    graphFlag: false,
+                    terraformVarsFiles: [
+                        "vsphereVarFile",
+                        "provisionerVarFile",
+                        "consulVarFile",
+                        "nomadVarFile"
+                    ]
                 ]
             ]
         ],

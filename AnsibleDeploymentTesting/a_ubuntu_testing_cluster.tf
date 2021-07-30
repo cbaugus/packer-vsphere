@@ -30,13 +30,23 @@ locals {
     "nomad_node_name"                     = "ansible-deployment-testing-ubuntu-1"
     "nomad_node_class"                    = "production"
     "nomad_datacenter"                    = "${var.vsphere_datacenter}"
-  } 
+    "nomad_options"                       = {
+        "driver.raw_exec.enable"   = "1"
+        "driver.java.enable"       = "0"
+        "docker.cleanup.image"     = "false"
+        "docker.volumes.enabled"   = "true"
+      }
+    "nomad_meta"                          = {
+        "node-switcher"            = "on"
+        "systen-fab-lb"            = "on"
+      }
+  }
 }
 
 module "ubuntu_testing_cluster" {
   source = "app.terraform.io/JohnstonHowse/vm-module/vsphere"
   version = "1.0.0"
-  
+
   ### matches count of instances, To use DHCP create Empty list ["",""]
   network = {
     (data.vsphere_network.network.name) = var.ip_addresses
@@ -94,6 +104,6 @@ module "ubuntu_testing_cluster" {
   local_exec_user = var.local_exec_user
   local_exec_ssh_key_file = var.local_exec_ssh_key_file
   path_to_ansible = var.path_to_ansible
-  ansible_args = format("-e '%#v' -vvv -b", local.ansible_extra_vars) 
+  ansible_args = format("-e '%#v' -vvv -b -m debug", local.ansible_extra_vars)
 
 }
