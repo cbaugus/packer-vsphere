@@ -21,7 +21,7 @@ locals {
     "consul_node_role"                   = var.consul_node_role
     "consul_raw_key"                     = var.consul_raw_key
     "consul_connect_enabled"             = var.consul_connect_enabled
-    "consul_sylog_enable"                = var.consul_sylog_enable
+    "consul_syslog_enable"                = var.consul_sylog_enable
     "consul_acl_enable"                  = var.consul_acl_enable
     "consul_acl_default_policy"          = var.consul_acl_default_policy
     "consul_version"                     = var.consul_version
