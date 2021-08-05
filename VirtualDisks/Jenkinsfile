@@ -1,0 +1,84 @@
+
+String pipelineVersion = "feature-terraform-fix"
+library("jenkins-pipeline@${pipelineVersion}")
+
+loglevel = "DEBUG"
+
+components = [
+    frankVsphere_virtualDisks: [
+        name: "frankVsphere_virtualDisks",
+        description: "Frank Vsphere Virtual Disks",
+        version: "latest",
+        type: "infrastructure",
+        config: [
+            infrastructureType: "vsphere",
+            terraformDirectories: [
+                directory1: "VirtualDisks"
+            ],
+            terraformVars: [:],
+            terraformVarsFiles: [
+                wowzaContent: "vsphere/wowza/wowza-content.tfvars",
+                wowzaLogs: "vsphere/wowza/wowza-logs.tfvars",
+                wowzaVideo: "vsphere/wowza/wowza-video.tfvars"
+            ]
+        ],
+        scm: [
+             current: [
+                 repoName: "terraform-vsphere",
+                 branchName: "${env.BRANCH_NAME}"
+             ],
+             ansible: [
+                  repoName: "ansible-deployments",
+                  branchName: "develop"
+              ]
+        ]
+    ]
+]
+
+stages = [
+    deploy_virtual_disks: [
+        title: "Deploy Frank Vsphere Virtual Disks",
+        description: "Deploy Frank Vsphere Virtual Disks",
+        type: "install",
+        agent: "agent-deploytools",
+        config: [
+            installType: "infrastructure_install",
+            infrastructure: "frankVsphere_virtualDisks",
+            targetEnv: "dalDC01", //TODO: Create environment generic from Packer or Terraform for both to use
+            targets: [
+                wowzaContent: [
+                    name: "frankVsphere_virtualDisks",
+                    strategy: "terraform",
+                    graphFlag: false,
+                    terraformVarsFiles: [
+                        "wowzaContent",
+                    ]
+                ],
+                wowzaLogs: [
+                    name: "frankVsphere_virtualDisks",
+                    strategy: "terraform",
+                    graphFlag: false,
+                    terraformVarsFiles: [
+                        "wowzaLogs",
+                    ]
+                ],
+                wowzaVideo: [
+                    name: "frankVsphere_virtualDisks",
+                    strategy: "terraform",
+                    graphFlag: false,
+                    terraformVarsFiles: [
+                        "wowzaVideo",
+                    ]
+                ]
+            ]
+        ],
+        withScm: [
+            primaryScm: [
+                scmEnv: "frankBitBucketRepoHost",
+                scmName: "current"
+            ]
+        ]
+    ]
+]
+
+runPipeline(components, stages, loglevel)
