@@ -23,6 +23,8 @@ dist/
 target/
 dist/
 
+*credentials.auto.tfvars
+
 # JetBrains IDE
 **/.idea/*
 
