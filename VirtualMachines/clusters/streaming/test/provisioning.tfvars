@@ -21,8 +21,8 @@ provisioned_disks = [
     S3_ACL_1 = "private"
     S3_CACHE_1 = "/mnt/local/wowza_content_s3_cache"
     S3_BUCKET_1 = "streaming-wowza-video-test"
-    S3_ACCESS_KEY_ENV_REF_1 = "jWXw7dyp3786g7qEHhC4"
-    S3_SECRET_KEY_ENV_REF_1 = "e2tAVMB4NUkd9cqyTC2kRMGtvVWxcuSgXX"
+    S3_ACCESS_KEY_1 = "minio_s3_streaming_access_key"
+    S3_SECRET_KEY_1 = "minio_s3_streaming_secret_key"
     S3_NO_CHECK_CERTIFICATE_1 = "true"
     S3_SSL_VERIFY_HOSTNAME_1 = "0"
   }

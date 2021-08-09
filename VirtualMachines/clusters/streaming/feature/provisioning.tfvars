@@ -21,8 +21,8 @@ provisioned_disks = [
     S3_ACL_1 = "private"
     S3_CACHE_1 = "/mnt/local/wowza_content_s3_cache"
     S3_BUCKET_1 = "streaming-wowza-video-feature"
-    S3_ACCESS_KEY_ENV_REF_1 = "jWXw7dyp3786g7qEHhC4"
-    S3_SECRET_KEY_ENV_REF_1 = "e2tAVMB4NUkd9cqyTC2kRMGtvVWxcuSgXX"
+    S3_ACCESS_KEY_1 = "minio_s3_streaming_access_key"
+    S3_SECRET_KEY_1 = "minio_s3_streaming_secret_key"
     S3_NO_CHECK_CERTIFICATE_1 = "true"
     S3_SSL_VERIFY_HOSTNAME_1 = "0"
   }
@@ -32,10 +32,10 @@ consul_domain                     = "consul."
 consul_group_name                 = "all"
 consul_group                      = "consul"
 consul_cloud_autodiscovery        = "True"
-consul_src_def                    = "/root/.ssh"
 consul_tls_enable                 = "True"
-consul_tls_src_files              = "/root/.ssh"
 consul_tls_ca_crt                 = "consul-agent-ca.pem"
+consul_tls_server_crt             = "dc1-server-consul-0.pem"
+consul_tls_server_key             = "dc1-server-consul-0-key.pem"
 consul_tls_verify_incoming        = "False"
 consul_tls_verify_outgoing        = "True"
 consul_tls_verify_server_hostname = "False"
@@ -76,3 +76,17 @@ nomad_meta = {
   "system-fab-lb" = "on"
   "purpose"       = "streaming"
 }
+
+// The nomad_host_volumes owner and group must match the same uid and gid as specified in provisioned_disks
+// if that is being uses. The ansible nomad role will try to create the directory before configuring it in
+// the client.hcl file.
+nomad_host_volumes = [
+  {
+      "name" = "frank-wowza-content"
+      "path" = "/mnt/local/wowza_content_s3_mount"
+      "owner" = "cicduser"
+      "group" = "nomad"
+      "mode" = "0777"
+      "read_only" = "false"
+  }
+]

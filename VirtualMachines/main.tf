@@ -1,4 +1,13 @@
 locals {
+  // Map of vars to be referenced throughout the module.
+  vars = {
+    // TODO: Include standard vars to be assigned for module. Can use consul provider
+  }
+  // Map of secrets to be referenced throughout the module. Secret env vars take precedence over vault.
+  secrets = {
+    "minio_s3_streaming_access_key" = var.minio_s3_streaming_access_key != "" ? var.minio_s3_streaming_access_key : data.vault_generic_secret.minio_s3.data["s3_streaming_access_key"],
+    "minio_s3_streaming_secret_key" = var.minio_s3_streaming_secret_key != "" ? var.minio_s3_streaming_secret_key : data.vault_generic_secret.minio_s3.data["s3_streaming_secret_key"]
+  }
   consul_cloud_autodiscovery_string = "provider=vsphere category_name=vmTags tag_name=consul host=${var.vsphere_server} user=${var.vsphere_user} password=${var.vsphere_pass} insecure_ssl=true timeout=2m"
   ansible_extra_vars = {
     "ansible_python_interpreter"         = var.ansible_python_interpreter
@@ -21,7 +30,7 @@ locals {
     "consul_node_role"                   = var.consul_node_role
     "consul_raw_key"                     = var.consul_raw_key
     "consul_connect_enabled"             = var.consul_connect_enabled
-    "consul_syslog_enable"                = var.consul_sylog_enable
+    "consul_syslog_enable"               = var.consul_syslog_enable
     "consul_acl_enable"                  = var.consul_acl_enable
     "consul_acl_default_policy"          = var.consul_acl_default_policy
     "consul_version"                     = var.consul_version
@@ -45,38 +54,25 @@ locals {
     "nomad_docker_enable"                = var.nomad_docker_enable
     "nomad_options"                      = var.nomad_options
     "nomad_meta"                         = var.nomad_meta
-    // The nomad_host_volumes owner and group must match the same uid and gid as specified in provisioned_disks
-    // if that is being uses. The ansible nomad role will try to create the directory before configuring it in
-    // the client.hcl file.
-    "nomad_host_volumes"                  = [
-      {
-          "name" = "frank-wowza-content"
-          "path" = "/mnt/local/wowza_content_s3_mount"
-          "owner" = "cicduser"
-          "group" = "nomad"
-          "mode" = "0777"
-          "read_only" = "false"
-      }
-    ]
-    "proxy_env"                          = merge(var.provisioned_disks...)
-    "secret_proxy_env"                   = {
-      "S3_STREAMING_ACCESS_KEY"          = "${var.S3_STREAMING_ACCESS_KEY}"
-      "S3_STREAMING_SECRET_KEY"          = "${var.S3_STREAMING_SECRET_KEY}"
-    }
-    // TODO: Possible future improvement if we can get the syntax right instead of simply merging all properties for provisioned_disks together (not all needed)
-    // "proxy_env"                          = for index, disk in var.provisioned_disks : {
-    //   "LABEL_${disk.device_drive}" = "${disk.label}",
-    //   "S3_HOST_${index}" = "https://nonprods3fs01.dal.jhdc.local:9000",
-    //   "S3_MOUNT_${index}" = "/mnt/local/wowza_video0",
-    //   "S3_UID_${index}" = "1000",
-    //   "S3_GID_${index}" = "1002",
-    //   "S3_ACL_${index}" = "private",
-    //   "S3_BUCKET_${index}" = "streaming-wowza-video-test",
-    //   "S3_ACCESS_KEY_ID_${index}" = "jWXw7dyp3786g7qEHhC4",
-    //   "S3_SECRET_ACCESS_KEY_${index}" = "e2tAVMB4NUkd9cqyTC2kRMGtvVWxcuSgXX",
-    //   "S3_NO_CHECK_CERTIFICATE_${index}" = "true",
-    //   "S3_SSL_VERIFY_HOSTNAME_${index}" = "0",
-    // }
+    "nomad_host_volumes"                 = var.nomad_host_volumes
+    // Merge in provisioned disk env vars needed for growr and s3_handlr roles. Grab secrets for any designated secret vars.
+    // TODO: Use consul provider to grab referenced values (similar to secrets with vault as above)
+    "proxy_env"                          = merge([for index, disk in var.provisioned_disks : merge({
+      // Regular Vars
+      "LABEL_${disk.device_drive}" = disk["LABEL_${disk.device_drive}"],
+      "S3_HOST_${index + 1}" = disk["S3_HOST_${index + 1}"],
+      "S3_MOUNT_${index + 1}" = disk["S3_MOUNT_${index + 1}"],
+      "S3_UID_${index + 1}" = disk["S3_UID_${index + 1}"],
+      "S3_GID_${index + 1}" = disk["S3_GID_${index + 1}"],
+      "S3_ACL_${index + 1}" = disk["S3_ACL_${index + 1}"],
+      "S3_CACHE_${index + 1}" = disk["S3_CACHE_${index + 1}"]
+      "S3_BUCKET_${index + 1}" = disk["S3_BUCKET_${index + 1}"],
+      "S3_NO_CHECK_CERTIFICATE_${index + 1}" = disk["S3_NO_CHECK_CERTIFICATE_${index + 1}"],
+      "S3_SSL_VERIFY_HOSTNAME_${index + 1}" = disk["S3_SSL_VERIFY_HOSTNAME_${index + 1}"],
+      // Secret Vars
+      "S3_ACCESS_KEY_${index + 1}" = local.secrets[disk["S3_ACCESS_KEY_${index + 1}"]],
+      "S3_SECRET_KEY_${index + 1}" = local.secrets[disk["S3_SECRET_KEY_${index + 1}"]]
+    })]...)
   }
 }
 
@@ -86,6 +82,7 @@ module "virtual_machines" {
   source  = "app.terraform.io/JohnstonHowse/vm-module/vsphere"
   version = "1.0.14"
   //source  = "git@bitbucket.org:johnstonhowse/terraform-vsphere-vm-module.git"
+
   count   = tonumber(var.num_instances)
   ### matches count of instances, To use DHCP create Empty list ["",""]
 

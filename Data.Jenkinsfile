@@ -1,5 +1,5 @@
 
-String pipelineVersion = "feature/terraform-backend"
+String pipelineVersion = "feature/terraform-vault"
 library("jenkins-pipeline@${pipelineVersion}")
 
 // PIPELINE VARS
@@ -51,7 +51,9 @@ components = [
                 mainDirectory: "VirtualMachines"
             ],
             terraformVars: [
-                name_prefix: "streaming-cluster-${namePrefix}"
+                name_prefix: "streaming-cluster-${namePrefix}",
+                consul_src_def: "/root/.ssh",
+                consul_tls_src_files: "/root/.ssh"
             ],
             terraformVarsFiles: [
                 mainVarsFiles: "./clusters/streaming/${targetConfigs}/main.tfvars",
@@ -69,7 +71,7 @@ components = [
              ],
              ansible: [
                   repoName: "ansible-deployments",
-                  branchName: "fixes/FI-493"
+                  branchName: "develop"
               ]
         ]
     ]

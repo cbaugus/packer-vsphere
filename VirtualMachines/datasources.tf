@@ -1,3 +1,4 @@
+########## VSPHERE ##########
 data "vsphere_datacenter" "dc" {
   name = var.vsphere_datacenter
 }
@@ -25,4 +26,9 @@ data "vsphere_network" "network" {
 data "vsphere_virtual_machine" "template" {
   name          = var.vsphere_template
   datacenter_id = data.vsphere_datacenter.dc.id
+}
+
+########## VAULT ##########
+data "vault_generic_secret" "minio_s3" {
+  path = "kv/minio_s3"
 }

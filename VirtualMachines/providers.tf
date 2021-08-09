@@ -7,12 +7,14 @@ provider "vsphere" {
   client_debug         = true
 }
 
-// provider "vault" {
-//   auth_login {
-//     path = "auth/userpass/login/${var.login_username}"
-//
-//     parameters = {
-//       password = var.login_password
-//     }
-//   }
-// }
+provider "vault" {
+  address = var.vault_server_url
+  auth_login {
+    path = "auth/approle/login"
+
+    parameters = {
+      role_id   = var.vault_approle_id
+      secret_id = var.vault_approle_secret_id
+    }
+  }
+}

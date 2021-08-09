@@ -78,6 +78,11 @@ variable "provisioned_disks" {
   type        = any
   default     = {}
 }
+variable "nomad_host_volumes" {
+  description = "Storage data disk parameter, example"
+  type        = any
+  default     = {}
+}
 variable "mem_size" {
   description = "Amount of memory to be applied to VM(s)"
   default = {
@@ -170,16 +175,16 @@ variable "consul_tls_ca_crt" {
   type        = string
   sensitive   = true
 }
-// variable "consul_tls_server_crt" {
-//   description = "Consul CA Server certificate file name"
-//   type        = string
-//   sensitive   = true
-// }
-// variable "consul_tls_server_key" {
-//   description = "Consul CA Server Key file name"
-//   type        = string
-//   sensitive   = true
-// }
+variable "consul_tls_server_crt" {
+  description = "Consul CA Server certificate file name"
+  type        = string
+  sensitive   = true
+}
+variable "consul_tls_server_key" {
+  description = "Consul CA Server Key file name"
+  type        = string
+  sensitive   = true
+}
 variable "consul_domain" {
   description = "Domain for Consul DNS"
   type        = string
@@ -235,7 +240,7 @@ variable "consul_connect_enabled" {
   type        = string
   default     = "True"
 }
-variable "consul_sylog_enable" {
+variable "consul_syslog_enable" {
   description = ""
   type        = string
   default     = "True"
@@ -370,15 +375,42 @@ variable "nomad_meta" {
   }
 }
 
-# TODO: User vault provider instead to obtain the secrets 
+########## VAULT ##########
+variable "vault_server_url" {
+  description = "Vault server URL"
+  default = ""
+  sensitive = true
+}
+
+variable "vault_approle_id" {
+  description = "Vault server app role ID"
+  default = ""
+  sensitive = true
+}
+
+variable "vault_approle_secret_id" {
+  description = "Vault server app role secret"
+  default = ""
+  sensitive = true
+}
+
 ########## SECRETS ##########
-variable "S3_STREAMING_ACCESS_KEY" {
-  description = ""
+variable "minio_s3_streaming_access_key" {
+  description = "S3 Streaming Access Key"
   type        = string
   default     = ""
 }
-variable "S3_STREAMING_SECRET_KEY" {
-  description = ""
+
+variable "minio_s3_streaming_secret_key" {
+  description = "S3 Streaming Secret Key"
   type        = string
   default     = ""
 }
+
+########## PROVIDERS ##########
+// TODO: Optional providers...?
+//       Might be able to use --> terraform init -from-module="..."
+// variable "use_vault_provider" {
+//   description = "Use vault provider or not"
+//   default = false
+// }
