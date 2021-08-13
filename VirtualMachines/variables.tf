@@ -175,16 +175,16 @@ variable "consul_tls_ca_crt" {
   type        = string
   sensitive   = true
 }
-variable "consul_tls_server_crt" {
-  description = "Consul CA Server certificate file name"
-  type        = string
-  sensitive   = true
-}
-variable "consul_tls_server_key" {
-  description = "Consul CA Server Key file name"
-  type        = string
-  sensitive   = true
-}
+// variable "consul_tls_server_crt" {
+//   description = "Consul CA Server certificate file name"
+//   type        = string
+//   sensitive   = true
+// }
+// variable "consul_tls_server_key" {
+//   description = "Consul CA Server Key file name"
+//   type        = string
+//   sensitive   = true
+// }
 variable "consul_domain" {
   description = "Domain for Consul DNS"
   type        = string

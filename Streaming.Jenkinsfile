@@ -71,7 +71,7 @@ components = [
              ],
              ansible: [
                   repoName: "ansible-deployments",
-                  branchName: "feature/fix-cni"
+                  branchName: "develop"
               ]
         ]
     ]

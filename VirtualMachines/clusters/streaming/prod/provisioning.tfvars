@@ -32,10 +32,10 @@ consul_domain                     = "consul."
 consul_group_name                 = "all"
 consul_group                      = "consul"
 consul_cloud_autodiscovery        = "True"
-consul_src_def                    = "/root/.ssh"
 consul_tls_enable                 = "True"
-consul_tls_src_files              = "/root/.ssh"
 consul_tls_ca_crt                 = "consul-agent-ca.pem"
+consul_tls_server_crt             = "dc1-server-consul-0.pem"
+consul_tls_server_key             = "dc1-server-consul-0-key.pem"
 consul_tls_verify_incoming        = "False"
 consul_tls_verify_outgoing        = "True"
 consul_tls_verify_server_hostname = "False"
@@ -48,7 +48,7 @@ consul_version                    = "1.9.4"
 auto_encrypt                      = { "enabled" = "True" }
 consul_ports                      = { "grpc" = "8502", "dns" = "8600", "http" = "8500", "https" = "-1", "rpc" = "8400", "serf_lan" = "8301", "serf_wan" = "8302", "server" = "8300" }
 
-nomad_node_class                   = "prod"
+nomad_node_class                   = "production"
 nomad_user                         = "nomad"
 nomad_group_name                   = "all"
 nomad_group                        = "nomad"
@@ -76,3 +76,17 @@ nomad_meta = {
   "system-fab-lb" = "on"
   "purpose"       = "streaming"
 }
+
+// The nomad_host_volumes owner and group must match the same uid and gid as specified in provisioned_disks
+// if that is being uses. The ansible nomad role will try to create the directory before configuring it in
+// the client.hcl file.
+nomad_host_volumes = [
+  {
+      "name" = "frank-wowza-content"
+      "path" = "/mnt/local/wowza_content_s3_mount"
+      "owner" = "cicduser"
+      "group" = "nomad"
+      "mode" = "0777"
+      "read_only" = "false"
+  }
+]
