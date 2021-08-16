@@ -34,6 +34,8 @@ locals {
     "consul_acl_enable"                  = var.consul_acl_enable
     "consul_acl_default_policy"          = var.consul_acl_default_policy
     "consul_version"                     = var.consul_version
+    "consul_iptables_enable"             = var.consul_iptables_enable
+    "consul_recursors"                   = var.consul_recursors
     "auto_encrypt"                       = var.auto_encrypt
     "nomad_group_name"                   = var.nomad_group_name
     "nomad_group"                        = var.nomad_group

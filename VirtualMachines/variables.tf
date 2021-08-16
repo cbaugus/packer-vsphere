@@ -270,6 +270,16 @@ variable "consul_ports" {
   type        = map(any)
   default     = { "grpc" = "8502", "dns" = "8600", "http" = "8500", "https" = "-1", "rpc" = "8400", "serf_lan" = "8301", "serf_wan" = "8302", "server" = "8300" }
 }
+variable "consul_iptables_enable" {
+  description = ""
+  type        = string
+  default     = "false"
+}
+variable "consul_recursors" {
+  description = ""
+  type        = list
+  default     = []
+}
 variable "nomad_user" {
   description = ""
   type        = string

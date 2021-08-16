@@ -1,0 +1,120 @@
+String pipelineVersion = "development"
+library("jenkins-pipeline@${pipelineVersion}")
+
+// PIPELINE VARS
+targetInfraEnv = "unknown"
+targetConfigs = "unknown"
+namePrefix = "unknown"
+loglevel = "INFO"
+
+// BRANCH PATTERNS
+featureBranchPattern = "feature/"
+developmentBranchPattern = "develop"
+testBranchPattern = "test"
+hotfixBranchPattern = "hotfix/"
+releaseBranchPattern = "release/"
+masterBranchPattern = "master"
+
+// DETERMINE PIPELINE VARS BASED ON BRANCH PATTERN
+if (env.BRANCH_NAME =~ ".*${featureBranchPattern}.*") {
+  targetConfigs = "feature"
+  targetInfraEnv = "dalDC01_feature"
+  namePrefix = env.BRANCH_NAME.replaceAll("/", "-")
+} else if (env.BRANCH_NAME =~ ".*${developmentBranchPattern}.*") {
+  targetConfigs = "dev"
+  targetInfraEnv = "dalDC01_dev"
+  namePrefix = "dev"
+} else if (env.BRANCH_NAME =~ ".*${testBranchPattern}.*") {
+  targetConfigs = "test"
+  targetInfraEnv = "dalDC01_test"
+  namePrefix = "test"
+} else if (env.BRANCH_NAME =~ ".*${releaseBranchPattern}.*") {
+  targetConfigs = "staging"
+  targetInfraEnv = "dalDC01_staging"
+  namePrefix = "staging"
+} else if (env.BRANCH_NAME =~ ".*${masterBranchPattern}.*" || env.BRANCH_NAME =~ ".*${hotfixBranchPattern}.*") {
+  targetConfigs = "prod"
+  targetInfraEnv = "dalDC01_prod"
+  namePrefix = "prod"
+}
+
+components = [
+    ops_cluster: [
+        name: "ops_cluster",
+        description: "Web Cluster",
+        version: "latest",
+        type: "infrastructure",
+        config: [
+            infrastructureType: "vsphere",
+            terraformDirectories: [
+                mainDirectory: "VirtualMachines"
+            ],
+            terraformVars: [
+                name_prefix: "ops-cluster-${namePrefix}",
+                consul_src_def: "/root/.ssh",
+                consul_tls_src_files: "/root/.ssh"
+            ],
+            terraformVarsFiles: [
+                mainVarsFile: "./clusters/ops/${targetConfigs}/main.tfvars",
+                cloudVarsFile: "./clusters/ops/${targetConfigs}/cloud.tfvars",
+                provisioningVarsFile: "./clusters/ops/${targetConfigs}/provisioning.tfvars",
+            ],
+            terraformBackendFiles: [
+                mainBackendFile: "./clusters/ops/backend.tf",
+            ]
+        ],
+        scm: [
+             current: [
+                 repoName: "terraform-vsphere",
+                 branchName: "${env.BRANCH_NAME}"
+             ],
+             ansible: [
+                  repoName: "ansible-deployments",
+                  branchName: "develop"
+             ]
+        ]
+    ]
+]
+
+stages = [
+    deploy_ops_cluster: [
+        title: "Deploy Ops Cluster",
+        description: "Deploy Ops worker Cluster to vSphere",
+        type: "install",
+        agent: "agent-deploytools",
+        config: [
+            installType: "infrastructure_install",
+            infrastructure: "ops_cluster",
+            targetEnv: targetInfraEnv,
+            targets: [
+                vsphereVMs: [
+                    name: "ops_cluster",
+                    strategy: "terraform",
+                    graphFlag: false,
+                    terraformDirectory: "mainDirectory",
+                    terraformVars: [
+                        "name_prefix"
+                    ],
+                    terraformVarsFiles: [
+                        "mainVarsFile",
+                        "cloudVarsFile",
+                        "provisioningVarsFile"
+                    ],
+                    terraformBackendFile: "mainBackendFile"
+                ]
+            ]
+        ],
+        withScm: [
+            primaryScm: [
+                scmEnv: "frankBitBucketRepoHost",
+                scmName: "current"
+            ],
+            extraScm1: [
+                scmEnv: "frankBitBucketRepoHost",
+                scmName: "ansible"
+            ]
+        ]
+    ]
+]
+
+runPipeline(components, stages, loglevel)
