@@ -19,3 +19,5 @@ terraform {
     }
   }
 }
+
+# TF_WORKSPACE=dal-prod 
