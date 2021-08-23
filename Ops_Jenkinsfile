@@ -46,6 +46,7 @@ components = [
         type: "infrastructure",
         config: [
             infrastructureType: "vsphere",
+            terraformVersion: "1.0.5",
             terraformDirectories: [
                 mainDirectory: "VirtualMachines"
             ],
