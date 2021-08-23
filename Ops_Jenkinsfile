@@ -1,4 +1,4 @@
-String pipelineVersion = "development"
+String pipelineVersion = "feature/FI-744-install-terraform-tool"
 library("jenkins-pipeline@${pipelineVersion}")
 
 // PIPELINE VARS
