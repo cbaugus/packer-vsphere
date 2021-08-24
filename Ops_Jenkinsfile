@@ -46,7 +46,9 @@ components = [
         type: "infrastructure",
         config: [
             infrastructureType: "vsphere",
-            terraformVersion: "1.0.5",
+            terraformOptions: [
+                version: "1.0.5"
+            ],
             terraformDirectories: [
                 mainDirectory: "VirtualMachines"
             ],
@@ -92,6 +94,7 @@ stages = [
                     name: "ops_cluster",
                     strategy: "terraform",
                     graphFlag: false,
+                    terraformVersion: "version",
                     terraformDirectory: "mainDirectory",
                     terraformVars: [
                         "name_prefix"
