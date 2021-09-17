@@ -4,9 +4,19 @@ locals {
     // TODO: Include standard vars to be assigned for module. Can use consul provider
   }
   // Map of secrets to be referenced throughout the module. Secret env vars take precedence over vault.
+  // secrets = {
+  //   "minio_s3_streaming_access_key" = var.minio_s3_streaming_access_key != "" ? var.minio_s3_streaming_access_key : data.vault_generic_secret.minio_s3.data["s3_streaming_access_key"],
+  //   "minio_s3_streaming_secret_key" = var.minio_s3_streaming_secret_key != "" ? var.minio_s3_streaming_secret_key : data.vault_generic_secret.minio_s3.data["s3_streaming_secret_key"]
+  // }
   secrets = {
-    "minio_s3_streaming_access_key" = var.minio_s3_streaming_access_key != "" ? var.minio_s3_streaming_access_key : data.vault_generic_secret.minio_s3.data["s3_streaming_access_key"],
-    "minio_s3_streaming_secret_key" = var.minio_s3_streaming_secret_key != "" ? var.minio_s3_streaming_secret_key : data.vault_generic_secret.minio_s3.data["s3_streaming_secret_key"]
+    "tmi_devtest_minio_s3_streaming_access_key" = var.tmi_devtest_minio_s3_streaming_access_key != "" ? var.tmi_devtest_minio_s3_streaming_access_key : data.vault_generic_secret.minio_s3.data["tmi_devtest_s3_streaming_access_key"],
+    "tmi_devtest_minio_s3_streaming_secret_key" = var.tmi_devtest_minio_s3_streaming_secret_key != "" ? var.tmi_devtest_minio_s3_streaming_secret_key : data.vault_generic_secret.minio_s3.data["tmi_devtest_s3_streaming_secret_key"],
+    "tmi_prod_minio_s3_streaming_access_key" = var.tmi_prod_minio_s3_streaming_access_key != "" ? var.tmi_prod_minio_s3_streaming_access_key : data.vault_generic_secret.minio_s3.data["tmi_prod_s3_streaming_access_key"],
+    "tmi_prod_minio_s3_streaming_secret_key" = var.tmi_prod_minio_s3_streaming_secret_key != "" ? var.tmi_prod_minio_s3_streaming_secret_key : data.vault_generic_secret.minio_s3.data["tmi_prod_s3_streaming_secret_key"],
+    "dal_devtest_minio_s3_streaming_access_key" = var.dal_devtest_minio_s3_streaming_access_key != "" ? var.dal_devtest_minio_s3_streaming_access_key : data.vault_generic_secret.minio_s3.data["dal_devtest_access_key"],
+    "dal_devtest_minio_s3_streaming_secret_key" = var.dal_devtest_minio_s3_streaming_secret_key != "" ? var.dal_devtest_minio_s3_streaming_secret_key : data.vault_generic_secret.minio_s3.data["dal_devtest_secret_key"],
+    "dal_prod_minio_s3_streaming_access_key" = var.dal_prod_minio_s3_streaming_access_key != "" ? var.dal_prod_minio_s3_streaming_access_key : data.vault_generic_secret.minio_s3.data["dal_prod_s3_streaming_access_key"],
+    "dal_prod_minio_s3_streaming_secret_key" = var.dal_prod_minio_s3_streaming_secret_key != "" ? var.dal_prod_minio_s3_streaming_secret_key : data.vault_generic_secret.minio_s3.data["dal_prod_s3_streaming_secret_key"]
   }
   consul_cloud_autodiscovery_string = "provider=vsphere category_name=vmTags tag_name=consul host=${var.vsphere_server} user=${var.vsphere_user} password=${var.vsphere_pass} insecure_ssl=true timeout=2m"
   ansible_extra_vars = {
@@ -37,6 +47,7 @@ locals {
     "consul_iptables_enable"             = var.consul_iptables_enable
     "consul_recursors"                   = var.consul_recursors
     "auto_encrypt"                       = var.auto_encrypt
+    "nomad_region"                       = var.nomad_region
     "nomad_group_name"                   = var.nomad_group_name
     "nomad_group"                        = var.nomad_group
     "nomad_manage_group"                 = var.nomad_manage_group
@@ -59,9 +70,9 @@ locals {
     "nomad_host_volumes"                 = var.nomad_host_volumes
     // Merge in provisioned disk env vars needed for growr and s3_handlr roles. Grab secrets for any designated secret vars.
     // TODO: Use consul provider to grab referenced values (similar to secrets with vault as above)
-    "proxy_env"                          = merge([for index, disk in var.provisioned_disks : merge({
+    "proxy_env"                          = merge([for index, disk in var.s3_provisioned_disks : merge({
       // Regular Vars
-      "LABEL_${disk.device_drive}" = disk["LABEL_${disk.device_drive}"],
+      "LABEL_${disk.DEVICE_DRIVE}" = disk["LABEL"],
       "S3_HOST_${index + 1}" = disk["S3_HOST_${index + 1}"],
       "S3_MOUNT_${index + 1}" = disk["S3_MOUNT_${index + 1}"],
       "S3_UID_${index + 1}" = disk["S3_UID_${index + 1}"],
@@ -106,7 +117,6 @@ module "virtual_machines" {
   //  storage_policy_id = "" # TODO : Target storage policy for placements
 
   data_disk = {for index, disk in var.provisioned_disks : disk.label => {
-      "device_drive" = "${disk.device_drive}"
       "size_gb" = "${var.disk_size[disk.disk_size]}"
       "thin_provisioned" = "${disk.thin_provisioned}"
       "eagerly_scrub" = "${disk.eagerly_scrub}"
@@ -145,7 +155,9 @@ module "virtual_machines" {
     "guestinfo.userdata.encoding" = "base64"
   }
 
-  // wait_for_guest_net_timeout = 0
+  wait_for_guest_net_timeout = 30
+  ## wait_for_guest_ip_timeout = 300
+  wait_for_guest_net_routable = false
 
   //Provisioning configurations
   remote_exec_command      = var.remote_exec_command

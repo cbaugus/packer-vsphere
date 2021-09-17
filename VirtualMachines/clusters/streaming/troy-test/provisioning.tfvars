@@ -25,7 +25,7 @@ s3_provisioned_disks = [
     S3_GID_1 = "1002"
     S3_ACL_1 = "private"
     S3_CACHE_1 = "/mnt/local/wowza_content_s3_cache"
-    S3_BUCKET_1 = "streaming-wowza-video-dev"
+    S3_BUCKET_1 = "streaming-wowza-video-test"
     S3_ACCESS_KEY_1 = "tmi_devtest_minio_s3_streaming_access_key"
     S3_SECRET_KEY_1 = "tmi_devtest_minio_s3_streaming_secret_key"
     S3_NO_CHECK_CERTIFICATE_1 = "true"
@@ -54,7 +54,7 @@ auto_encrypt                      = { "enabled" = "True" }
 consul_ports                      = { "grpc" = "8502", "dns" = "8600", "http" = "8500", "https" = "-1", "rpc" = "8400", "serf_lan" = "8301", "serf_wan" = "8302", "server" = "8300" }
 
 nomad_region                       = "tmi"
-nomad_node_class                   = "develop"
+nomad_node_class                   = "test"
 nomad_user                         = "nomad"
 nomad_group_name                   = "all"
 nomad_group                        = "nomad"

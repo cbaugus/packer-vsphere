@@ -7,22 +7,27 @@ ansible_python_interpreter = "/usr/bin/python3"
 
 provisioned_disks = [
   {
-    device_drive = "sdb"
-    label = "wowza_content_s3_label"
+    label = "wowza_content_s3_cache"
     disk_size = "large"
     thin_provisioned = "true"
     eagerly_scrub = "false"
     data_disk_scsi_controller = "0"
-    LABEL_sdb = "wowza_content_s3_cache"
-    S3_HOST_1 = "https://nonprods3fs01.dal.jhdc.local:9000"
+  }
+]
+
+s3_provisioned_disks = [
+  {
+    DEVICE_DRIVE = "sdb"
+    LABEL = "wowza_content_s3_cache"
+    S3_HOST_1 = "https://prod.freenas.tmi.jhdc.local:9000/"
     S3_MOUNT_1 = "/mnt/local/wowza_content_s3_mount"
     S3_UID_1 = "1000"
     S3_GID_1 = "1002"
     S3_ACL_1 = "private"
     S3_CACHE_1 = "/mnt/local/wowza_content_s3_cache"
-    S3_BUCKET_1 = "streaming-wowza-video-prod"
-    S3_ACCESS_KEY_1 = "minio_s3_streaming_access_key"
-    S3_SECRET_KEY_1 = "minio_s3_streaming_secret_key"
+    S3_BUCKET_1 = "streaming-wowza-video-prod3"
+    S3_ACCESS_KEY_1 = "tmi_prod_minio_s3_streaming_access_key"
+    S3_SECRET_KEY_1 = "tmi_prod_minio_s3_streaming_secret_key"
     S3_NO_CHECK_CERTIFICATE_1 = "true"
     S3_SSL_VERIFY_HOSTNAME_1 = "0"
   }
@@ -33,7 +38,7 @@ consul_group_name                 = "all"
 consul_group                      = "consul"
 consul_cloud_autodiscovery        = "True"
 consul_tls_enable                 = "True"
-consul_tls_ca_crt                 = "consul-agent-ca.pem"
+consul_tls_ca_crt                 = "tmi-consul-agent-ca.pem"
 consul_tls_server_crt             = "dc1-server-consul-0.pem"
 consul_tls_server_key             = "dc1-server-consul-0-key.pem"
 consul_tls_verify_incoming        = "False"
@@ -48,6 +53,7 @@ consul_version                    = "1.9.4"
 auto_encrypt                      = { "enabled" = "True" }
 consul_ports                      = { "grpc" = "8502", "dns" = "8600", "http" = "8500", "https" = "-1", "rpc" = "8400", "serf_lan" = "8301", "serf_wan" = "8302", "server" = "8300" }
 
+nomad_region                       = "tmi"
 nomad_node_class                   = "production"
 nomad_user                         = "nomad"
 nomad_group_name                   = "all"
@@ -57,7 +63,7 @@ nomad_leave_on_terminate           = "yes"
 nomad_leave_on_interrupt           = "yes"
 nomad_version                      = "1.1.2"
 nomad_vault_enabled                = "True"
-nomad_vault_address                = "https://vault.service.consul:8200"
+nomad_vault_address                = "https://10.254.203.53:8200"
 nomad_vault_create_from_role       = "nomad-cluster"
 nomad_vault_cert_file              = ""
 nomad_vault_key_file               = ""

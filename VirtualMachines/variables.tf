@@ -78,6 +78,11 @@ variable "provisioned_disks" {
   type        = any
   default     = {}
 }
+variable "s3_provisioned_disks" {
+  description = "Storage data disk parameter, holding paramaters for provisioning with s3_handlr ansible role"
+  type        = any
+  default     = {}
+}
 variable "nomad_host_volumes" {
   description = "Storage data disk parameter, example"
   type        = any
@@ -285,6 +290,11 @@ variable "nomad_user" {
   type        = string
   default     = "nomad"
 }
+variable "nomad_region" {
+  description = ""
+  type        = string
+  default     = "global"
+}
 variable "nomad_group_name" {
   description = ""
   type        = string
@@ -405,14 +415,61 @@ variable "vault_approle_secret_id" {
 }
 
 ########## SECRETS ##########
-variable "minio_s3_streaming_access_key" {
-  description = "S3 Streaming Access Key"
+variable "tmi_devtest_minio_s3_streaming_access_key" {
+  description = "Troy Non-Prod S3 Streaming Access Key"
   type        = string
   default     = ""
 }
 
-variable "minio_s3_streaming_secret_key" {
-  description = "S3 Streaming Secret Key"
+variable "tmi_devtest_minio_s3_streaming_secret_key" {
+  description = "Troy Non-Prod S3 Streaming Secret Key"
+  type        = string
+  default     = ""
+}
+
+variable "tmi_prod_minio_s3_streaming_access_key" {
+  description = "Troy Prod S3 Streaming Access Key"
+  type        = string
+  default     = ""
+}
+
+variable "tmi_prod_minio_s3_streaming_secret_key" {
+  description = "Troy Prod S3 Streaming Secret Key"
+  type        = string
+  default     = ""
+}
+
+variable "dal_devtest_minio_s3_streaming_access_key" {
+  description = "Dallas Non-Prod S3 Streaming Access Key"
+  type        = string
+  default     = ""
+}
+
+variable "dal_devtest_minio_s3_streaming_secret_key" {
+  description = "Dallas Non-Prod S3 Streaming Secret Key"
+  type        = string
+  default     = ""
+}
+
+variable "dal_prod_minio_s3_streaming_access_key" {
+  description = "Dallas Prod S3 Streaming Access Key"
+  type        = string
+  default     = ""
+}
+
+variable "dal_prod_minio_s3_streaming_secret_key" {
+  description = "Dallas Prod S3 Streaming Secret Key"
+  type        = string
+  default     = ""
+}
+variable "minio_s3_minio_access_key" {
+  description = "S3 Minio Testing Access Key"
+  type        = string
+  default     = ""
+}
+
+variable "minio_s3_minio_secret_key" {
+  description = "S3 Minio Testing Secret Key"
   type        = string
   default     = ""
 }
