@@ -5,6 +5,16 @@ local_exec_user            = "cicduser"
 path_to_ansible            = "../../ansible-deployments/main.yml"
 ansible_python_interpreter = "/usr/bin/python3"
 
+provisioned_disks = [
+  {
+    label = "mongodb-data"
+    disk_size = "large"
+    thin_provisioned = "true"
+    eagerly_scrub = "false"
+    data_disk_scsi_controller = "0"
+  }
+]
+
 consul_domain                     = "consul."
 consul_group_name                 = "all"
 consul_group                      = "consul"
