@@ -29,6 +29,6 @@ data "vsphere_virtual_machine" "template" {
 }
 
 ########## VAULT ##########
-// data "vault_generic_secret" "minio_s3" {
-//   path = "kv/minio_s3"
-// }
+data "vault_generic_secret" "minio_s3" {
+  path = "kv/minio_s3"
+}
