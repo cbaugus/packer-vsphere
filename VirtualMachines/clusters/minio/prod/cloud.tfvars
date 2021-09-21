@@ -1,0 +1,7 @@
+vsphere_datacenter      = "dal-w01-dc01"
+vsphere_compute_cluster = "dal-w01-cl01"
+vsphere_resource_pool   = "dal-w01-dc01/dal-w01-cl01/Resources"
+vsphere_datastore       = "dal-w01-cl01-ds-vsan01"
+vsphere_network         = "tmi-w01-cl01-dev-vds02-pg-storagevm-225"
+vsphere_folder          = "production/minio"
+vsphere_template        = "linux-ubuntu-server-20-04-lts-tmi-w01-cl01-dev"

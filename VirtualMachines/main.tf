@@ -20,18 +20,18 @@ locals {
   }
   consul_cloud_autodiscovery_string = "provider=vsphere category_name=vmTags tag_name=consul host=${var.vsphere_server} user=${var.vsphere_user} password=${var.vsphere_pass} insecure_ssl=true timeout=2m"
   ansible_extra_vars = {
-    "ansible_python_interpreter"         = var.ansible_python_interpreter
-    "consul_domain"                      = var.consul_domain
-    "consul_datacenter"                  = var.vsphere_datacenter
-    "consul_group_name"                  = var.consul_group_name
-    "consul_group"                       = var.consul_group
-    "consul_cloud_autodiscovery"         = var.consul_cloud_autodiscovery
-    "consul_cloud_autodiscovery_string"  = local.consul_cloud_autodiscovery_string
-    "consul_ports"                       = var.consul_ports
-    "consul_src_def"                     = var.consul_src_def
-    "consul_tls_src_files"               = var.consul_tls_src_files
-    "consul_tls_enable"                  = var.consul_tls_enable
-    "consul_tls_ca_crt"                  = var.consul_tls_ca_crt
+    "ansible_python_interpreter"        = var.ansible_python_interpreter
+    "consul_domain"                     = var.consul_domain
+    "consul_datacenter"                 = var.vsphere_datacenter
+    "consul_group_name"                 = var.consul_group_name
+    "consul_group"                      = var.consul_group
+    "consul_cloud_autodiscovery"        = var.consul_cloud_autodiscovery
+    "consul_cloud_autodiscovery_string" = local.consul_cloud_autodiscovery_string
+    "consul_ports"                      = var.consul_ports
+    "consul_src_def"                    = var.consul_src_def
+    "consul_tls_src_files"              = var.consul_tls_src_files
+    "consul_tls_enable"                 = var.consul_tls_enable
+    "consul_tls_ca_crt"                 = var.consul_tls_ca_crt
     // "consul_tls_server_crt"              = var.consul_tls_server_crt
     // "consul_tls_server_key"              = var.consul_tls_server_key
     "consul_tls_verify_incoming"         = var.consul_tls_verify_incoming
@@ -73,15 +73,15 @@ locals {
     "proxy_env"                          = merge([for index, disk in var.s3_provisioned_disks : merge({
       // Regular Vars
       "LABEL_${disk.DEVICE_DRIVE}" = disk["LABEL"],
-      "S3_HOST_${index + 1}" = disk["S3_HOST_${index + 1}"],
-      "S3_MOUNT_${index + 1}" = disk["S3_MOUNT_${index + 1}"],
-      "S3_UID_${index + 1}" = disk["S3_UID_${index + 1}"],
-      "S3_GID_${index + 1}" = disk["S3_GID_${index + 1}"],
-      "S3_ACL_${index + 1}" = disk["S3_ACL_${index + 1}"],
-      "S3_CACHE_${index + 1}" = disk["S3_CACHE_${index + 1}"]
-      "S3_BUCKET_${index + 1}" = disk["S3_BUCKET_${index + 1}"],
+      "S3_HOST_${index + 1}"                 = disk["S3_HOST_${index + 1}"],
+      "S3_MOUNT_${index + 1}"                = disk["S3_MOUNT_${index + 1}"],
+      "S3_UID_${index + 1}"                  = disk["S3_UID_${index + 1}"],
+      "S3_GID_${index + 1}"                  = disk["S3_GID_${index + 1}"],
+      "S3_ACL_${index + 1}"                  = disk["S3_ACL_${index + 1}"],
+      "S3_CACHE_${index + 1}"                = disk["S3_CACHE_${index + 1}"]
+      "S3_BUCKET_${index + 1}"               = disk["S3_BUCKET_${index + 1}"],
       "S3_NO_CHECK_CERTIFICATE_${index + 1}" = disk["S3_NO_CHECK_CERTIFICATE_${index + 1}"],
-      "S3_SSL_VERIFY_HOSTNAME_${index + 1}" = disk["S3_SSL_VERIFY_HOSTNAME_${index + 1}"],
+      "S3_SSL_VERIFY_HOSTNAME_${index + 1}"  = disk["S3_SSL_VERIFY_HOSTNAME_${index + 1}"],
       // Secret Vars
       "S3_ACCESS_KEY_${index + 1}" = local.secrets[disk["S3_ACCESS_KEY_${index + 1}"]],
       "S3_SECRET_KEY_${index + 1}" = local.secrets[disk["S3_SECRET_KEY_${index + 1}"]]
@@ -93,10 +93,10 @@ locals {
 
 module "virtual_machines" {
   source  = "app.terraform.io/JohnstonHowse/vm-module/vsphere"
-  version = "1.0.14"
+  version = "1.0.18"
   //source  = "git@bitbucket.org:johnstonhowse/terraform-vsphere-vm-module.git"
 
-  count   = tonumber(var.num_instances)
+  count = tonumber(var.num_instances)
   ### matches count of instances, To use DHCP create Empty list ["",""]
 
   network = {
@@ -116,24 +116,24 @@ module "virtual_machines" {
   scsi_type      = "lsilogic"
   //  storage_policy_id = "" # TODO : Target storage policy for placements
 
-  data_disk = {for index, disk in var.provisioned_disks : disk.label => {
-      "size_gb" = "${var.disk_size[disk.disk_size]}"
-      "thin_provisioned" = "${disk.thin_provisioned}"
-      "eagerly_scrub" = "${disk.eagerly_scrub}"
-      "datastore_id" = "${data.vsphere_datastore.datastore.id}"
-      "data_disk_scsi_controller" = "${disk.data_disk_scsi_controller}"
+  data_disk = { for index, disk in var.provisioned_disks : disk.label => {
+    "size_gb"                   = "${var.disk_size[disk.disk_size]}"
+    "thin_provisioned"          = "${disk.thin_provisioned}"
+    "eagerly_scrub"             = "${disk.eagerly_scrub}"
+    "datastore_id"              = "${data.vsphere_datastore.datastore.id}"
+    "data_disk_scsi_controller" = "${disk.data_disk_scsi_controller}"
     }
   }
 
   ###########################################
   vmname = "${var.name_prefix}-${count.index}"
   ### required
-  vmtemp     = data.vsphere_virtual_machine.template.name
-  instances  = var.num_instances
+  vmtemp    = data.vsphere_virtual_machine.template.name
+  instances = var.num_instances
   // cpu_number = var.num_cores[var.resource_pool_type]
-  cpu_number = 8
+  cpu_number = 4
   // ram_size   = var.mem_size[var.resource_pool_type]
-  ram_size   = "64000"
+  ram_size = "128000"
   ### required
   dc = var.vsphere_datacenter
   ### required
