@@ -295,11 +295,6 @@ variable "nomad_user" {
   type        = string
   default     = "nomad"
 }
-variable "nomad_region" {
-  description = ""
-  type        = string
-  default     = "global"
-}
 variable "nomad_group_name" {
   description = ""
   type        = string
@@ -467,11 +462,6 @@ variable "dal_prod_minio_s3_streaming_secret_key" {
   type        = string
   default     = ""
 }
-variable "minio_s3_minio_access_key" {
-  description = "S3 Minio Testing Access Key"
-  type        = string
-  default     = ""
-}
 
 variable "minio_s3_minio_secret_key" {
   description = "S3 Minio Testing Secret Key"
@@ -491,11 +481,6 @@ variable "minio_s3_web_secret_key" {
 }
 variable "minio_s3_minio_access_key" {
   description = "S3 Minio Testing Access Key"
-  type        = string
-  default     = ""
-}
-variable "minio_s3_minio_secret_key" {
-  description = "S3 Minio Testing Secret Key"
   type        = string
   default     = ""
 }
