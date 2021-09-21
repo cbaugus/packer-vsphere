@@ -42,7 +42,7 @@ consul_connect_enabled            = "True"
 consul_syslog_enable              = "True"
 consul_acl_enable                 = "True"
 consul_acl_default_policy         = "allow"
-consul_version                    = "1.10.2"
+consul_version                    = "1.10.1"
 auto_encrypt                      = { "enabled" = "True" }
 consul_ports                      = { "grpc" = "8502", "dns" = "8600", "http" = "8500", "https" = "-1", "rpc" = "8400", "serf_lan" = "8301", "serf_wan" = "8302", "server" = "8300" }
 
@@ -71,7 +71,7 @@ nomad_options = {
   "docker.volumes.enabled" = "true"
 }
 nomad_meta = {
-  "node-switcher" = "off"
+  "node-switcher" = "on"
   "purpose"       = "web"
 }
 

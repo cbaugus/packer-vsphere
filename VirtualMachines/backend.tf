@@ -6,7 +6,7 @@ terraform {
     organization = "JohnstonHowse"
 
     workspaces {
-      prefix = "frankspeech-minio-tmi-w01-dc01-"
+      prefix = "frankspeech-web-tmi-w01-dc01-"
     }
   }
 }
