@@ -63,3 +63,14 @@ nomad_meta = {
   "system-fab-lb" = "on"
   "purpose"       = "data"
 }
+
+nomad_host_volumes = [
+  {
+      "name" = "mongodb-data"
+      "path" = "/mnt/local/mongodb-data"
+      "owner" = "cicduser"
+      "group" = "nomad"
+      "mode" = "0777"
+      "read_only" = "false"
+  }
+]
