@@ -12,6 +12,20 @@ provisioned_disks = [
     thin_provisioned = "true"
     eagerly_scrub = "false"
     data_disk_scsi_controller = "0"
+  },
+  {
+    label = "mongodb-logs"
+    disk_size = "large"
+    thin_provisioned = "true"
+    eagerly_scrub = "false"
+    data_disk_scsi_controller = "0"
+  },
+  {
+    label = "mongodb-journals"
+    disk_size = "large"
+    thin_provisioned = "true"
+    eagerly_scrub = "false"
+    data_disk_scsi_controller = "0"
   }
 ]
 
@@ -44,7 +58,7 @@ nomad_leave_on_terminate           = "yes"
 nomad_leave_on_interrupt           = "yes"
 nomad_version                      = "1.1.2"
 nomad_vault_enabled                = "True"
-nomad_vault_address = "https://vault03.node.tmi-w01-dc01.consul:8200"
+nomad_vault_address                = "https://vault03.node.tmi-w01-dc01.consul:8200"
 nomad_vault_create_from_role       = "nomad-cluster"
 nomad_vault_cert_file              = ""
 nomad_vault_key_file               = ""
@@ -68,6 +82,22 @@ nomad_host_volumes = [
   {
       "name" = "mongodb-data"
       "path" = "/mnt/local/mongodb-data"
+      "owner" = "cicduser"
+      "group" = "nomad"
+      "mode" = "0777"
+      "read_only" = "false"
+  },
+  {
+      "name" = "mongodb-logs"
+      "path" = "/mnt/local/mongodb-logs"
+      "owner" = "cicduser"
+      "group" = "nomad"
+      "mode" = "0777"
+      "read_only" = "false"
+  },
+  {
+      "name" = "mongodb-journals"
+      "path" = "/mnt/local/mongodb-journals"
       "owner" = "cicduser"
       "group" = "nomad"
       "mode" = "0777"
