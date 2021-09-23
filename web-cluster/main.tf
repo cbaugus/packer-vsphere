@@ -1,6 +1,6 @@
 module "cluster" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.0.19"
+  version = "0.0.20"
 
   #Cluster vars
   num_instances      = var.num_instances
@@ -18,6 +18,7 @@ module "cluster" {
   vsphere_pass            = var.vsphere_pass
 
   #Terraform Provisioner required inputs
+  path_to_ansible          = "../../ansible-deployments/cluster-bootstrap.yml"
   remote_exec_ssh_key_file = var.remote_exec_ssh_key_file
   local_exec_ssh_key_file  = var.local_exec_ssh_key_file
   local_exec_user          = var.local_exec_user
@@ -28,6 +29,7 @@ module "cluster" {
   #Consul overrides
   consul_pass    = var.consul_pass
   consul_raw_key = var.consul_raw_key
+  consul_iptables_enable = "false"
 
   #Nomad overrides
   nomad_region                = var.nomad_region
