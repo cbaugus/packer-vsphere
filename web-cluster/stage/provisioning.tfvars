@@ -10,7 +10,7 @@ provisioned_disks = [
 ]
 
 nomad_region                = "tmi"
-nomad_node_class            = "feature"
+nomad_node_class            = "stage"
 nomad_vault_address         = "https://vault.service.tmi-w01-dc01.consul:8200"
 nomad_vault_tls_skip_verify = "yes"
 nomad_options = {

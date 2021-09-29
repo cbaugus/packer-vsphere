@@ -22,10 +22,6 @@ variable "vsphere_pass" {
   type        = string
   sensitive   = true
 }
-variable "vsphere_datacenter" {
-  description = "vSphere datacenter"
-  type        = string
-}
 variable "vsphere_server" {
   description = "vSphere server address"
   type        = string
@@ -84,11 +80,6 @@ variable "local_exec_user" {
   type        = string
   sensitive   = true
 }
-########## GROWR ##########
-variable "provisioned_disks" {
-  description = ""
-  type        = any
-}
 ########## CONSUL ##########
 variable "consul_pass" {
   description = ""
@@ -122,10 +113,6 @@ variable "nomad_options" {
   type        = any
 }
 variable "nomad_meta" {
-  description = ""
-  type        = any
-}
-variable "nomad_host_volumes" {
   description = ""
   type        = any
 }
