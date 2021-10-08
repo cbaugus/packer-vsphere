@@ -1,17 +1,16 @@
 provisioned_disks = [
   {
     device_drive              = "sdb"
-    label                     = "frank_label"
+    label                     = "influxdb_label"
     disk_size                 = "large"
     thin_provisioned          = "true"
     eagerly_scrub             = "false"
     data_disk_scsi_controller = "0"
   }
 ]
-minio_url = "staging.freenas.tmi.jhdc.local"
 
 nomad_region                = "tmi"
-nomad_node_class            = "stage"
+nomad_node_class            = "feature"
 nomad_vault_address         = "https://vault.service.tmi-w01-dc01.consul:8200"
 nomad_vault_tls_skip_verify = "yes"
 nomad_options = {
@@ -22,15 +21,15 @@ nomad_options = {
 }
 nomad_meta = {
   "node-switcher" = "on"
-  "purpose"       = "web"
+  "purpose"       = "ops"
 }
 // The nomad_host_volumes owner and group must match the same uid and gid as specified in provisioned_disks
 // if that is being uses. The ansible nomad role will try to create the directory before configuring it in
 // the client.hcl file.
 nomad_host_volumes = [
   {
-    "name"      = "frank-nomad"
-    "path"      = "/mnt/local/frank_mount/default/files"
+    "name"      = "influxdb"
+    "path"      = "/mnt/local/influxdb"
     "owner"     = "cicduser"
     "group"     = "nomad"
     "mode"      = "0777"
@@ -38,7 +37,7 @@ nomad_host_volumes = [
   }
 ]
 
-vault_consul_role_cluster_type = "web"
+vault_consul_role_cluster_type = "ops"
 vault_agent_templates = [
   {
     "name" = "consul-token"

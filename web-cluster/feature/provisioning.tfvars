@@ -36,6 +36,7 @@ nomad_host_volumes = [
     "read_only" = "false"
   }
 ]
+minio_url = "devtest.freenas.tmi.jhdc.local"
 
 vault_consul_role_cluster_type = "web"
 vault_agent_templates = [

@@ -8,6 +8,7 @@ provisioned_disks = [
     data_disk_scsi_controller = "0"
   }
 ]
+minio_url = "devtest.freenas.tmi.jhdc.local"
 
 nomad_region                = "tmi"
 nomad_node_class            = "dev"

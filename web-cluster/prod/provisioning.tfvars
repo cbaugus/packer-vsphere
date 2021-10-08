@@ -8,10 +8,10 @@ provisioned_disks = [
     data_disk_scsi_controller = "0"
   }
 ]
-minio_url = "staging.freenas.tmi.jhdc.local"
+minio_url = "prod.freenas.tmi.jhdc.local"
 
 nomad_region                = "tmi"
-nomad_node_class            = "stage"
+nomad_node_class            = "prod"
 nomad_vault_address         = "https://vault.service.tmi-w01-dc01.consul:8200"
 nomad_vault_tls_skip_verify = "yes"
 nomad_options = {

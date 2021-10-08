@@ -89,11 +89,6 @@ variable "provisioned_disks" {
   description = ""
   type        = any
 }
-########## S3 ##########
-variable "minio_url" {
-  description = ""
-  type        = string
-}
 ########## CONSUL ##########
 variable "consul_pass" {
   description = ""
@@ -104,6 +99,15 @@ variable "consul_raw_key" {
   description = ""
   type        = string
   sensitive   = true
+}
+variable "consul_addresses_http" {
+  description = ""
+  type        = string
+}
+########## DOCKER ##########
+variable "docker_daemon_options" {
+  description = ""
+  type = any
 }
 ########## NOMAD ##########
 variable "nomad_region" {
