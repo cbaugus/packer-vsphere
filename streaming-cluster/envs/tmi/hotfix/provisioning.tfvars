@@ -1,3 +1,5 @@
+minio_s3_url = "https://devtest.freenas.tmi.jhdc.local:9000/"
+
 provisioned_disks = [
   {
     label = "wowza_content_s3_cache"
