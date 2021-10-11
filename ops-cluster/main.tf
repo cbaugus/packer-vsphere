@@ -1,6 +1,6 @@
 module "cluster" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.1.4"
+  version = "0.1.7"
 
   #Cluster vars
   num_instances      = var.num_instances
@@ -25,9 +25,6 @@ module "cluster" {
 
   #S3/Growr overrides
   provisioned_disks = var.provisioned_disks
-
-  #Docker overrides
-  docker_daemon_options = var.docker_daemon_options
 
   #Consul overrides
   consul_pass    = var.consul_pass

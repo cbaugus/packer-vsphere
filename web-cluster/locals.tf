@@ -1,5 +1,5 @@
 locals {
-  minio_vault_path     = "${var.nomad_node_class}/minio/web/${var.vsphere_datacenter}"
+  minio_vault_path = "${var.nomad_node_class}/minio/web/${var.vsphere_datacenter}"
   s3_provisioned_disks = [
     {
       DEVICE_DRIVE              = "sdb"

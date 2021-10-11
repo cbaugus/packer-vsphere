@@ -23,14 +23,9 @@ module "cluster" {
   local_exec_ssh_key_file  = var.local_exec_ssh_key_file
   local_exec_user          = var.local_exec_user
 
-  #S3/Growr overrides
-  provisioned_disks    = var.provisioned_disks
-  s3_provisioned_disks = local.s3_provisioned_disks
-
   #Consul overrides
   consul_pass    = var.consul_pass
   consul_raw_key = var.consul_raw_key
-  consul_addresses_http = "127.0.0.1"
 
   #Nomad overrides
   nomad_region                = var.nomad_region
@@ -39,11 +34,6 @@ module "cluster" {
   nomad_vault_tls_skip_verify = var.nomad_vault_tls_skip_verify
   nomad_options               = var.nomad_options
   nomad_meta                  = var.nomad_meta
-  nomad_host_volumes          = var.nomad_host_volumes
-  nomad_manage_group          = "yes"
-  nomad_manage_user           = "yes"
-  nomad_user                  = "nomad"
-  nomad_group                 = "nomad"
 
   #Vault overrides
   vault_agent_role_id            = var.vault_agent_role_id
