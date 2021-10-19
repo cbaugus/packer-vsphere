@@ -37,7 +37,7 @@ nomad_host_volumes = [
   }
 ]
 
-vault_consul_role_cluster_type = "elkstack"
+vault_consul_role_cluster_type = "dbcluster"
 vault_agent_templates = [
   {
     "name" = "consul-token"
