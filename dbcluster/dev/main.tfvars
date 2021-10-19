@@ -1,4 +1,4 @@
-num_instances      = "3"
+num_instances      = "1"
 resource_pool_type = "medium"
-name               = "elkstack"
-guest_id	   = "elkstack"
+name               = "dbcluster"
+guest_id	   = "dbcluster"
