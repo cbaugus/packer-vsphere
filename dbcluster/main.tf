@@ -40,6 +40,10 @@ module "cluster" {
   nomad_options               = var.nomad_options
   nomad_meta                  = var.nomad_meta
   nomad_host_volumes          = var.nomad_host_volumes
+  nomad_manage_group          = "yes"
+  nomad_manage_user           = "yes"
+  nomad_user                  = "nomad"
+  nomad_group                 = "nomad"
 
   #Vault overrides
   vault_agent_role_id            = var.vault_agent_role_id
