@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+set -eu
+if [[ ! $# -eq 1 ]]; then
+  # Print usage
+  echo -n 'Error! wrong number of arguments'
+  echo " [$#]"
+  echo "There are a number of variables you can export beforehand, these are the defaults:"
+  echo '__________________________________________________________________
+export NEW_CLUSTER_DATACENTER="tmi-w01-dc01"
+export NEW_CLUSTER_COMPUTE_CLUSTER="tmi-w01-cl01-dev"
+export NEW_CLUSTER_RESOURCE_POOL="tmi-w01-dc01/tmi-w01-cl01-dev/Resources"
+export NEW_CLUSTER_DATASTORE="troy-nonprod-ds-vsan"
+export NEW_CLUSTER_NETWORK="tmi-w01-cl01-dev-vds02-pg-ops-223"
+export NEW_CLUSTER_TEMPLATE="linux-ubuntu-server-20-04-lts-tmi-w01-cl01-dev"
+export NEW_CLUSTER_ENV="dev"
+export NEW_CLUSTER_NUM_INSTANCES=2
+export NEW_CLUSTER_RESOURCE_POOL_TYPE="medium"
+__________________________________________________________________
+NOTE: you will need a vsphere folder at $NEW_CLUSTER_ENV/$NEW_CLUSTER_NAME
+'
+  echo 'usage:'
+  echo "$0 NEW_CLUSTER_NAME"
+  exit 1
+fi
+
+NEW_CLUSTER_NAME=$1
+
+# These variables can all be altered by exporting them before calling this script
+: ${NEW_CLUSTER_NETWORK:="tmi-w01-cl01-dev-vds02-pg-ops-223"}
+: ${NEW_CLUSTER_TEMPLATE:="linux-ubuntu-server-20-04-lts-tmi-w01-cl01-dev"}
+: ${NEW_CLUSTER_DATACENTER:="tmi-w01-dc01"}
+: ${NEW_CLUSTER_COMPUTE_CLUSTER:="tmi-w01-cl01-dev"}
+: ${NEW_CLUSTER_RESOURCE_POOL:="tmi-w01-dc01/tmi-w01-cl01-dev/Resources"}
+: ${NEW_CLUSTER_DATASTORE:="troy-nonprod-ds-vsan"}
+: ${NEW_CLUSTER_ENV:="dev"}
+: ${NEW_CLUSTER_NUM_INSTANCES:=2}
+: ${NEW_CLUSTER_RESOURCE_POOL_TYPE:="xl"}
+TERRA_WORKSPACE="frankspeech-${NEW_CLUSTER_NAME}-tmi-w01-dc01-${NEW_CLUSTER_ENV}"
+
+new_cluster () {
+  TARGET=$1
+  cp -a templateCluster $TARGET
+  cd $TARGET 
+  if [[ -f $HOME/.ssh/credentials.auto.tfvars ]]; then
+    cp $HOME/.ssh/credentials.auto.tfvars ./
+  elif [[ -f $HOME/credentials.auto.tfvars ]]; then
+    cp $HOME/credentials.auto.tfvars ./
+  else
+    echo 'No credentials file found!'
+    echo "place one in $HOME/credentials.auto.tfvars"
+    echo "or $HOME/.ssh/credentials.auto.tfvars"
+    exit 1
+  fi
+  sed -i "s/REPLACEME_cluster_name_REPLACEME/$TARGET/" ./backend.tf
+  sed -i "s/REPLACEME_cluster_name_REPLACEME/$TARGET/" */*.tfvars
+  sed -i "s/REPLACEME_network_REPLACEME/$NEW_CLUSTER_NETWORK/" */*.tfvars
+  sed -i "s/REPLACEME_template_name_REPLACEME/$NEW_CLUSTER_TEMPLATE/" */*.tfvars
+  sed -i "s/REPLACEME_datacenter_REPLACEME/$NEW_CLUSTER_DATACENTER/" */*.tfvars
+  sed -i "s/REPLACEME_compute_cluster_REPLACEME/$NEW_CLUSTER_COMPUTE_CLUSTER/" */*.tfvars
+  sed -i "s%REPLACEME_resource_pool_REPLACEME%$NEW_CLUSTER_RESOURCE_POOL%" */*.tfvars
+  sed -i "s/REPLACEME_datastore_REPLACEME/$NEW_CLUSTER_DATASTORE/" */*.tfvars
+  sed -i "s/REPLACEME_env_REPLACEME/$NEW_CLUSTER_ENV/" */*.tfvars
+  sed -i "s/REPLACEME_num_instances_REPLACEME/$NEW_CLUSTER_NUM_INSTANCES/" */*.tfvars
+  sed -i "s/REPLACEME_resource_pool_type_REPLACEME/$NEW_CLUSTER_RESOURCE_POOL_TYPE/" */*.tfvars
+  echo Next I will run terraform init -reconfigure
+  echo It will ask you to select a workspace environment, you have chosen ${NEW_CLUSTER_ENV}
+  echo "With a given workspace name of "
+  echo "--> '${TERRA_WORKSPACE}' <--"
+  echo "Which needs to have been created in the terraform cloud: https://app.terraform.io/"
+  echo If this is the wrong workspace, execute $0 again with the proper env defined
+  sleep 3
+  terraform init -reconfigure
+  # terraform workspace select ${NEW_CLUSTER_ENV}
+}
+
+new_cluster $NEW_CLUSTER_NAME

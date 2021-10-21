@@ -1,0 +1,118 @@
+#!/bin/bash
+#set -eux
+: ${YESSIR:='no'}
+
+set -eux
+if [ $# -lt 2 ]; then
+  # Print usage
+  echo -n 'Error! wrong number of arguments'
+  echo " [$#]"
+  echo 'usage:'
+  echo "$0 ENV_NAME ACTION"
+  exit 1
+fi
+ENV_NAME=$1
+ACTION=$2
+if [[ $ACTION == 'replace' ]]; then
+  if [ $# -lt 3 ]; then
+    echo -n 'Error! wrong number of arguments'
+    echo " [$#]"
+    echo 'usage:'
+    echo "$0 ENV_NAME replace TARGET"
+    exit 1
+  fi
+  REPLACE_TARGET=$3
+fi
+if [[ -f ~/.ssh/minio_s3_minio_access_key ]]; then
+  THIS_S3_ACCESS_KEY=$( cat ~/.ssh/minio_s3_minio_access_key)
+else
+  echo no file ~/.ssh/minio_s3_minio_access_key
+  echo place secret key in you ssh dir named ~/.ssh/minio_s3_minio_access_key
+fi
+if [[ -f ~/.ssh/minio_s3_minio_secret_key ]]; then
+  THIS_S3_SECRET_KEY=$( cat ~/.ssh/minio_s3_minio_secret_key)
+else
+  echo no file ~/.ssh/minio_s3_minio_secret_key
+  echo place secret key in you ssh dir named ~/.ssh/minio_s3_minio_secret_key
+fi
+# TERROR_VARS="-var=name_prefix=${CLUSTER_NAME}-cluster-prod \
+#     -var-file=./clusters/${CLUSTER_NAME}/${ENV_NAME}/main.tfvars \
+#     -var-file=./clusters/${CLUSTER_NAME}/${ENV_NAME}/cloud.tfvars \
+#     -var-file=./clusters/${CLUSTER_NAME}/${ENV_NAME}/provisioning.tfvars \
+#     -var-file=./credentials.auto.tfvars \
+#     -var-file=./clusters/${CLUSTER_NAME}/${ENV_NAME}/.local.tfvars \
+#     -var minio_s3_${CLUSTER_NAME}_access_key=${THIS_S3_ACCESS_KEY} \
+#     -var minio_s3_${CLUSTER_NAME}_secret_key=${THIS_S3_SECRET_KEY}"
+
+TERROR_VARS="-var-file=./${ENV_NAME}/cloud.tfvars \
+-var-file=./${ENV_NAME}/main.tfvars \
+-var-file=./${ENV_NAME}/.local.tfvars \
+-var-file=${ENV_NAME}/provisioning.tfvars"
+
+terraform init -reconfigure
+
+plannr () {
+  terraform \
+    plan \
+    $DESTROY_OR_NOT \
+    $REPLACE_OR_NOT \
+    -out \
+      ${ENV_NAME}.plan \
+    $TERROR_VARS
+}
+
+warnr () {
+    printf 'WARNING!'
+    sleep 1
+    printf ' %s action selected!\n' $1
+    sleep 2
+}
+
+
+main () {
+  DESTROY_OR_NOT=''
+  REPLACE_OR_NOT=''
+  if [[ -z $ACTION ]]; then
+    DESTROY_OR_NOT=''
+    REPLACE_OR_NOT=''
+  elif [[ $ACTION == 'build' ]]; then
+    warnr $ACTION
+  elif [[ $ACTION == 'replace' ]]; then
+    warnr $ACTION
+    REPLACE_OR_NOT="-replace $REPLACE_TARGET"
+  elif [[ $ACTION == 'destroy' ]]; then
+    warnr $ACTION
+    sleep 2
+    DESTROY_OR_NOT='-destroy'
+  elif [[ $ACTION == 'taint' ]]; then
+    warnr $ACTION
+    exit 0
+  else
+    DESTROY_OR_NOT=''
+  fi
+  plannr
+
+  if [[ $? == 0 ]]; then
+    ls -alh \
+      ${ENV_NAME}.plan
+  else
+    exit 1
+  fi
+  
+  if [[ -f ${ENV_NAME}.plan ]]; then
+   if [[ ! ${YESSIR} == 'yes' ]]; then
+     while true; do
+       read -p "Do you wish to execute the plan?" yn
+       case $yn in
+         [Yy]* ) terraform apply "${ENV_NAME}.plan"; break;;
+         [Nn]* ) exit;;
+         * ) echo "Please answer yes or no.";;
+       esac
+     done
+   else
+     terraform apply "${ENV_NAME}.plan"
+   fi
+  fi
+}
+
+time main $@
