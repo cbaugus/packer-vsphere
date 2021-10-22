@@ -30,8 +30,16 @@ nomad_host_volumes = [
   {
     "name"      = "influxdb"
     "path"      = "/mnt/local/influxdb"
-    "owner"     = "cicduser"
-    "group"     = "nomad"
+    "owner"     = "root"
+    "group"     = "bin"
+    "mode"      = "0777"
+    "read_only" = "false"
+  },
+  {
+    "name"      = "prometheus"
+    "path"      = "/mnt/local/prometheus"
+    "owner"     = "root"
+    "group"     = "bin"
     "mode"      = "0777"
     "read_only" = "false"
   }

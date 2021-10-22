@@ -9,7 +9,7 @@ provisioned_disks = [
   }
 ]
 
-consul_addresses_http = "{{ consul_bind_address }}"
+consul_addresses_http = "{{ consul_bind_address }} 127.0.0.1"
 
 nomad_region                = "tmi"
 nomad_node_class            = "proto"
@@ -32,6 +32,14 @@ nomad_host_volumes = [
   {
     "name"      = "influxdb"
     "path"      = "/mnt/local/influxdb"
+    "owner"     = "root"
+    "group"     = "bin"
+    "mode"      = "0777"
+    "read_only" = "false"
+  },
+  {
+    "name"      = "prometheus"
+    "path"      = "/mnt/local/prometheus"
     "owner"     = "root"
     "group"     = "bin"
     "mode"      = "0777"

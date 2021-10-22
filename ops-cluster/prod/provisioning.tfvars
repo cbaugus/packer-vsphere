@@ -34,6 +34,14 @@ nomad_host_volumes = [
     "group"     = "bin"
     "mode"      = "0777"
     "read_only" = "false"
+  },
+  {
+    "name"      = "prometheus"
+    "path"      = "/mnt/local/prometheus"
+    "owner"     = "root"
+    "group"     = "bin"
+    "mode"      = "0777"
+    "read_only" = "false"
   }
 ]
 

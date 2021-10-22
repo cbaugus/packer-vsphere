@@ -1,3 +1,3 @@
-num_instances      = "1"
+num_instances      = "2"
 resource_pool_type = "large"
 name               = "ops"

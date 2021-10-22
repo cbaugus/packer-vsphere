@@ -31,10 +31,17 @@ nomad_host_volumes = [
     "name"      = "influxdb"
     "path"      = "/mnt/local/influxdb"
     "owner"     = "cicduser"
-    "group"     = "nomad"
-    "mode"      = "0777"
+    "group"     = "root"
+    "mode"      = "bin"
     "read_only" = "false"
-  }
+  },
+  {
+    "name"      = "prometheus"
+    "path"      = "/mnt/local/prometheus"
+    "owner"     = "root"
+    "group"     = "bin"
+    "mode"      = "0777"
+    "r
 ]
 
 vault_consul_role_cluster_type = "ops"
