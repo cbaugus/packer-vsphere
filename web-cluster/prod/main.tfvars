@@ -1,3 +1,3 @@
-num_instances      = "10"
+num_instances      = "40"
 resource_pool_type = "large"
 name               = "web"

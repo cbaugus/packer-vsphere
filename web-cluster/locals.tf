@@ -1,15 +1,19 @@
 locals {
   minio_vault_path = "${var.nomad_node_class}/minio/web/${var.vsphere_datacenter}"
-  s3_provisioned_disks = [
+  growr_provisioned_disks = [
     {
       DEVICE_DRIVE              = "sdb"
-      LABEL                     = "frank_cache"
+      LABEL                     = "frank"
+    }
+  ]
+  s3_provisioned_disks = [
+    {
       S3_HOST_1                 = "https://${var.minio_url}:9000"
       S3_MOUNT_1                = "/mnt/local/frank_mount"
       S3_UID_1                  = "1000"
       S3_GID_1                  = "4646"
       S3_ACL_1                  = "private"
-      S3_CACHE_1                = "/mnt/local/frank_cache_cache"
+      S3_CACHE_1                = "/mnt/local/frank_cache"
       S3_BUCKET_1               = "frank-nomad"
       S3_ACCESS_KEY_1           = data.vault_generic_secret.minio_s3.data["access_key"]
       S3_SECRET_KEY_1           = data.vault_generic_secret.minio_s3.data["secret_key"]

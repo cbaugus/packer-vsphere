@@ -1,6 +1,6 @@
 module "cluster" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.1.8"
+  version = "0.1.11"
 
   #Cluster vars
   num_instances      = var.num_instances
@@ -24,8 +24,8 @@ module "cluster" {
   local_exec_user          = var.local_exec_user
 
   #S3/Growr overrides
-  provisioned_disks    = var.provisioned_disks
-  s3_provisioned_disks = local.s3_provisioned_disks
+  growr_provisioned_disks    = local.growr_provisioned_disks
+  s3_provisioned_disks       = local.s3_provisioned_disks
 
   #Consul overrides
   consul_pass    = var.consul_pass
@@ -44,6 +44,7 @@ module "cluster" {
   nomad_manage_user           = "yes"
   nomad_user                  = "nomad"
   nomad_group                 = "nomad"
+  nomad_version               = "1.1.6"
 
   #Vault overrides
   vault_agent_role_id            = var.vault_agent_role_id
