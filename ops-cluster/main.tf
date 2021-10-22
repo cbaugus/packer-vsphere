@@ -1,6 +1,6 @@
 module "cluster" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.1.9"
+  version = "0.1.11"
 
   #Cluster vars
   num_instances      = var.num_instances
@@ -29,7 +29,7 @@ module "cluster" {
   #Consul overrides
   consul_pass    = var.consul_pass
   consul_raw_key = var.consul_raw_key
-  consul_addresses_http = var.consul_addresses_http
+  consul_addresses_http = "127.0.0.1 {{ consul_bind_address }}"
 
   #Nomad overrides
   nomad_region                = var.nomad_region
@@ -39,6 +39,7 @@ module "cluster" {
   nomad_options               = var.nomad_options
   nomad_meta                  = var.nomad_meta
   nomad_host_volumes          = var.nomad_host_volumes
+  nomad_version 	            = "1.1.6"
 
   #Vault overrides
   vault_agent_role_id            = var.vault_agent_role_id

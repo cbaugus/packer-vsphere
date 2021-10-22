@@ -101,8 +101,8 @@ variable "consul_raw_key" {
   sensitive   = true
 }
 variable "consul_addresses_http" {
-  description = ""
   type        = string
+  default     = "127.0.0.1 {{ consul_bind_address }}"
 }
 ########## NOMAD ##########
 variable "nomad_region" {

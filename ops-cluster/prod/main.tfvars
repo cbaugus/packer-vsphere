@@ -1,3 +1,3 @@
-num_instances      = "2"
-resource_pool_type = "large"
+num_instances      = "3"
+resource_pool_type = "xl"
 name               = "ops"

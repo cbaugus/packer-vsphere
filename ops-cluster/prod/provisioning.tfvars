@@ -42,6 +42,14 @@ nomad_host_volumes = [
     "group"     = "bin"
     "mode"      = "0777"
     "read_only" = "false"
+  },
+  {
+    "name"      = "waypoint"
+    "path"      = "/mnt/local/waypoint"
+    "owner"     = "root"
+    "group"     = "bin"
+    "mode"      = "0777"
+    "read_only" = "false"
   }
 ]
 
