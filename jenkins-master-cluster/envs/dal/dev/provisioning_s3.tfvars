@@ -1,19 +1,18 @@
-minio_s3_url = "https://devtest.freenas.tmi.jhdc.local:9000/"
+minio_s3_url = "https://prod.freenas.dal.jhdc.local:9000/"
 
 provisioned_disks = [
   {
-    device_drive = "sdb"
-    label = "wowza_content_s3_cache"
-    disk_size = "xl"
+    label = "jenkins_master_s3_cache"
+    disk_size = "large"
     thin_provisioned = "true"
     eagerly_scrub = "false"
     data_disk_scsi_controller = "0"
   }
 ]
 
-nomad_region                = "tmi"
-nomad_node_class            = "feature"
-nomad_vault_address         = "https://vault.service.tmi-w01-dc01.consul:8200"
+nomad_region                = "dal"
+nomad_node_class            = "dev"
+nomad_vault_address         = "https://vault.service.dal-w01-dc01.consul:8200"
 nomad_vault_tls_skip_verify = "yes"
 nomad_options = {
   "driver.raw_exec.enable" = "1"
@@ -23,23 +22,23 @@ nomad_options = {
 }
 nomad_meta = {
   "node-switcher" = "on"
-  "purpose"       = "streaming"
+  "purpose"       = "jenkins-master"
 }
 // The nomad_host_volumes owner and group must match the same uid and gid as specified in provisioned_disks
 // if that is being uses. The ansible nomad role will try to create the directory before configuring it in
 // the client.hcl file.
 nomad_host_volumes = [
   {
-      "name" = "frank-wowza-content"
-      "path" = "/mnt/local/wowza_content_s3_mount"
-      "owner" = "root"
-      "group" = "bin"
+      "name" = "jenkins-master"
+      "path" = "/mnt/local/jenkins_master_s3_mount"
+      "owner" = "cicduser"
+      "group" = "nomad"
       "mode" = "0777"
       "read_only" = "false"
   }
 ]
 
-vault_consul_role_cluster_type = "streaming"
+vault_consul_role_cluster_type = "jenkins-master"
 vault_agent_templates = [
   {
     "name" = "consul-token"

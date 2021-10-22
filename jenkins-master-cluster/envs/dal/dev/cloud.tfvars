@@ -1,0 +1,7 @@
+vsphere_datacenter      = "dal-w01-dc01"
+vsphere_compute_cluster = "dal-w01-dc01-dev"
+vsphere_resource_pool   = "dal-w01-dc01/dal-w01-dc01-dev/Resources"
+vsphere_datastore       = "dal-w01-cl01-ds-vsan01"
+vsphere_network         = "dal-w01-cl01-vds01-pg-streaminga-206"
+vsphere_folder          = "dev/ops"
+vsphere_template        = "linux-ubuntu-server-20-04-lts-tmi-w01-cl01-dev"
