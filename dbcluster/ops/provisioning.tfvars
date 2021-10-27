@@ -1,7 +1,7 @@
 provisioned_disks = [
   {
     device_drive              = "sdb"
-    label                     = "pmm_label"
+    label                     = "sqldata"
     disk_size                 = "large"
     thin_provisioned          = "true"
     eagerly_scrub             = "false"

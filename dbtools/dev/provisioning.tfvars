@@ -1,7 +1,7 @@
 provisioned_disks = [
   {
     device_drive              = "sdb"
-    label                     = "sqldata"
+    label                     = "pmm_label"
     disk_size                 = "large"
     thin_provisioned          = "true"
     eagerly_scrub             = "false"
@@ -21,15 +21,15 @@ nomad_options = {
 }
 nomad_meta = {
   "node-switcher" = "on"
-  "purpose"       = "dbcluster"
+  "purpose"       = "dbtools"
 }
 // The nomad_host_volumes owner and group must match the same uid and gid as specified in provisioned_disks
 // if that is being uses. The ansible nomad role will try to create the directory before configuring it in
 // the client.hcl file.
 nomad_host_volumes = [
   {
-    "name"      = "sqldata"
-    "path"      = "/mnt/local/sqldata"
+    "name"      = "pmm"
+    "path"      = "/mnt/local/pmm"
     "owner"     = "root"
     "group"     = "bin"
     "mode"      = "0777"
@@ -37,7 +37,7 @@ nomad_host_volumes = [
   }
 ]
 
-vault_consul_role_cluster_type = "dbcluster"
+vault_consul_role_cluster_type = "dbtools"
 vault_agent_templates = [
   {
     "name" = "consul-token"
