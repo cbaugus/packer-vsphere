@@ -1,7 +1,7 @@
 provisioned_disks = [
   {
     device_drive              = "sdb"
-    label                     = "pmm_label"
+    label                     = "sqldata"
     disk_size                 = "large"
     thin_provisioned          = "true"
     eagerly_scrub             = "false"
@@ -28,8 +28,8 @@ nomad_meta = {
 // the client.hcl file.
 nomad_host_volumes = [
   {
-    "name"      = "pmm"
-    "path"      = "/mnt/local/pmm"
+    "name"      = "sqldata"
+    "path"      = "/mnt/local/sqldata"
     "owner"     = "root"
     "group"     = "bin"
     "mode"      = "0777"

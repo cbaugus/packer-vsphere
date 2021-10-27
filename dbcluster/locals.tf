@@ -4,7 +4,7 @@ locals {
   s3_provisioned_disks = [
     {
       DEVICE_DRIVE = "sdb"
-      LABEL = "pmm"
+      LABEL = "sqldata"
       S3_HOST_1                 = ""
       S3_MOUNT_1                = ""
       S3_UID_1                  = ""
