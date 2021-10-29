@@ -31,8 +31,8 @@ nomad_host_volumes = [
   {
       "name" = "frank-wowza-content"
       "path" = "/mnt/local/wowza_content_s3_mount"
-      "owner" = "cicduser"
-      "group" = "nomad"
+      "owner" = "root"
+      "group" = "bin"
       "mode" = "0777"
       "read_only" = "false"
   }

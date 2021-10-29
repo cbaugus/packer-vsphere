@@ -14,7 +14,7 @@ locals {
       S3_UID_1 = "0"
       S3_GID_1 = "2"
       S3_ACL_1 = "private"
-      S3_CACHE_1 = "/mnt/local/wowza_content_s3_cache"
+      S3_CACHE_1 = ""
       S3_BUCKET_1 = "streaming-wowza-video-${var.nomad_node_class}"
       S3_ACCESS_KEY_1           = data.vault_generic_secret.minio_s3.data["access_key"]
       S3_SECRET_KEY_1           = data.vault_generic_secret.minio_s3.data["secret_key"]

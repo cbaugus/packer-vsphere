@@ -4,7 +4,7 @@ terraform {
     organization = "JohnstonHowse"
 
     workspaces {
-      prefix = "streaming-tmi-w01-dc01-"
+      prefix = "streaming-"
     }
   }
 }
