@@ -5,3 +5,7 @@ provider "vsphere" {
   allow_unverified_ssl = true
   client_debug         = true
 }
+
+//provider "vault" {
+//  #Configure with VAULT_ADDR and VAULT_TOKEN env vars
+//}

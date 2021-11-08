@@ -1,11 +1,11 @@
 module "cluster" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.1.11"
+  version = "0.1.13"
 
   #Cluster vars
   num_instances      = var.num_instances
   resource_pool_type = var.resource_pool_type
-  name_prefix        = "${var.name}-${var.resource_pool_type}-${var.nomad_node_class}"
+  name_prefix        = "${local.cluster_name}-${var.resource_pool_type}-${var.env}"
 
   #vSphere required inputs
   vsphere_compute_cluster = var.vsphere_compute_cluster
@@ -24,31 +24,35 @@ module "cluster" {
   local_exec_user          = var.local_exec_user
 
   #S3/Growr overrides
-  growr_provisioned_disks    = local.growr_provisioned_disks
-  s3_provisioned_disks       = local.s3_provisioned_disks
+  growr_provisioned_disks = local.growr_provisioned_disks
+  s3_provisioned_disks    = local.s3_provisioned_disks
 
   #Consul overrides
-  consul_pass    = var.consul_pass
-  consul_raw_key = var.consul_raw_key
+  consul_pass           = var.consul_pass
+  consul_raw_key        = var.consul_raw_key
   consul_addresses_http = "127.0.0.1"
+  consul_ports          = { "grpc" = "8502", "dns" = "8600", "http" = "8500", "https" = "-1", "rpc" = "8400", "serf_lan" = "8301", "serf_wan" = "8302", "server" = "8300" }
+  //consul_acl_token      = data.vault_generic_secret.consul_token.data["token"]
+  consul_acl_token      = var.consul_acl_token
 
   #Nomad overrides
   nomad_region                = var.nomad_region
-  nomad_node_class            = var.nomad_node_class
+  nomad_node_class            = var.env
   nomad_vault_address         = var.nomad_vault_address
   nomad_vault_tls_skip_verify = var.nomad_vault_tls_skip_verify
   nomad_options               = var.nomad_options
-  nomad_meta                  = var.nomad_meta
+  nomad_meta                  = local.nomad_meta
   nomad_host_volumes          = var.nomad_host_volumes
+  //nomad_consul_token          = data.vault_generic_secret.consul_token.data["token"]
+  nomad_consul_token          = var.consul_acl_token
   nomad_manage_group          = "yes"
   nomad_manage_user           = "yes"
   nomad_user                  = "nomad"
   nomad_group                 = "nomad"
-  nomad_version               = "1.1.6"
 
   #Vault overrides
   vault_agent_role_id            = var.vault_agent_role_id
   vault_agent_secret_id          = var.vault_agent_secret_id
-  vault_consul_role_cluster_type = var.vault_consul_role_cluster_type
+  vault_consul_role_cluster_type = local.cluster_name
   vault_agent_templates          = var.vault_agent_templates
 }

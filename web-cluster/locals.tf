@@ -1,9 +1,15 @@
 locals {
-  minio_vault_path = "${var.nomad_node_class}/minio/web/${var.vsphere_datacenter}"
+  minio_vault_path        = "${var.env}/minio/web/${var.vsphere_datacenter}"
+  cluster_name            = "web"
+  consul_token_vault_path = "consul/creds/${local.cluster_name}-node"
+  nomad_meta = {
+    "node-switcher" = "on"
+    "purpose"       = "${local.cluster_name}"
+  }
   growr_provisioned_disks = [
     {
-      DEVICE_DRIVE              = "sdb"
-      LABEL                     = "frank"
+      DEVICE_DRIVE = "sdb"
+      LABEL        = "frank"
     }
   ]
   s3_provisioned_disks = [

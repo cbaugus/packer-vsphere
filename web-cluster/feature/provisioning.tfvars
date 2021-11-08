@@ -10,7 +10,6 @@ provisioned_disks = [
 ]
 
 nomad_region                = "tmi"
-nomad_node_class            = "feature"
 nomad_vault_address         = "https://vault.service.tmi-w01-dc01.consul:8200"
 nomad_vault_tls_skip_verify = "yes"
 nomad_options = {
@@ -36,7 +35,7 @@ nomad_host_volumes = [
     "read_only" = "false"
   }
 ]
-minio_url = "devtest.freenas.tmi.jhdc.local"
+minio_url = "feature.s3.tmi.jhdc.local"
 
 vault_consul_role_cluster_type = "web"
 vault_agent_templates = [

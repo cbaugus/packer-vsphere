@@ -11,6 +11,10 @@ variable "name" {
   description = ""
   type        = string
 }
+variable "env" {
+  description = ""
+  type        = string
+}
 ########## VSPHERE PROVIDER ##########
 variable "vsphere_user" {
   description = "vSphere administrator username"
@@ -105,12 +109,13 @@ variable "consul_raw_key" {
   type        = string
   sensitive   = true
 }
-########## NOMAD ##########
-variable "nomad_region" {
+variable "consul_acl_token" {
   description = ""
   type        = string
+  sensitive   = true
 }
-variable "nomad_node_class" {
+########## NOMAD ##########
+variable "nomad_region" {
   description = ""
   type        = string
 }
@@ -123,10 +128,6 @@ variable "nomad_vault_tls_skip_verify" {
   type        = string
 }
 variable "nomad_options" {
-  description = ""
-  type        = any
-}
-variable "nomad_meta" {
   description = ""
   type        = any
 }
@@ -144,10 +145,6 @@ variable "vault_agent_secret_id" {
   description = ""
   type        = any
   sensitive   = true
-}
-variable "vault_consul_role_cluster_type" {
-  description = ""
-  type        = any
 }
 variable "vault_agent_templates" {
   description = ""
