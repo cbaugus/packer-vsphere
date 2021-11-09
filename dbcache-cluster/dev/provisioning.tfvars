@@ -1,5 +1,4 @@
 nomad_region                = "tmi"
-nomad_node_class            = "dev"
 nomad_vault_address         = "https://vault.service.tmi-w01-dc01.consul:8200"
 nomad_vault_tls_skip_verify = "yes"
 nomad_options = {
@@ -8,12 +7,7 @@ nomad_options = {
   "docker.cleanup.image"   = "false"
   "docker.volumes.enabled" = "true"
 }
-nomad_meta = {
-  "node-switcher" = "on"
-  "purpose"       = "dbcache"
-}
 
-vault_consul_role_cluster_type = "dbcache"
 vault_agent_templates = [
   {
     "name" = "consul-token"
