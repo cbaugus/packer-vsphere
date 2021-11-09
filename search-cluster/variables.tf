@@ -11,6 +11,10 @@ variable "name" {
   description = ""
   type        = string
 }
+variable "env" {
+  description = ""
+  type        = string
+}
 ########## VSPHERE PROVIDER ##########
 variable "vsphere_user" {
   description = "vSphere administrator username"
@@ -96,6 +100,11 @@ variable "consul_pass" {
   sensitive   = true
 }
 variable "consul_raw_key" {
+  description = ""
+  type        = string
+  sensitive   = true
+}
+variable "consul_acl_token" {
   description = ""
   type        = string
   sensitive   = true

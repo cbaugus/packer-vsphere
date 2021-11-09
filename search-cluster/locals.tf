@@ -1,21 +1,16 @@
 
 locals {
-
-  s3_provisioned_disks = [
+  cluster_name            = "search-cluster"
+  consul_token_vault_path = "consul/creds/${local.cluster_name}-node"
+  nomad_meta = {
+    "node-switcher" = "on"
+    "purpose"       = local.cluster_name
+  }
+  growr_provisioned_disks = [
     {
-      DEVICE_DRIVE = "sdb"
-      LABEL = "solr"
-      S3_HOST_1                 = ""
-      S3_MOUNT_1                = ""
-      S3_UID_1                  = ""
-      S3_GID_1                  = ""
-      S3_ACL_1                  = ""
-      S3_CACHE_1                = ""
-      S3_BUCKET_1               = ""
-      S3_ACCESS_KEY_1           = ""
-      S3_SECRET_KEY_1           = ""
-      S3_NO_CHECK_CERTIFICATE_1 = ""
-      S3_SSL_VERIFY_HOSTNAME_1  = ""
+      DEVICE_DRIVE              = "sdb"
+      LABEL                     = "solr_label"
     }
   ]
+  s3_provisioned_disks    = []
 }
