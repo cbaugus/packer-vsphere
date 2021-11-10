@@ -1,5 +1,5 @@
 env = "dev"
 num_instances      = "3"
 resource_pool_type = "large"
-name               = "search-cluster"
-guest_id	   = "search-cluster"
+name               = "search"
+guest_id	   = "search"

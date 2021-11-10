@@ -1,6 +1,6 @@
 
 locals {
-  cluster_name            = "search-cluster"
+  cluster_name            = "search"
   consul_token_vault_path = "consul/creds/${local.cluster_name}-node"
   nomad_meta = {
     "node-switcher" = "on"
