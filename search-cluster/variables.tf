@@ -114,10 +114,6 @@ variable "nomad_region" {
   description = ""
   type        = string
 }
-variable "nomad_node_class" {
-  description = ""
-  type        = string
-}
 variable "nomad_vault_address" {
   description = ""
   type        = string
