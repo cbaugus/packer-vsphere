@@ -141,10 +141,6 @@ variable "vault_agent_secret_id" {
   type        = any
   sensitive   = true
 }
-variable "vault_consul_role_cluster_type" {
-  description = ""
-  type        = any
-}
 variable "vault_agent_templates" {
   description = ""
   type        = any
