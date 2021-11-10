@@ -23,6 +23,10 @@ module "cluster" {
   local_exec_ssh_key_file  = var.local_exec_ssh_key_file
   local_exec_user          = var.local_exec_user
 
+  #S3/Growr overrides
+  growr_provisioned_disks = local.growr_provisioned_disks
+  s3_provisioned_disks    = local.s3_provisioned_disks
+
   #Consul overrides
   consul_pass           = var.consul_pass
   consul_raw_key        = var.consul_raw_key
@@ -38,6 +42,7 @@ module "cluster" {
   nomad_options               = var.nomad_options
   nomad_meta                  = local.nomad_meta
   nomad_consul_token          = var.consul_acl_token
+  nomad_host_volumes          = var.nomad_host_volumes
 
   #Vault overrides
   vault_agent_role_id            = var.vault_agent_role_id

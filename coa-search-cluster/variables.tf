@@ -26,6 +26,10 @@ variable "vsphere_pass" {
   type        = string
   sensitive   = true
 }
+variable "vsphere_datacenter" {
+  description = "vSphere datacenter"
+  type        = string
+}
 variable "vsphere_server" {
   description = "vSphere server address"
   type        = string

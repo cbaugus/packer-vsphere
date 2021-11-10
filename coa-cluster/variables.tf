@@ -26,6 +26,10 @@ variable "vsphere_pass" {
   type        = string
   sensitive   = true
 }
+variable "vsphere_datacenter" {
+  description = "vSphere datacenter"
+  type        = string
+}
 variable "vsphere_server" {
   description = "vSphere server address"
   type        = string
@@ -84,6 +88,16 @@ variable "local_exec_user" {
   type        = string
   sensitive   = true
 }
+########## GROWR ##########
+variable "provisioned_disks" {
+  description = ""
+  type        = any
+}
+########## S3 ##########
+variable "minio_url" {
+  description = ""
+  type        = string
+}
 ########## CONSUL ##########
 variable "consul_pass" {
   description = ""
@@ -114,6 +128,10 @@ variable "nomad_vault_tls_skip_verify" {
   type        = string
 }
 variable "nomad_options" {
+  description = ""
+  type        = any
+}
+variable "nomad_host_volumes" {
   description = ""
   type        = any
 }

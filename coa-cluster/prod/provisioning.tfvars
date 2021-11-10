@@ -1,3 +1,15 @@
+provisioned_disks = [
+  {
+    device_drive              = "sdb"
+    label                     = "coa"
+    disk_size                 = "large"
+    thin_provisioned          = "true"
+    eagerly_scrub             = "false"
+    data_disk_scsi_controller = "0"
+  }
+]
+minio_url = "prod.s3.tmi.jhdc.local"
+
 nomad_region                = "tmi"
 nomad_vault_address         = "https://vault.service.tmi-w01-dc01.consul:8200"
 nomad_vault_tls_skip_verify = "yes"
@@ -7,6 +19,16 @@ nomad_options = {
   "docker.cleanup.image"   = "false"
   "docker.volumes.enabled" = "true"
 }
+nomad_host_volumes = [
+  {
+    "name"      = "coa"
+    "path"      = "/mnt/local/coa_mount"
+    "owner"     = "root"
+    "group"     = "bin"
+    "mode"      = "0777"
+    "read_only" = "false"
+  }
+]
 
 vault_agent_templates = [
   {

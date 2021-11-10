@@ -5,3 +5,7 @@ provider "vsphere" {
   allow_unverified_ssl = true
   client_debug         = true
 }
+
+provider "vault" {
+  address = var.vault_server_url
+}
