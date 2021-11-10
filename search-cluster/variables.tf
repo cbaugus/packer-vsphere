@@ -130,10 +130,6 @@ variable "nomad_options" {
   description = ""
   type        = any
 }
-variable "nomad_meta" {
-  description = ""
-  type        = any
-}
 variable "nomad_host_volumes" {
   description = ""
   type        = any
