@@ -1,22 +1,18 @@
+
 locals {
 
-  cluster_name     = "coa"
-  nomad_meta = {
-    "node-switcher" = "on"
-    "purpose"       = "${local.cluster_name}"
-  }
-
-  growr_provisioned_disks = [
-    {
-      DEVICE_DRIVE = "sdb"
-      LABEL        = "coa"
+  locals {
+    cluster_name = "coa-search"
+    nomad_meta = {
+      "node-switcher" = "on"
+      "purpose"       = "${local.cluster_name}"
     }
-  ]
+  }
 
   s3_provisioned_disks = [
     {
       DEVICE_DRIVE = "sdb"
-      LABEL = "elastic"
+      LABEL = "coa"
       S3_HOST_1                 = ""
       S3_MOUNT_1                = ""
       S3_UID_1                  = ""
