@@ -11,6 +11,10 @@ variable "name" {
   description = ""
   type        = string
 }
+variable "env" {
+  description = ""
+  type        = string
+}
 ########## VSPHERE PROVIDER ##########
 variable "vsphere_user" {
   description = "vSphere administrator username"
