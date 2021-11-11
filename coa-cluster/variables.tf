@@ -93,11 +93,6 @@ variable "provisioned_disks" {
   description = ""
   type        = any
 }
-########## S3 ##########
-variable "minio_url" {
-  description = ""
-  type        = string
-}
 ########## CONSUL ##########
 variable "consul_pass" {
   description = ""
