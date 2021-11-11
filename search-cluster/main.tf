@@ -1,6 +1,6 @@
-module "cluster" {
+module "set1" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.1.9"
+  version = "0.1.13"
 
   #Cluster vars
   num_instances      = var.num_instances
@@ -36,7 +36,7 @@ module "cluster" {
 
   #Nomad overrides
   nomad_region                = var.nomad_region
-  nomad_node_class            = var.nomad_node_class
+  nomad_node_class            = var.env
   nomad_vault_address         = var.nomad_vault_address
   nomad_vault_tls_skip_verify = var.nomad_vault_tls_skip_verify
   nomad_options               = var.nomad_options
