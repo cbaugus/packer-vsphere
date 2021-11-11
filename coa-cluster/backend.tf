@@ -4,7 +4,7 @@ terraform {
     organization = "JohnstonHowse"
 
     workspaces {
-      prefix = "coa-test-tmi-w01-dc01-"
+      prefix = "coa-tmi-w01-dc01-"
     }
   }
 }

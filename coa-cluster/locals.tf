@@ -1,13 +1,11 @@
 
 locals {
 
-  locals {
     cluster_name = "coa-search"
     nomad_meta = {
       "node-switcher" = "on"
       "purpose"       = "${local.cluster_name}"
     }
-  }
 
   s3_provisioned_disks = [
     {
