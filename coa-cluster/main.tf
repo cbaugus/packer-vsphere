@@ -40,7 +40,7 @@ module "cluster" {
   nomad_vault_address         = var.nomad_vault_address
   nomad_vault_tls_skip_verify = var.nomad_vault_tls_skip_verify
   nomad_options               = var.nomad_options
-  nomad_meta                  = var.nomad_meta
+  nomad_meta                  = local.nomad_meta
   nomad_consul_token          = var.consul_acl_token
   nomad_host_volumes          = var.nomad_host_volumes
 
