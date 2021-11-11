@@ -1,7 +1,7 @@
 
 locals {
 
-    cluster_name = "coa-search"
+    cluster_name = "coa"
     nomad_meta = {
       "node-switcher" = "on"
       "purpose"       = "${local.cluster_name}"
