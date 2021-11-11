@@ -1,6 +1,15 @@
 provisioned_disks = [
   {
+    device_drive = "sdb"
     label = "mongodb_data"
+    disk_size = "large"
+    thin_provisioned = "true"
+    eagerly_scrub = "false"
+    data_disk_scsi_controller = "0"
+  },
+  {
+    device_drive = "sdc"
+    label = "redis_data"
     disk_size = "large"
     thin_provisioned = "true"
     eagerly_scrub = "false"
@@ -29,12 +38,23 @@ nomad_host_volumes = [
   {
       "name" = "mongodb-data"
       "path" = "/mnt/local/mongodb_data"
-      "owner" = "cicduser"
-      "group" = "nomad"
+      "owner" = "root"
+      "group" = "bin"
+      "mode" = "0777"
+      "read_only" = "false"
+  },
+  {
+      "name" = "redis-data"
+      "path" = "/mnt/local/redis_data"
+      "owner" = "root"
+      "group" = "bin"
       "mode" = "0777"
       "read_only" = "false"
   }
 ]
+
+# Max kill timeout of 1 week 
+nomad_max_kill_timeout = "604800s"
 
 vault_consul_role_cluster_type = "data"
 vault_agent_templates = [

@@ -1,6 +1,6 @@
 module "cluster" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.1.1"
+  version = "0.1.13"
 
   #Cluster vars
   num_instances      = var.num_instances
@@ -26,13 +26,16 @@ module "cluster" {
   #S3/Growr overrides
   provisioned_disks    = var.provisioned_disks
   s3_provisioned_disks = local.s3_provisioned_disks
+  growr_provisioned_disks = local.growr_provisioned_disks
 
   #Consul overrides
   consul_pass    = var.consul_pass
   consul_raw_key = var.consul_raw_key
   consul_iptables_enable = "false"
+  consul_acl_token      = var.consul_acl_token
 
   #Nomad overrides
+  nomad_consul_token          = var.consul_acl_token
   nomad_region                = var.nomad_region
   nomad_node_class            = var.nomad_node_class
   nomad_vault_address         = var.nomad_vault_address
@@ -40,6 +43,7 @@ module "cluster" {
   nomad_options               = var.nomad_options
   nomad_meta                  = var.nomad_meta
   nomad_host_volumes          = var.nomad_host_volumes
+  nomad_max_kill_timeout      = var.nomad_max_kill_timeout
 
   #Vault overrides
   vault_agent_role_id            = var.vault_agent_role_id

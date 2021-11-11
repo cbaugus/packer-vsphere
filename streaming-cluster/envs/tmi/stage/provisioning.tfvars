@@ -1,4 +1,3 @@
-minio_s3_url = "https://devtest.freenas.tmi.jhdc.local:9000/"
 
 provisioned_disks = [
   {

@@ -100,6 +100,11 @@ variable "consul_raw_key" {
   type        = string
   sensitive   = true
 }
+variable "consul_acl_token" {
+  description = ""
+  type        = string
+  sensitive   = true
+}
 ########## NOMAD ##########
 variable "nomad_region" {
   description = ""
@@ -128,6 +133,10 @@ variable "nomad_meta" {
 variable "nomad_host_volumes" {
   description = ""
   type        = any
+}
+variable "nomad_max_kill_timeout" {
+  description = ""
+  type        = string
 }
 ########## VAULT ##########
 variable "vault_agent_role_id" {
