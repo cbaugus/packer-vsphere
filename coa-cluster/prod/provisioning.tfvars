@@ -19,10 +19,9 @@ nomad_options = {
   "docker.volumes.enabled" = "true"
 }
 
-cluster_name     = "coa"
 nomad_meta = {
   "node-switcher" = "on"
-  "purpose"       = "${local.cluster_name}"
+  "purpose"       = "coa"
 }
 
 nomad_host_volumes = [
