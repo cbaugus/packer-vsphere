@@ -7,10 +7,15 @@ locals {
       "purpose"       = "${local.cluster_name}"
     }
 
+  growr_provisioned_disks = [
+    {
+      DEVICE_DRIVE              = "sdb"
+      LABEL                     = "coa"
+    }
+  ]
+
   s3_provisioned_disks = [
     {
-      DEVICE_DRIVE = "sdb"
-      LABEL = "coa"
       S3_HOST_1                 = ""
       S3_MOUNT_1                = ""
       S3_UID_1                  = ""
