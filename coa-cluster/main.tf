@@ -26,6 +26,7 @@ module "cluster" {
   #S3/Growr overrides
   provisioned_disks    = var.provisioned_disks
   s3_provisioned_disks = local.s3_provisioned_disks
+  growr_provisioned_disks = local.growr_provisioned_disks
 
   #Consul overrides
   consul_pass    = var.consul_pass

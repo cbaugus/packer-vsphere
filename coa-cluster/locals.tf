@@ -1,11 +1,11 @@
 
 locals {
 
-    cluster_name = "coa"
-    nomad_meta = {
-      "node-switcher" = "on"
-      "purpose"       = "${local.cluster_name}"
-    }
+  cluster_name = "coa"
+  nomad_meta = {
+    "node-switcher" = "on"
+    "purpose"       = "${local.cluster_name}"
+  }
 
   growr_provisioned_disks = [
     {
