@@ -18,6 +18,13 @@ nomad_options = {
   "docker.cleanup.image"   = "false"
   "docker.volumes.enabled" = "true"
 }
+
+cluster_name     = "coa"
+nomad_meta = {
+  "node-switcher" = "on"
+  "purpose"       = "${local.cluster_name}"
+}
+
 nomad_host_volumes = [
   {
     "name"      = "coa"
