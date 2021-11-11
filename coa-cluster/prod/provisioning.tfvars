@@ -8,7 +8,6 @@ provisioned_disks = [
     data_disk_scsi_controller = "0"
   }
 ]
-minio_url = "prod.s3.tmi.jhdc.local"
 
 nomad_region                = "tmi"
 nomad_vault_address         = "https://vault.service.tmi-w01-dc01.consul:8200"
