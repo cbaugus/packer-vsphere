@@ -1,5 +1,0 @@
-env = "dev"
-num_instances      = "3"
-resource_pool_type = "large"
-name               = "search"
-guest_id	   = "search"
