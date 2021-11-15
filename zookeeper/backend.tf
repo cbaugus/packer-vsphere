@@ -4,7 +4,7 @@ terraform {
     organization = "JohnstonHowse"
 
     workspaces {
-      prefix = "frankspeech-search-cluster-tmi-w01-dc01-"
+      prefix = "frankspeech-zookeeper-tmi-w01-dc01-"
     }
   }
 }
