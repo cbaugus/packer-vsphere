@@ -29,8 +29,8 @@ nomad_host_volumes = [
   {
     "name"      = "frank-nomad"
     "path"      = "/mnt/local/frank_mount/default/files"
-    "owner"     = "cicduser"
-    "group"     = "nomad"
+    "owner"     = "root"
+    "group"     = "bin"
     "mode"      = "0777"
     "read_only" = "false"
   }

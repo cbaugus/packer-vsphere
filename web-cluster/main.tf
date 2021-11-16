@@ -45,10 +45,6 @@ module "cluster" {
   nomad_host_volumes          = var.nomad_host_volumes
   //nomad_consul_token          = data.vault_generic_secret.consul_token.data["token"]
   nomad_consul_token          = var.consul_acl_token
-  nomad_manage_group          = "yes"
-  nomad_manage_user           = "yes"
-  nomad_user                  = "nomad"
-  nomad_group                 = "nomad"
 
   #Vault overrides
   vault_agent_role_id            = var.vault_agent_role_id

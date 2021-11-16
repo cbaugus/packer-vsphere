@@ -16,8 +16,8 @@ locals {
     {
       S3_HOST_1                 = "https://${var.minio_url}:9000"
       S3_MOUNT_1                = "/mnt/local/frank_mount"
-      S3_UID_1                  = "1000"
-      S3_GID_1                  = "4646"
+      S3_UID_1                  = "0"
+      S3_GID_1                  = "2"
       S3_ACL_1                  = "private"
       S3_CACHE_1                = "/mnt/local/frank_cache"
       S3_BUCKET_1               = "frank-nomad"
