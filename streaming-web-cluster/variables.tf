@@ -87,7 +87,7 @@ variable "local_exec_user" {
 ########## GROWR ##########
 variable "minio_s3_url" {
   description = ""
-  type        = any 
+  type        = any
 }
 variable "provisioned_disks" {
   description = ""
@@ -100,6 +100,11 @@ variable "consul_pass" {
   sensitive   = true
 }
 variable "consul_raw_key" {
+  description = ""
+  type        = string
+  sensitive   = true
+}
+variable "consul_acl_token" {
   description = ""
   type        = string
   sensitive   = true
