@@ -6,6 +6,14 @@ provisioned_disks = [
     thin_provisioned          = "true"
     eagerly_scrub             = "false"
     data_disk_scsi_controller = "0"
+  },
+  {
+    device_drive              = "sdc"
+    label                     = "zookeeeperlog_label"
+    disk_size                 = "medium"
+    thin_provisioned          = "true"
+    eagerly_scrub             = "false"
+    data_disk_scsi_controller = "0"
   }
 ]
 
@@ -30,6 +38,14 @@ nomad_host_volumes = [
   {
     "name"      = "zookeeper"
     "path"      = "/mnt/local/zookeeper"
+    "owner"     = "root"
+    "group"     = "bin"
+    "mode"      = "0777"
+    "read_only" = "false"
+  },
+  {
+    "name"      = "zookeeper"
+    "path"      = "/mnt/local/zookeeperlog"
     "owner"     = "root"
     "group"     = "bin"
     "mode"      = "0777"
