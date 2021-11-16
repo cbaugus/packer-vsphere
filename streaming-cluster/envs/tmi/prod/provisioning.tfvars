@@ -2,7 +2,7 @@
 provisioned_disks = [
   {
     label = "wowza_content_s3_cache"
-    disk_size = "xl"
+    disk_size = "xxl"
     thin_provisioned = "true"
     eagerly_scrub = "false"
     data_disk_scsi_controller = "0"
