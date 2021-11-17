@@ -44,7 +44,7 @@ nomad_host_volumes = [
     "read_only" = "false"
   },
   {
-    "name"      = "zookeeper"
+    "name"      = "zookeeperlog"
     "path"      = "/mnt/local/zookeeperlog"
     "owner"     = "root"
     "group"     = "bin"
