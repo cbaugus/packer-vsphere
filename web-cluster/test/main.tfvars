@@ -1,4 +1,3 @@
-num_instances      = "5"
-resource_pool_type = "large"
+num_instances      = "2"
 name               = "web"
 env                = "test"

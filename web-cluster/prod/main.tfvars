@@ -1,4 +1,3 @@
-num_instances      = "40"
-resource_pool_type = "large"
+num_instances      = "25"
 name               = "web"
 env                = "prod"

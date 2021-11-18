@@ -3,10 +3,6 @@ variable "num_instances" {
   description = "Number of VMs to be provisioned in cluster"
   type        = string
 }
-variable "resource_pool_type" {
-  description = "Small, medium, large, or xl"
-  type        = string
-}
 variable "name" {
   description = ""
   type        = string
