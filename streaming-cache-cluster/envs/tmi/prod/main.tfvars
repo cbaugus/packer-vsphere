@@ -1,3 +1,3 @@
-num_instances      = "6"
+num_instances      = "10"
 resource_pool_type = "medium"
 name               = "streaming-cache"
