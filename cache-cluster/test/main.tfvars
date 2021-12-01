@@ -1,4 +1,4 @@
-num_instances      = "3"
+num_instances      = "1"
 resource_pool_type = "medium"
 name               = "cache"
 env = "test"

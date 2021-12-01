@@ -4,9 +4,9 @@ module "cluster" {
 
   #Cluster vars
   num_instances    = var.num_instances
-  cores_count_type = "medium"
-  mem_size_type    = "xxxl"
-  disk_size_type   = "medium"
+  cores_count_type = "xxl" #8 cores
+  mem_size_type    = "xxxl" #64 GB
+  disk_size_type   = "medium" #75 GB
   name_prefix      = "${local.cluster_name}-${var.env}"
 
   #vSphere required inputs
@@ -40,6 +40,7 @@ module "cluster" {
   nomad_options               = var.nomad_options
   nomad_meta                  = local.nomad_meta
   nomad_consul_token          = var.consul_acl_token
+  nomad_host_volumes          = var.nomad_host_volumes
 
   #Vault overrides
   vault_agent_role_id            = var.vault_agent_role_id

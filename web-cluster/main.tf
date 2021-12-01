@@ -1,13 +1,13 @@
 module "cluster" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.1.19"
+  version = "0.2.5"
 
   #Cluster vars
-  num_instances      = var.num_instances
-  cores_count_type   = "medium"
-  mem_size_type      = "xxl"
-  disk_size_type     = "medium"
-  name_prefix        = "${local.cluster_name}-${var.env}"
+  num_instances    = var.num_instances
+  cores_count_type = "medium"
+  mem_size_type    = "xxl"
+  disk_size_type   = "medium"
+  name_prefix      = "${local.cluster_name}-${var.env}"
 
   #vSphere required inputs
   vsphere_compute_cluster = var.vsphere_compute_cluster
@@ -35,7 +35,7 @@ module "cluster" {
   consul_addresses_http = "127.0.0.1"
   consul_ports          = { "grpc" = "8502", "dns" = "8600", "http" = "8500", "https" = "-1", "rpc" = "8400", "serf_lan" = "8301", "serf_wan" = "8302", "server" = "8300" }
   //consul_acl_token      = data.vault_generic_secret.consul_token.data["token"]
-  consul_acl_token      = var.consul_acl_token
+  consul_acl_token = var.consul_acl_token
 
   #Nomad overrides
   nomad_region                = var.nomad_region
@@ -46,7 +46,7 @@ module "cluster" {
   nomad_meta                  = local.nomad_meta
   nomad_host_volumes          = var.nomad_host_volumes
   //nomad_consul_token          = data.vault_generic_secret.consul_token.data["token"]
-  nomad_consul_token          = var.consul_acl_token
+  nomad_consul_token = var.consul_acl_token
 
   #Vault overrides
   vault_agent_role_id            = var.vault_agent_role_id
