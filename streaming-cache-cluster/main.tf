@@ -1,10 +1,12 @@
 module "cluster" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.1.15"
+  version = "0.2.5"
 
   #Cluster vars
   num_instances      = var.num_instances
-  resource_pool_type = var.resource_pool_type
+  cores_count_type = "xl"
+  mem_size_type    = "xxl"
+  disk_size_type   = "medium"
   name_prefix        = "${var.name}-${var.nomad_node_class}"
 
   #vSphere required inputs

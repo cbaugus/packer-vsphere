@@ -1,3 +1,3 @@
-num_instances      = "8"
-resource_pool_type = "xxl"
+num_instances      = "4"
+resource_pool_type = "xxxxl"
 name               = "streaming"
