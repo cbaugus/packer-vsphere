@@ -3,11 +3,11 @@ variable "num_instances" {
   description = "Number of VMs to be provisioned in cluster"
   type        = string
 }
-variable "resource_pool_type" {
-  description = "Small, medium, large, or xl"
+variable "name" {
+  description = ""
   type        = string
 }
-variable "name" {
+variable "env" {
   description = ""
   type        = string
 }
@@ -101,8 +101,13 @@ variable "consul_raw_key" {
   sensitive   = true
 }
 variable "consul_addresses_http" {
+  type    = string
+  default = "127.0.0.1 {{ consul_bind_address }}"
+}
+variable "consul_acl_token" {
+  description = ""
   type        = string
-  default     = "127.0.0.1 {{ consul_bind_address }}"
+  sensitive   = true
 }
 ########## NOMAD ##########
 variable "nomad_region" {

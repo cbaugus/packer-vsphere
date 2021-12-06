@@ -1,11 +1,13 @@
 module "cluster" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.1.11"
+  version = "0.2.5"
 
   #Cluster vars
-  num_instances      = var.num_instances
-  resource_pool_type = var.resource_pool_type
-  name_prefix        = "${var.name}-${var.resource_pool_type}-${var.nomad_node_class}"
+  num_instances    = var.num_instances
+  cores_count_type = "xxxl"  #16 cores
+  mem_size_type    = "xxxxl" #128 GB
+  disk_size_type   = "xxl"   #480 GB
+  name_prefix      = "${local.cluster_name}"
 
   #vSphere required inputs
   vsphere_compute_cluster = var.vsphere_compute_cluster
@@ -27,9 +29,11 @@ module "cluster" {
   provisioned_disks = var.provisioned_disks
 
   #Consul overrides
-  consul_pass    = var.consul_pass
-  consul_raw_key = var.consul_raw_key
+  consul_pass           = var.consul_pass
+  consul_raw_key        = var.consul_raw_key
   consul_addresses_http = "127.0.0.1 {{ consul_bind_address }}"
+  consul_ports          = { "grpc" = "8502", "dns" = "8600", "http" = "8500", "https" = "-1", "rpc" = "8400", "serf_lan" = "8301", "serf_wan" = "8302", "server" = "8300" }
+  consul_acl_token      = var.consul_acl_token
 
   #Nomad overrides
   nomad_region                = var.nomad_region
@@ -39,7 +43,6 @@ module "cluster" {
   nomad_options               = var.nomad_options
   nomad_meta                  = var.nomad_meta
   nomad_host_volumes          = var.nomad_host_volumes
-  nomad_version 	            = "1.1.6"
 
   #Vault overrides
   vault_agent_role_id            = var.vault_agent_role_id
