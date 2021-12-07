@@ -3,7 +3,7 @@ minio_s3_url = "https://prod.freenas.tmi.jhdc.local:9000/"
 provisioned_disks = [
   {
     label = "jenkins-master"
-    disk_size = "large"
+    disk_size = "xxl"
     thin_provisioned = "true"
     eagerly_scrub = "false"
     data_disk_scsi_controller = "0"
@@ -32,7 +32,7 @@ nomad_host_volumes = [
       "name" = "jenkins-master"
       "path" = "/mnt/local/jenkins-master"
       "owner" = "cicduser"
-      "group" = "nomad"
+      "group" = "cicduser"
       "mode" = "0777"
       "read_only" = "false"
   }
