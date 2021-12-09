@@ -15,7 +15,7 @@ locals {
       S3_GID_1 = "2"
       S3_ACL_1 = "private"
       S3_CACHE_1 = ""
-      S3_BUCKET_1 = "wowza-streaming-video"
+      S3_BUCKET_1 = data.vault_generic_secret.minio_s3.data["bucket"]
       S3_ACCESS_KEY_1           = data.vault_generic_secret.minio_s3.data["access_key"]
       S3_SECRET_KEY_1           = data.vault_generic_secret.minio_s3.data["secret_key"]
       S3_NO_CHECK_CERTIFICATE_1 = "true"

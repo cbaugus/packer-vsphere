@@ -1,9 +1,10 @@
-minio_s3_url = "https://prod.freenas.tmi.jhdc.local:9000/"
+minio_s3_url = "https://b.prod.s3.tmi.jhdc.local:9000/"
 
 provisioned_disks = [
   {
+    device_drive = "sdb"
     label = "jenkins-master"
-    disk_size = "xxl"
+    disk_size = "xl"
     thin_provisioned = "true"
     eagerly_scrub = "false"
     data_disk_scsi_controller = "0"
@@ -53,7 +54,7 @@ vault_agent_templates = [
       }
     }
     "perms" = "0644"
-    "command" = "consul acl set-agent-token -token=`cat /opt/consul/acl-token.txt` default `cat /opt/consul/acl-token.txt`"
+    "command" = "consul acl set-agent-token -token=`cat /opt/consul/acl-token.txt` agent `cat /opt/consul/acl-token.txt`"
     "left_delimiter" = "[["
     "right_delimiter" = "]]"
   }
