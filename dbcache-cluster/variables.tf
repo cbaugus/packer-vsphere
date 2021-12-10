@@ -117,6 +117,11 @@ variable "nomad_options" {
   description = ""
   type        = any
 }
+variable "nomad_consul_token" {
+  description = ""
+  type        = string
+  sensitive   = true
+}
 ########## VAULT ##########
 variable "vault_agent_role_id" {
   description = ""

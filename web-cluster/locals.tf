@@ -14,7 +14,7 @@ locals {
   ]
   s3_provisioned_disks = [
     {
-      S3_HOST_1                 = data.vault_generic_secret.minio_s3.data["url"] 
+      S3_HOST_1                 = data.vault_generic_secret.minio_s3.data["url"]
       S3_MOUNT_1                = "/mnt/local/frank_mount"
       S3_UID_1                  = "0"
       S3_GID_1                  = "2"
