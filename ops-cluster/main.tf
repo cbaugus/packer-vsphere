@@ -1,13 +1,13 @@
 module "cluster" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.2.5"
+  version = "0.2.7"
 
   #Cluster vars
   num_instances    = var.num_instances
   cores_count_type = "xxxl"  #16 cores
   mem_size_type    = "xxxxl" #128 GB
   disk_size_type   = "xxl"   #480 GB
-  name_prefix      = "${local.cluster_name}"
+  name_prefix      = var.name
 
   #vSphere required inputs
   vsphere_compute_cluster = var.vsphere_compute_cluster
@@ -48,6 +48,6 @@ module "cluster" {
   #Vault overrides
   vault_agent_role_id            = var.vault_agent_role_id
   vault_agent_secret_id          = var.vault_agent_secret_id
-  vault_consul_role_cluster_type = var.vault_consul_role_cluster_type
+  vault_consul_role_cluster_type = var.name
   vault_agent_templates          = var.vault_agent_templates
 }

@@ -1,10 +1,14 @@
 locals {
-  minio_vault_path        = "${var.env}/minio/web/${var.vsphere_datacenter}"
-  cluster_name            = "web"
-  consul_token_vault_path = "consul/creds/${local.cluster_name}-node"
+  minio_vault_path        = "${var.env}/minio/${var.name}/${var.vsphere_datacenter}"
+  consul_token_vault_path = "consul/creds/${var.name}-node"
   nomad_meta = {
     "node-switcher" = "on"
-    "purpose"       = "${local.cluster_name}"
+    "purpose"       = "${var.name}"
+  }
+  consul_node_meta = {
+    "purpose" = "${var.name}"
+    "class"   = "${var.env}"
+    "version" = "{{ consul_version }}"
   }
   growr_provisioned_disks = [
     {
@@ -25,6 +29,7 @@ locals {
       S3_SECRET_KEY_1           = data.vault_generic_secret.minio_s3.data["secret_key"]
       S3_NO_CHECK_CERTIFICATE_1 = "true"
       S3_SSL_VERIFY_HOSTNAME_1  = "0"
+      S3_EXTRA_OPTS_1           = ""
     }
   ]
 }

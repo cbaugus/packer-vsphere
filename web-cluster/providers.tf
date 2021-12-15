@@ -8,4 +8,12 @@ provider "vsphere" {
 
 provider "vault" {
   address = var.vault_server_url
+  auth_login {
+    path = "auth/approle/login"
+
+    parameters = {
+      role_id   = var.vault_approle_id
+      secret_id = var.vault_approle_secret_id
+    }
+  }
 }

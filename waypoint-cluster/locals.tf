@@ -1,7 +1,11 @@
 locals {
-  cluster_name = "waypoint"
   nomad_meta = {
     "node-switcher" = "on"
-    "purpose"       = "${local.cluster_name}"
+    "purpose"       = "${var.name}"
+  }
+  consul_node_meta = {
+    "purpose" = "${var.name}"
+    "class"   = "${var.env}"
+    "version" = "{{ consul_version }}"
   }
 }

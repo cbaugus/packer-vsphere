@@ -57,7 +57,6 @@ variable "vsphere_template" {
 ########## VAULT PROVIDER ##########
 variable "vault_server_url" {
   description = "Vault server URL"
-  default     = ""
   sensitive   = true
 }
 variable "vault_approle_id" {

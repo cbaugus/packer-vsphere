@@ -1,13 +1,13 @@
 module "cluster" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.2.5"
+  version = "0.2.7"
 
   #Cluster vars
   num_instances    = var.num_instances
   cores_count_type = "medium"
   mem_size_type    = "xxl"
   disk_size_type   = "medium"
-  name_prefix      = "${local.cluster_name}-${var.env}"
+  name_prefix      = "${var.name}-${var.env}"
 
   #vSphere required inputs
   vsphere_compute_cluster = var.vsphere_compute_cluster
@@ -37,6 +37,7 @@ module "cluster" {
   consul_acl_agent_token = var.consul_acl_token
   //Will try to use the below when this ticket is resolved: https://github.com/hashicorp/terraform-provider-vault/issues/1215
   //consul_acl_agent_token = data.vault_generic_secret.consul_token.data["token"]
+  consul_node_meta	= local.consul_node_meta
 
   #Nomad overrides
   nomad_region                = var.nomad_region
@@ -52,6 +53,6 @@ module "cluster" {
   #Vault overrides
   vault_agent_role_id            = var.vault_agent_role_id
   vault_agent_secret_id          = var.vault_agent_secret_id
-  vault_consul_role_cluster_type = local.cluster_name
+  vault_consul_role_cluster_type = var.name
   vault_agent_templates          = var.vault_agent_templates
 }
