@@ -85,10 +85,10 @@ variable "local_exec_user" {
   sensitive   = true
 }
 ########## GROWR ##########
-variable "minio_s3_url" {
-  description = ""
-  type        = any
-}
+#variable "minio_s3_url" {
+#  description = ""
+#  type        = any
+#}
 variable "provisioned_disks" {
   description = ""
   type        = any
