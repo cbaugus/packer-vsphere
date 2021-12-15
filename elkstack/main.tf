@@ -4,8 +4,11 @@ module "cluster" {
 
   #Cluster vars
   num_instances      = var.num_instances
-  resource_pool_type = var.resource_pool_type
-  name_prefix        = "${var.name}-${var.resource_pool_type}-${var.nomad_node_class}"
+  cores_count_type = "medium"
+  mem_size_type    = "xl"
+  disk_size_type   = "xxl"
+  name_prefix        = "${var.name}-${var.nomad_node_class}"
+
 
   #vSphere required inputs
   vsphere_compute_cluster = var.vsphere_compute_cluster
