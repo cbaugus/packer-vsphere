@@ -85,6 +85,10 @@ variable "local_exec_user" {
   sensitive   = true
 }
 ########## GROWR ##########
+variable "minio_s3_url" {
+  description = ""
+  type        = any
+}
 variable "provisioned_disks" {
   description = ""
   type        = any
@@ -100,7 +104,17 @@ variable "consul_raw_key" {
   type        = string
   sensitive   = true
 }
+variable "consul_acl_token" {
+  description = ""
+  type        = string
+  sensitive   = true
+}
 ########## NOMAD ##########
+variable "nomad_consul_acl_token" {
+  description = ""
+  type        = string
+  sensitive   = true
+}
 variable "nomad_region" {
   description = ""
   type        = string
