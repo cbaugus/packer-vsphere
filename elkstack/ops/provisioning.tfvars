@@ -19,10 +19,7 @@ nomad_options = {
   "docker.cleanup.image"   = "false"
   "docker.volumes.enabled" = "true"
 }
-nomad_meta = {
-  "node-switcher" = "on"
-  "purpose"       = "elkstack-ops"
-}
+
 // The nomad_host_volumes owner and group must match the same uid and gid as specified in provisioned_disks
 // if that is being uses. The ansible nomad role will try to create the directory before configuring it in
 // the client.hcl file.
