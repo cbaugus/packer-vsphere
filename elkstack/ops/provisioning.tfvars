@@ -21,7 +21,7 @@ nomad_options = {
 }
 nomad_meta = {
   "node-switcher" = "on"
-  "purpose"       = "elastic-ops"
+  "purpose"       = "elastic"
 }
 
 // The nomad_host_volumes owner and group must match the same uid and gid as specified in provisioned_disks
