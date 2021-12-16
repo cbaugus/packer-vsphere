@@ -45,7 +45,7 @@ module "cluster" {
   nomad_options               = var.nomad_options
   nomad_meta                  = var.nomad_meta
   nomad_host_volumes          = var.nomad_host_volumes
-  nomad_consul_token          = var.consul_acl_token
+  nomad_consul_token          = var.nomad_consul_acl_token
 
   #Vault overrides
   vault_agent_role_id            = var.vault_agent_role_id
