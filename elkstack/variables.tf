@@ -110,7 +110,7 @@ variable "consul_acl_token" {
   sensitive   = true
 }
 ########## NOMAD ##########
-variable "nomad_consul_acl_token" {
+variable "nomad_consul_token" {
   description = ""
   type        = string
   sensitive   = true
