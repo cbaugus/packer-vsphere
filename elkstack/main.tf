@@ -4,7 +4,7 @@ module "cluster" {
 
   #Cluster vars
   num_instances      = var.num_instances
-  cores_count_type = "large"
+  cores_count_type = "xl"
   mem_size_type    = "xxl"
   disk_size_type   = "xxl"
   name_prefix        = "${var.name}-${var.nomad_node_class}"
