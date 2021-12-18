@@ -93,11 +93,6 @@ variable "provisioned_disks" {
   description = ""
   type        = any
 }
-########## S3 ##########
-variable "minio_url" {
-  description = ""
-  type        = string
-}
 ########## CONSUL ##########
 variable "consul_pass" {
   description = ""
@@ -116,6 +111,10 @@ variable "consul_acl_token" {
 }
 ########## NOMAD ##########
 variable "nomad_region" {
+  description = ""
+  type        = string
+}
+variable "nomad_node_class" {
   description = ""
   type        = string
 }
@@ -145,6 +144,10 @@ variable "vault_agent_secret_id" {
   description = ""
   type        = any
   sensitive   = true
+}
+variable "vault_consul_role_cluster_type" {
+  description = ""
+  type        = any
 }
 variable "vault_agent_templates" {
   description = ""

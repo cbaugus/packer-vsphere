@@ -1,4 +1,5 @@
-num_instances      = "1"
-resource_pool_type = "medium"
+num_instances      = "3"
+resource_pool_type = "small"
 name               = "elkstack"
-guest_id	   = "elkstack"
+guest_id	       = "elkstack"
+env                = "dev"

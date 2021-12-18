@@ -1,4 +1,5 @@
-num_instances      = "3"
-resource_pool_type = "medium"
+num_instances      = "1"
+resource_pool_type = "xl"
 name               = "coa"
+guest_id	       = "coa"
 env                = "prod"

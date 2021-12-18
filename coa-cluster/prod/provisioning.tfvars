@@ -1,16 +1,16 @@
 provisioned_disks = [
   {
     device_drive              = "sdb"
-    label                     = "coa"
-    disk_size                 = "large"
+    label                     = "coa_label"
+    disk_size                 = "xxl"
     thin_provisioned          = "true"
     eagerly_scrub             = "false"
     data_disk_scsi_controller = "0"
   }
 ]
-minio_url = "prod.s3.tmi.jhdc.local"
 
 nomad_region                = "tmi"
+nomad_node_class            = "prod"
 nomad_vault_address         = "https://vault.service.tmi-w01-dc01.consul:8200"
 nomad_vault_tls_skip_verify = "yes"
 nomad_options = {
@@ -19,10 +19,14 @@ nomad_options = {
   "docker.cleanup.image"   = "false"
   "docker.volumes.enabled" = "true"
 }
+
+// The nomad_host_volumes owner and group must match the same uid and gid as specified in provisioned_disks
+// if that is being uses. The ansible nomad role will try to create the directory before configuring it in
+// the client.hcl file.
 nomad_host_volumes = [
   {
     "name"      = "coa"
-    "path"      = "/mnt/local/coa_mount"
+    "path"      = "/mnt/local/coa"
     "owner"     = "root"
     "group"     = "bin"
     "mode"      = "0777"
@@ -30,6 +34,7 @@ nomad_host_volumes = [
   }
 ]
 
+vault_consul_role_cluster_type = "coa"
 vault_agent_templates = [
   {
     "name" = "consul-token"
