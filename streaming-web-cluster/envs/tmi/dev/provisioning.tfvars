@@ -21,6 +21,17 @@ nomad_meta = {
 // the client.hcl file.
 nomad_host_volumes = []
 
+// https://man7.org/linux/man-pages/man7/capabilities.7.html
+// https://www.nomadproject.io/docs/configuration/plugin
+// nomad_plugins = {
+//   "docker" = {
+//     "config" = {
+//       "allow_privileged" = false
+//       "allow_caps" = [ "all" ]
+//     }
+//   }
+// }
+
 vault_consul_role_cluster_type = "streaming-web"
 vault_agent_templates = [
   {

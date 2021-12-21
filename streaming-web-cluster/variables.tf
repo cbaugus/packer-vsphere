@@ -143,6 +143,11 @@ variable "nomad_host_volumes" {
   description = ""
   type        = any
 }
+variable "nomad_plugins" {
+  description = ""
+  type        = any
+  default     = {}
+}
 ########## VAULT ##########
 variable "vault_agent_role_id" {
   description = ""

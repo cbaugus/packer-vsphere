@@ -1,6 +1,6 @@
 module "cluster" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.2.5"
+  version = "0.3.0"
 
   #Cluster vars
   num_instances      = var.num_instances
@@ -44,6 +44,7 @@ module "cluster" {
   nomad_options               = var.nomad_options
   nomad_meta                  = var.nomad_meta
   nomad_host_volumes          = var.nomad_host_volumes
+  nomad_plugins               = var.nomad_plugins
   nomad_consul_token          = var.nomad_consul_acl_token
 
   #Vault overrides
