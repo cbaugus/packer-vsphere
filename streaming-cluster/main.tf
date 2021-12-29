@@ -1,6 +1,6 @@
 module "cluster" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.2.5"
+  version = "0.3.1"
 
   #Cluster vars
   num_instances      = var.num_instances
@@ -35,6 +35,9 @@ module "cluster" {
   consul_pass    = var.consul_pass
   consul_raw_key = var.consul_raw_key
   consul_iptables_enable = "false"
+  consul_dnsmasq_enable = "True"
+  consul_dnsmasq_servers = [ "10.254.203.10" ]
+  consul_dnsmasq_revservers = [ "10.254.0.0/16" ]
 
   #Nomad overrides
   nomad_region                = var.nomad_region
