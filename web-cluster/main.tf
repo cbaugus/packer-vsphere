@@ -1,7 +1,7 @@
 module "cluster" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.2.7"
-
+  version = "0.3.1"
+  
   #Cluster vars
   num_instances    = var.num_instances
   cores_count_type = "medium"
@@ -38,6 +38,9 @@ module "cluster" {
   //Will try to use the below when this ticket is resolved: https://github.com/hashicorp/terraform-provider-vault/issues/1215
   //consul_acl_agent_token = data.vault_generic_secret.consul_token.data["token"]
   consul_node_meta	= local.consul_node_meta
+  consul_dnsmasq_enable = "True"
+  consul_dnsmasq_servers = [ "10.254.203.10" ]
+  consul_dnsmasq_revservers = [ "10.254.0.0/16" ]
 
   #Nomad overrides
   nomad_region                = var.nomad_region

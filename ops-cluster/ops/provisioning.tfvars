@@ -49,7 +49,7 @@ vault_consul_role_cluster_type = "ops"
 vault_agent_templates = [
   {
     "name" = "consul-token"
-    "template" = "[[ with secret \"consul/creds/{{ vault_consul_role_cluster_type }}-node\" ]][[ .Data.token ]][[ end ]]"
+    "template" = "[[ with secret \"consul/creds/prod-{{ vault_consul_role_cluster_type }}-node\" ]][[ .Data.token ]][[ end ]]"
     "destination" = {
       "path" = "/opt/consul/acl-token.txt"
       "setup_parent_directory" = true

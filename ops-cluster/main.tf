@@ -1,6 +1,6 @@
 module "cluster" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.2.7"
+  version = "0.3.1"
 
   #Cluster vars
   num_instances    = var.num_instances
@@ -34,6 +34,10 @@ module "cluster" {
   consul_addresses_http  = "127.0.0.1 {{ consul_bind_address }}"
   consul_ports           = { "grpc" = "8502", "dns" = "8600", "http" = "8500", "https" = "-1", "rpc" = "8400", "serf_lan" = "8301", "serf_wan" = "8302", "server" = "8300" }
   consul_acl_agent_token = var.consul_acl_token
+  consul_node_meta	= local.consul_node_meta
+  consul_dnsmasq_enable = "True"
+  consul_dnsmasq_servers = [ "10.254.203.10" ]
+  consul_dnsmasq_revservers = [ "10.254.0.0/16" ]
 
   #Nomad overrides
   nomad_region                = var.nomad_region
