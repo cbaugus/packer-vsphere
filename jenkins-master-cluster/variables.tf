@@ -143,6 +143,17 @@ variable "nomad_host_volumes" {
   description = ""
   type        = any
 }
+variable "nomad_plugins" {
+  description = ""
+  type        = any
+  default     = {}
+}
+########## DOCKER ##########
+variable "docker_vault_login" {
+  description = ""
+  type = any
+  default = {}
+}
 ########## VAULT ##########
 variable "vault_agent_role_id" {
   description = ""
@@ -161,4 +172,9 @@ variable "vault_consul_role_cluster_type" {
 variable "vault_agent_templates" {
   description = ""
   type        = any
+}
+variable "vault_docker_secrets" {
+  description = ""
+  type        = any
+  default     = {}
 }

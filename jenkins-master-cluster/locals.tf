@@ -23,4 +23,8 @@ locals {
   //     S3_EXTRA_OPTS_1 = "enable_content_md5,kernel_cache,max_stat_cache_size=1000000,parallel_count=200,multipart_size=200,singlepart_copy_limit=200,multireq_max=400,max_background=1000"
   //   }
   // ]
+  known_hosts_user = "root"
+  known_hosts_targets = [
+    "bitbucket.org"
+  ]
 }
