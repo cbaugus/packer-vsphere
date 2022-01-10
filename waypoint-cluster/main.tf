@@ -1,6 +1,6 @@
 module "cluster" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.2.7"
+  version = "0.3.5"
 
   #Cluster vars
   num_instances    = var.num_instances
@@ -14,7 +14,7 @@ module "cluster" {
   vsphere_resource_pool   = var.vsphere_resource_pool
   vsphere_datastore       = var.vsphere_datastore
   vsphere_network         = var.vsphere_network
-  vsphere_folder          = var.vsphere_folder
+  vsphere_folder          = local.vsphere_folder
   vsphere_template        = var.vsphere_template
   vsphere_user            = var.vsphere_user
   vsphere_pass            = var.vsphere_pass
@@ -34,18 +34,26 @@ module "cluster" {
   consul_node_meta       = local.consul_node_meta
 
   #Nomad overrides
-  nomad_region                = var.nomad_region
+  nomad_region                = local.nomad_region
   nomad_node_class            = var.env
-  nomad_vault_address         = var.nomad_vault_address
+  nomad_vault_address         = local.nomad_vault_address
   nomad_vault_tls_skip_verify = var.nomad_vault_tls_skip_verify
   nomad_options               = var.nomad_options
   nomad_meta                  = local.nomad_meta
-  nomad_consul_token          = var.nomad_consul_token
   nomad_host_volumes          = var.nomad_host_volumes
+  nomad_consul_token          = data.consul_acl_token_secret_id.nomad_client_token.secret_id
 
   #Vault overrides
   vault_agent_role_id            = var.vault_agent_role_id
   vault_agent_secret_id          = var.vault_agent_secret_id
   vault_consul_role_cluster_type = var.name
   vault_agent_templates          = var.vault_agent_templates
+  vault_docker_secrets           = var.vault_docker_secrets
+
+  #Docker overrides
+  docker_vault_login = var.docker_vault_login
+
+  #Known Hosts
+  known_hosts_targets = local.known_hosts_targets
+  known_hosts_user    = local.known_hosts_user
 }

@@ -46,10 +46,6 @@ variable "vsphere_network" {
   description = ""
   type        = string
 }
-variable "vsphere_folder" {
-  description = ""
-  type        = string
-}
 variable "vsphere_template" {
   description = ""
   type        = string
@@ -67,6 +63,11 @@ variable "vault_approle_id" {
 variable "vault_approle_secret_id" {
   description = "Vault server app role secret"
   default     = ""
+  sensitive   = true
+}
+########## CONSUL PROVIDER ##########
+variable "consul_provider_token" {
+  description = "Token with which to authenticate to Consul"
   sensitive   = true
 }
 ########## TERRAFORM ##########
@@ -88,11 +89,6 @@ variable "provisioned_disks" {
   description = ""
   type        = any
 }
-########## S3 ##########
-variable "minio_url" {
-  description = ""
-  type        = string
-}
 ########## CONSUL ##########
 variable "consul_pass" {
   description = ""
@@ -110,14 +106,6 @@ variable "consul_acl_token" {
   sensitive   = true
 }
 ########## NOMAD ##########
-variable "nomad_region" {
-  description = ""
-  type        = string
-}
-variable "nomad_vault_address" {
-  description = ""
-  type        = string
-}
 variable "nomad_vault_tls_skip_verify" {
   description = ""
   type        = string
@@ -130,10 +118,16 @@ variable "nomad_host_volumes" {
   description = ""
   type        = any
 }
-variable "nomad_consul_token" {
+variable "nomad_plugins" {
   description = ""
-  type        = string
-  sensitive   = true
+  type        = any
+  default     = {}
+}
+########## DOCKER ##########
+variable "docker_vault_login" {
+  description = ""
+  type        = any
+  default     = {}
 }
 ########## VAULT ##########
 variable "vault_agent_role_id" {
@@ -146,7 +140,7 @@ variable "vault_agent_secret_id" {
   type        = any
   sensitive   = true
 }
-variable "vault_agent_templates" {
+variable "vault_docker_secrets" {
   description = ""
   type        = any
 }
