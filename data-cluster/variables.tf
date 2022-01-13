@@ -11,6 +11,10 @@ variable "name" {
   description = ""
   type        = string
 }
+variable "env" {
+  description = ""
+  type        = string
+}
 ########## VSPHERE PROVIDER ##########
 variable "vsphere_user" {
   description = "vSphere administrator username"
@@ -85,6 +89,10 @@ variable "local_exec_user" {
   sensitive   = true
 }
 ########## GROWR ##########
+variable "minio_s3_url" {
+  description = ""
+  type        = any
+}
 variable "provisioned_disks" {
   description = ""
   type        = any
@@ -101,6 +109,11 @@ variable "consul_raw_key" {
   sensitive   = true
 }
 variable "consul_acl_token" {
+  description = ""
+  type        = string
+  sensitive   = true
+}
+variable "consul_provider_token" {
   description = ""
   type        = string
   sensitive   = true
@@ -134,9 +147,16 @@ variable "nomad_host_volumes" {
   description = ""
   type        = any
 }
-variable "nomad_max_kill_timeout" {
+variable "nomad_plugins" {
   description = ""
-  type        = string
+  type        = any
+  default     = {}
+}
+########## DOCKER ##########
+variable "docker_vault_login" {
+  description = ""
+  type = any
+  default = {}
 }
 ########## VAULT ##########
 variable "vault_agent_role_id" {
@@ -156,4 +176,10 @@ variable "vault_consul_role_cluster_type" {
 variable "vault_agent_templates" {
   description = ""
   type        = any
+  default     = {}
+}
+variable "vault_docker_secrets" {
+  description = ""
+  type        = any
+  default     = {}
 }

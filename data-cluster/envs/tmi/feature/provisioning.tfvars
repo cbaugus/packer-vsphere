@@ -1,3 +1,5 @@
+minio_s3_url = "https://b.nonprod.s3.tmi.jhdc.local:9000/"
+
 provisioned_disks = [
   {
     device_drive = "sdb"
@@ -24,8 +26,6 @@ nomad_vault_tls_skip_verify = "yes"
 nomad_options = {
   "driver.raw_exec.enable" = "1"
   "driver.java.enable"     = "0"
-  "docker.cleanup.image"   = "false"
-  "docker.volumes.enabled" = "true"
 }
 nomad_meta = {
   "node-switcher" = "on"
@@ -53,26 +53,34 @@ nomad_host_volumes = [
   }
 ]
 
-# Max kill timeout of 1 week 
-nomad_max_kill_timeout = "604800s"
-
-vault_consul_role_cluster_type = "data"
-vault_agent_templates = [
-  {
-    "name" = "consul-token"
-    "template" = "[[ with secret \"consul/creds/{{ vault_consul_role_cluster_type }}-node\" ]][[ .Data.token ]][[ end ]]"
-    "destination" = {
-      "path" = "/opt/consul/acl-token.txt"
-      "setup_parent_directory" = true
-      "parent_directory" = {
-        "owner" = "consul"
-        "group" = "consul"
-        "mode"  = ""
+// https://man7.org/linux/man-pages/man7/capabilities.7.html
+// https://www.nomadproject.io/docs/configuration/plugin
+nomad_plugins = {
+  "docker" = {
+    "config" = {
+      "auth" = {
+        //"config" = "/etc/docker-auth.json"
+        "helper" = "vault-login"
+      }
+      "gc" = {
+        "image" = true
+      }
+      "volumes" = {
+        "enabled" = true
       }
     }
-    "perms" = "0644"
-    "command" = "consul acl set-agent-token -token=`cat /opt/consul/acl-token.txt` default `cat /opt/consul/acl-token.txt`"
-    "left_delimiter" = "[["
-    "right_delimiter" = "]]"
+  }
+}
+
+docker_vault_login = {
+  "config_path" = "/etc/vault/agent.hcl"
+}
+
+vault_docker_secrets = [
+  {
+    "registry" = "docker.io"
+    "secret" = "ops/data/docker"
   }
 ]
+
+vault_consul_role_cluster_type = "data"
