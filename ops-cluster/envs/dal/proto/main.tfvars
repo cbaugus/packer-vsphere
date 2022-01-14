@@ -1,3 +1,3 @@
-num_instances      = "2"
+num_instances      = "4"
 resource_pool_type = "medium"
 name               = "ops"
