@@ -1,6 +1,6 @@
 module "cluster" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.3.1"
+  version = "0.3.5"
 
   #Cluster vars
   num_instances      = var.num_instances
@@ -55,4 +55,19 @@ module "cluster" {
   vault_agent_secret_id          = var.vault_agent_secret_id
   vault_consul_role_cluster_type = var.vault_consul_role_cluster_type
   vault_agent_templates          = var.vault_agent_templates
+  nomad_consul_token             = data.consul_acl_token_secret_id.nomad_client_token.secret_id
+
+  #Vault overrides
+  vault_agent_role_id            = var.vault_agent_role_id
+  vault_agent_secret_id          = var.vault_agent_secret_id
+  vault_consul_role_cluster_type = var.vault_consul_role_cluster_type
+  vault_agent_templates          = local.vault_agent_templates
+  vault_docker_secrets           = var.vault_docker_secrets
+
+  #Docker overrides
+  docker_vault_login             = var.docker_vault_login
+
+  #Known Hosts
+  known_hosts_targets            = local.known_hosts_targets
+  known_hosts_user               = local.known_hosts_user
 }

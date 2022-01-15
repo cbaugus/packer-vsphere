@@ -11,6 +11,10 @@ variable "name" {
   description = ""
   type        = string
 }
+variable "env" {
+  description = ""
+  type        = string
+}
 ########## VSPHERE PROVIDER ##########
 variable "vsphere_user" {
   description = "vSphere administrator username"
@@ -105,6 +109,11 @@ variable "consul_acl_token" {
   type        = string
   sensitive   = true
 }
+variable "consul_provider_token" {
+  description = ""
+  type        = string
+  sensitive   = true
+}
 ########## NOMAD ##########
 variable "nomad_consul_acl_token" {
   description = ""
@@ -139,6 +148,17 @@ variable "nomad_host_volumes" {
   description = ""
   type        = any
 }
+variable "nomad_plugins" {
+  description = ""
+  type        = any
+  default     = {}
+}
+########## DOCKER ##########
+variable "docker_vault_login" {
+  description = ""
+  type = any
+  default = {}
+}
 ########## VAULT ##########
 variable "vault_agent_role_id" {
   description = ""
@@ -157,4 +177,10 @@ variable "vault_consul_role_cluster_type" {
 variable "vault_agent_templates" {
   description = ""
   type        = any
+  default     = {}
+}
+variable "vault_docker_secrets" {
+  description = ""
+  type        = any
+  default     = {}
 }
