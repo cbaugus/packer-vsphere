@@ -23,7 +23,9 @@ dist/
 target/
 dist/
 
-*credentials.auto.tfvars
+**credentials.auto.tfvars
+**prod-tmi-credentials.tfvars
+**prod-dal-credentials.tfvars
 
 # JetBrains IDE
 **/.idea/*
