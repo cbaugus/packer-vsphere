@@ -1,7 +1,10 @@
 ########## VSPHERE PROVIDER ##########
-variable "name_prefix" {
-    description = "Prefixed name of VM"
-    type        = string
+variable "name" {
+  description = "Prefixed name of VM"
+  type        = string
+}
+variable "num_instances" {
+  type = number
 }
 variable "vsphere_user" {
   description = "vSphere administrator username"
@@ -57,4 +60,21 @@ variable "local_exec_user" {
   description = ""
   type        = string
   sensitive   = true
+}
+########## VAULT SERVER PROVISIONER ##########
+variable "vault_cluster_name" {
+  description = ""
+  type        = string
+  default     = ""
+}
+variable "vault_consul_token" {
+  description = ""
+  type        = string
+  sensitive   = true
+  default     = ""
+}
+variable "vault_service_registration_consul_address" {
+  description = ""
+  type        = string
+  default     = "127.0.0.1:8500"
 }
