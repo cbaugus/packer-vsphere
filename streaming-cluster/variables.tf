@@ -119,6 +119,7 @@ variable "nomad_consul_acl_token" {
   description = ""
   type        = string
   sensitive   = true
+  default = ""
 }
 variable "nomad_region" {
   description = ""

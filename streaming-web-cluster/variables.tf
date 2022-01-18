@@ -123,6 +123,7 @@ variable "nomad_consul_acl_token" {
   description = ""
   type        = string
   sensitive   = true
+  default = ""
 }
 variable "nomad_region" {
   description = ""
@@ -181,6 +182,7 @@ variable "vault_consul_role_cluster_type" {
 variable "vault_agent_templates" {
   description = ""
   type        = any
+  default = {}
 }
 variable "vault_docker_secrets" {
   description = ""

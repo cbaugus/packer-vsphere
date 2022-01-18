@@ -61,6 +61,6 @@ module "cluster" {
   docker_vault_login             = var.docker_vault_login
 
   #Known Hosts
-  known_hosts_targets            = local.known_hosts_targets
-  known_hosts_user               = local.known_hosts_user
+  #known_hosts_targets            = local.known_hosts_targets
+  #known_hosts_user               = local.known_hosts_user
 }
