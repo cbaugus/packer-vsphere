@@ -4,9 +4,9 @@ module "cluster" {
 
   #Cluster vars
   num_instances    = var.num_instances
-  cores_count_type = "medium"
-  mem_size_type    = "xxl"
-  disk_size_type   = "medium"
+  cores_count_type = "xxl" # 8 cores
+  mem_size_type    = "xxl" # 32 GB RAM
+  disk_size_type   = "medium" # 70 GB
   name_prefix      = "${var.name}-${var.env}"
 
   #vSphere required inputs
