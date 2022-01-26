@@ -132,12 +132,12 @@ variable "docker_vault_login" {
 ########## VAULT ##########
 variable "vault_agent_role_id" {
   description = ""
-  type        = any
+  type        = string
   sensitive   = true
 }
 variable "vault_agent_secret_id" {
   description = ""
-  type        = any
+  type        = string
   sensitive   = true
 }
 variable "vault_docker_secrets" {
