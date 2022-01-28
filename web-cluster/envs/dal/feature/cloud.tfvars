@@ -1,6 +1,0 @@
-vsphere_datacenter      = ""
-vsphere_compute_cluster = ""
-vsphere_resource_pool   = ""
-vsphere_datastore       = ""
-vsphere_network         = ""
-vsphere_template        = ""
