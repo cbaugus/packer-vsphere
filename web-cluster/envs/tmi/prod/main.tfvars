@@ -1,3 +1,3 @@
-num_instances      = "25"
+num_instances      = "10"
 name               = "web"
 env                = "prod"
