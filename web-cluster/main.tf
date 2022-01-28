@@ -4,8 +4,8 @@ module "cluster" {
 
   #Cluster vars
   num_instances    = var.num_instances
-  cores_count_type = "xxl" # 8 cores
-  mem_size_type    = "xxl" # 32 GB RAM
+  cores_count_type = "xxl"    # 8 cores
+  mem_size_type    = "xxl"    # 32 GB RAM
   disk_size_type   = "medium" # 70 GB
   name_prefix      = "${var.name}-${var.env}"
 
@@ -50,7 +50,7 @@ module "cluster" {
   nomad_options               = var.nomad_options
   nomad_plugins               = var.nomad_plugins
   nomad_meta                  = local.nomad_meta
-  nomad_host_volumes          = var.nomad_host_volumes
+  nomad_host_volumes          = local.nomad_host_volumes
   nomad_consul_token          = data.consul_acl_token_secret_id.nomad_client_token.secret_id
   //Try to generate token when this issue is resolved: https://github.com/hashicorp/terraform-provider-vault/issues/1215
 

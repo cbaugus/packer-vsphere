@@ -11,6 +11,10 @@ variable "env" {
   description = ""
   type        = string
 }
+variable "sub_envs" {
+  description = ""
+  type        = set(string)
+}
 ########## VSPHERE PROVIDER ##########
 variable "vsphere_user" {
   description = "vSphere administrator username"
@@ -111,10 +115,6 @@ variable "nomad_vault_tls_skip_verify" {
   type        = string
 }
 variable "nomad_options" {
-  description = ""
-  type        = any
-}
-variable "nomad_host_volumes" {
   description = ""
   type        = any
 }
