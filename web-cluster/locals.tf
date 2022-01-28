@@ -10,10 +10,10 @@ locals {
     "node-switcher" = "on"
     "purpose"       = "${var.name}"
   }
-  nomad_host_volumes = [
+  nomad_host_volumes = [ for secret in data.vault_generic_secret.minio_s3 :
     {
       "name"      = "frank-nomad"
-      "path"      = "${data.vault_generic_secret.minio_s3[*].data["host_mount_path"]}/default/files"
+      "path"      = "${secret.data["host_mount_path"]}/default/files"
       "owner"     = "root"
       "group"     = "bin"
       "mode"      = "0777"
