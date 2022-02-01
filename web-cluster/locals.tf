@@ -23,7 +23,7 @@ locals {
   // Uncomment this section when deploying for nonprod
   nomad_host_volumes = [
     {
-      "name"      = "frank-nomad"
+      "name"      = "frank-nomad-dev"
       "path"      = "${data.vault_generic_secret.dev_minio_s3.data["host_mount_path"]}/default/files"
       "owner"     = "root"
       "group"     = "bin"
@@ -31,7 +31,7 @@ locals {
       "read_only" = "false"
     },
     {
-      "name"      = "frank-nomad"
+      "name"      = "frank-nomad-test"
       "path"      = "${data.vault_generic_secret.test_minio_s3.data["host_mount_path"]}/default/files"
       "owner"     = "root"
       "group"     = "bin"
@@ -39,7 +39,7 @@ locals {
       "read_only" = "false"
     },
     {
-      "name"      = "frank-nomad"
+      "name"      = "frank-nomad-stage"
       "path"      = "${data.vault_generic_secret.stage_minio_s3.data["host_mount_path"]}/default/files"
       "owner"     = "root"
       "group"     = "bin"
@@ -48,7 +48,7 @@ locals {
     },
     // Uncomment this section when deploying for prod
     //    {
-    //      "name"      = "frank-nomad"
+    //      "name"      = "frank-nomad-prod"
     //      "path"      = "${data.vault_generic_secret.prod_minio_s3.data["host_mount_path"]}/default/files"
     //      "owner"     = "root"
     //      "group"     = "bin"
