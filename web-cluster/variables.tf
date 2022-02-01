@@ -11,10 +11,10 @@ variable "env" {
   description = ""
   type        = string
 }
-variable "sub_envs" {
-  description = ""
-  type        = set(string)
-}
+//variable "sub_envs" {
+//  description = ""
+//  type        = map(string)
+//}
 ########## VSPHERE PROVIDER ##########
 variable "vsphere_user" {
   description = "vSphere administrator username"
