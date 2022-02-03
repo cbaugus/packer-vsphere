@@ -152,6 +152,10 @@ variable "nomad_plugins" {
   type        = any
   default     = {}
 }
+variable "nomad_consul_acl_token" {
+  description = ""
+  type        = string
+}
 ########## DOCKER ##########
 variable "docker_vault_login" {
   description = ""
