@@ -32,6 +32,14 @@ nomad_host_volumes = [
       "group" = "bin"
       "mode" = "0777"
       "read_only" = "false"
+  },
+  {
+      "name" = "frank-wowza-content-public"
+      "path" = "/mnt/local/wowza_content_s3_mount_public"
+      "owner" = "root"
+      "group" = "bin"
+      "mode" = "0777"
+      "read_only" = "false"
   }
 ]
 
