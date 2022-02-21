@@ -1,11 +1,11 @@
 ########## VAULT ##########
-data "vault_generic_secret" "streaming_minio_secrets" {
-  path = local.streaming_minio_vault_path
-}
-
-data "vault_generic_secret" "streaming_public_minio_secrets" {
-  path = local.streaming_public_minio_vault_path
-}
+// data "vault_generic_secret" "streaming_minio_secrets" {
+//   path = local.streaming_minio_vault_path
+// }
+//
+// data "vault_generic_secret" "streaming_public_minio_secrets" {
+//   path = local.streaming_public_minio_vault_path
+// }
 
 ########## TERRAFORM CLOUD ##########
 data "terraform_remote_state" "consul" {
