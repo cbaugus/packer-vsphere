@@ -32,7 +32,7 @@ locals {
         }
       }
       "perms" = "0644"
-      "command" = "consul acl set-agent-token -token=`cat /opt/consul/acl-token.txt` default `cat /opt/consul/acl-token.txt`"
+      "command" = "consul acl set-agent-token -token=`cat /opt/consul/acl-token.txt` agent `cat /opt/consul/acl-token.txt`"
       "left_delimiter" = "[["
       "right_delimiter" = "]]"
     },
