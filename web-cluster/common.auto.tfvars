@@ -1,6 +1,6 @@
-name                 = "web"
-consul_tls_src_files = "/opt/devops-local/ssl/certs"
-consul_src_def       = "/opt/devops-local/ssl/certs"
+name                     = "web"
+consul_tls_src_files     = "/opt/devops-local/ssl/certs"
+consul_src_def           = "/opt/devops-local/ssl/certs"
 remote_exec_ssh_key_file = "/opt/devops-local/ssl/keys/key.pem"
 local_exec_ssh_key_file  = "/opt/devops-local/ssl/keys/key.pem"
 
@@ -22,17 +22,6 @@ nomad_options = {
   "docker.cleanup.image"   = "false"
   "docker.volumes.enabled" = "true"
 }
-nomad_host_volumes = [
-  {
-    "name"      = "frank-nomad"
-    "path"      = "/mnt/local/frank_mount/default/files"
-    "owner"     = "root"
-    "group"     = "bin"
-    "mode"      = "0777"
-    "read_only" = "false"
-  }
-]
-
 // https://man7.org/linux/man-pages/man7/capabilities.7.html
 // https://www.nomadproject.io/docs/configuration/plugin
 nomad_plugins = {

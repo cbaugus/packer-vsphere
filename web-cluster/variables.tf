@@ -11,6 +11,10 @@ variable "env" {
   description = ""
   type        = string
 }
+//variable "sub_envs" {
+//  description = ""
+//  type        = map(string)
+//}
 ########## VSPHERE PROVIDER ##########
 variable "vsphere_user" {
   description = "vSphere administrator username"
@@ -114,10 +118,6 @@ variable "nomad_options" {
   description = ""
   type        = any
 }
-variable "nomad_host_volumes" {
-  description = ""
-  type        = any
-}
 variable "nomad_plugins" {
   description = ""
   type        = any
@@ -132,12 +132,12 @@ variable "docker_vault_login" {
 ########## VAULT ##########
 variable "vault_agent_role_id" {
   description = ""
-  type        = any
+  type        = string
   sensitive   = true
 }
 variable "vault_agent_secret_id" {
   description = ""
-  type        = any
+  type        = string
   sensitive   = true
 }
 variable "vault_docker_secrets" {
