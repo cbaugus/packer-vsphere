@@ -21,7 +21,9 @@ locals {
   //    }
   //  ]
   // Uncomment this section when deploying for nonprod
+
   nomad_host_volumes = [
+    /*
     {
       "name"      = "frank-nomad-dev"
       "path"      = "${data.vault_generic_secret.dev_minio_s3.data["host_mount_path"]}/default/files"
@@ -46,15 +48,16 @@ locals {
       "mode"      = "0777"
       "read_only" = "false"
     },
+  */
     // Uncomment this section when deploying for prod
-    //    {
-    //      "name"      = "frank-nomad-prod"
-    //      "path"      = "${data.vault_generic_secret.prod_minio_s3.data["host_mount_path"]}/default/files"
-    //      "owner"     = "root"
-    //      "group"     = "bin"
-    //      "mode"      = "0777"
-    //      "read_only" = "false"
-    //    },
+    {
+      "name"      = "frank-nomad-prod"
+      "path"      = "${data.vault_generic_secret.prod_minio_s3.data["host_mount_path"]}/default/files"
+      "owner"     = "root"
+      "group"     = "bin"
+      "mode"      = "0777"
+      "read_only" = "false"
+    },
   ]
   consul_node_meta = {
     "purpose" = "${var.name}"
@@ -85,6 +88,7 @@ locals {
   //    ]
   // Uncomment this section when deploying for nonprod
   s3_provisioned_disks = [
+    /*
     {
       S3_HOST_1                 = data.vault_generic_secret.dev_minio_s3.data["url"]
       S3_MOUNT_1                = data.vault_generic_secret.dev_minio_s3.data["host_mount_path"]
@@ -127,21 +131,22 @@ locals {
       S3_SSL_VERIFY_HOSTNAME_3  = "0"
       S3_EXTRA_OPTS_3           = ""
     }
+  */
     // Uncomment this section when deploying for prod
-    //    {
-    //      S3_HOST_1                 = data.vault_generic_secret.prod_minio_s3.data["url"]
-    //      S3_MOUNT_1                = data.vault_generic_secret.prod_minio_s3.data["host_mount_path"]
-    //      S3_UID_1                  = "0"
-    //      S3_GID_1                  = "2"
-    //      S3_ACL_1                  = "private"
-    //      S3_CACHE_1                = data.vault_generic_secret.prod_minio_s3.data["host_cache_path"]
-    //      S3_BUCKET_1               = data.vault_generic_secret.prod_minio_s3.data["bucket"]
-    //      S3_ACCESS_KEY_1           = data.vault_generic_secret.prod_minio_s3.data["access_key"]
-    //      S3_SECRET_KEY_1           = data.vault_generic_secret.prod_minio_s3.data["secret_key"]
-    //      S3_NO_CHECK_CERTIFICATE_1 = "true"
-    //      S3_SSL_VERIFY_HOSTNAME_1  = "0"
-    //      S3_EXTRA_OPTS_1           = ""
-    //    },
+    {
+      S3_HOST_1                 = data.vault_generic_secret.prod_minio_s3.data["url"]
+      S3_MOUNT_1                = data.vault_generic_secret.prod_minio_s3.data["host_mount_path"]
+      S3_UID_1                  = "0"
+      S3_GID_1                  = "2"
+      S3_ACL_1                  = "private"
+      S3_CACHE_1                = data.vault_generic_secret.prod_minio_s3.data["host_cache_path"]
+      S3_BUCKET_1               = data.vault_generic_secret.prod_minio_s3.data["bucket"]
+      S3_ACCESS_KEY_1           = data.vault_generic_secret.prod_minio_s3.data["access_key"]
+      S3_SECRET_KEY_1           = data.vault_generic_secret.prod_minio_s3.data["secret_key"]
+      S3_NO_CHECK_CERTIFICATE_1 = "true"
+      S3_SSL_VERIFY_HOSTNAME_1  = "0"
+      S3_EXTRA_OPTS_1           = ""
+    },
   ]
   nomad_region        = substr(var.vsphere_datacenter, 0, 3)
   nomad_vault_address = "https://vault.service.${var.vsphere_datacenter}.consul:8200"
