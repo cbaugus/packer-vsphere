@@ -44,8 +44,7 @@ docker_vault_login = {
   "config_path" = "/etc/vault/agent.hcl"
 }
 
-
-vault_consul_role_cluster_type="ops"
+vault_consul_role_cluster_type = "ops"
 vault_docker_secrets = [
   {
     "registry" = "docker.io"

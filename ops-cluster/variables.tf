@@ -123,6 +123,12 @@ variable "nomad_plugins" {
   type        = any
   default     = {}
 }
+########## DOCKER ##########
+variable "docker_vault_login" {
+  description = ""
+  type        = any
+  default     = {}
+}
 ########## VAULT ##########
 variable "vault_agent_role_id" {
   description = ""
@@ -135,6 +141,10 @@ variable "vault_agent_secret_id" {
   sensitive   = true
 }
 variable "vault_consul_role_cluster_type" {
+  description = ""
+  type        = any
+}
+variable "vault_docker_secrets" {
   description = ""
   type        = any
 }

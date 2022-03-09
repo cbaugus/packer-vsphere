@@ -14,7 +14,7 @@ module "cluster" {
   vsphere_resource_pool   = var.vsphere_resource_pool
   vsphere_datastore       = var.vsphere_datastore
   vsphere_network         = var.vsphere_network
-  vsphere_folder          = var.vsphere_folder
+  vsphere_folder          = local.vsphere_folder
   vsphere_template        = var.vsphere_template
   vsphere_user            = var.vsphere_user
   vsphere_pass            = var.vsphere_pass
@@ -56,9 +56,8 @@ module "cluster" {
   vault_agent_secret_id          = var.vault_agent_secret_id
   vault_agent_version            = "1.9.4"
   vault_consul_role_cluster_type = var.name
-  vault_agent_templates          = var.vault_agent_templates
+  vault_agent_templates          = local.vault_agent_templates
   vault_docker_secrets           = var.vault_docker_secrets
-
 
   #Docker overrides
   docker_vault_login = var.docker_vault_login
