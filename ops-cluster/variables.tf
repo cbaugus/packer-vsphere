@@ -80,11 +80,6 @@ variable "local_exec_user" {
   type        = string
   sensitive   = true
 }
-########## GROWR ##########
-variable "provisioned_disks" {
-  description = ""
-  type        = any
-}
 ########## CONSUL PROVIDER ##########
 variable "consul_provider_token" {
   description = "Token with which to authenticate to Consul"
@@ -111,23 +106,11 @@ variable "consul_acl_token" {
   sensitive   = true
 }
 ########## NOMAD ##########
-variable "nomad_node_class" {
-  description = ""
-  type        = string
-}
-variable "nomad_vault_address" {
-  description = ""
-  type        = string
-}
 variable "nomad_vault_tls_skip_verify" {
   description = ""
   type        = string
 }
 variable "nomad_options" {
-  description = ""
-  type        = any
-}
-variable "nomad_meta" {
   description = ""
   type        = any
 }

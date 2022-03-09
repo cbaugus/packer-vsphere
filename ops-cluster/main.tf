@@ -26,7 +26,7 @@ module "cluster" {
   local_exec_user          = var.local_exec_user
 
   #S3/Growr overrides
-  provisioned_disks = var.provisioned_disks
+  provisioned_disks = local.provisioned_disks
 
   #Consul overrides
   consul_pass               = var.consul_pass
@@ -46,7 +46,7 @@ module "cluster" {
   nomad_vault_address         = local.nomad_vault_address
   nomad_vault_tls_skip_verify = var.nomad_vault_tls_skip_verify
   nomad_options               = var.nomad_options
-  nomad_meta                  = var.nomad_meta
+  nomad_meta                  = local.nomad_meta
   nomad_host_volumes          = var.nomad_host_volumes
   nomad_consul_token          = data.consul_acl_token_secret_id.nomad_client_token.secret_id
   nomad_version               = "1.2.6"

@@ -14,6 +14,12 @@ locals {
   known_hosts_targets = [
     "bitbucket.org"
   ]
+  provisioned_disks = [
+    {
+      DEVICE_DRIVE = "sdb"
+      LABEL        = "frank"
+    }
+  ]
   vault_agent_templates = [
     {
       "name"     = "consul-token"
