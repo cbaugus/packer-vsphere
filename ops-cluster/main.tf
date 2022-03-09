@@ -25,9 +25,6 @@ module "cluster" {
   local_exec_ssh_key_file  = var.local_exec_ssh_key_file
   local_exec_user          = var.local_exec_user
 
-  #S3/Growr overrides
-  provisioned_disks = local.provisioned_disks
-
   #Consul overrides
   consul_pass               = var.consul_pass
   consul_raw_key            = var.consul_raw_key
@@ -36,9 +33,9 @@ module "cluster" {
   consul_acl_agent_token    = var.consul_acl_token
   consul_node_meta          = local.consul_node_meta
   consul_dnsmasq_enable     = "True"
-  consul_dnsmasq_servers    = ["10.254.203.10"]
+  consul_dnsmasq_servers    = ["10.254.203.11", "10.254.203.12"]
   consul_dnsmasq_revservers = ["10.254.0.0/16"]
-  consul_version            = "1.1.4"
+  consul_version            = "1.11.4"
 
   #Nomad overrides
   nomad_region                = local.nomad_region

@@ -14,12 +14,6 @@ locals {
   known_hosts_targets = [
     "bitbucket.org"
   ]
-  provisioned_disks = [
-    {
-      DEVICE_DRIVE = "sdb"
-      LABEL        = "frank"
-    }
-  ]
   vault_agent_templates = [
     {
       "name"     = "consul-token"
@@ -39,5 +33,5 @@ locals {
       "right_delimiter" = "]]"
     }
   ]
-  vsphere_folder = "${var.env}/${var.name}"
+  vsphere_folder = "prod/${var.name}"
 }
