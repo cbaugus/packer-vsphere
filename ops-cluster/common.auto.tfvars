@@ -10,6 +10,17 @@ nomad_options = {
   "docker.volumes.enabled" = "true"
 }
 
+nomad_host_volumes = [
+  {
+    "name"      = "prometheus"
+    "path"      = "/mnt/local/prometheus"
+    "owner"     = "root"
+    "group"     = "bin"
+    "mode"      = "0777"
+    "read_only" = "false"
+  }
+]
+
 // https://man7.org/linux/man-pages/man7/capabilities.7.html
 // https://www.nomadproject.io/docs/configuration/plugin
 nomad_plugins = {
