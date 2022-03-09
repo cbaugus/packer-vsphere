@@ -29,15 +29,16 @@ module "cluster" {
   provisioned_disks = var.provisioned_disks
 
   #Consul overrides
-  consul_pass            = var.consul_pass
-  consul_raw_key         = var.consul_raw_key
-  consul_addresses_http  = "127.0.0.1 {{ consul_bind_address }}"
-  consul_ports           = { "grpc" = "8502", "dns" = "8600", "http" = "8500", "https" = "-1", "rpc" = "8400", "serf_lan" = "8301", "serf_wan" = "8302", "server" = "8300" }
-  consul_acl_agent_token = var.consul_acl_token
-  consul_node_meta	= local.consul_node_meta
-  consul_dnsmasq_enable = "True"
-  consul_dnsmasq_servers = [ "10.254.203.10" ]
-  consul_dnsmasq_revservers = [ "10.254.0.0/16" ]
+  consul_pass               = var.consul_pass
+  consul_raw_key            = var.consul_raw_key
+  consul_addresses_http     = "127.0.0.1 {{ consul_bind_address }}"
+  consul_ports              = { "grpc" = "8502", "dns" = "8600", "http" = "8500", "https" = "-1", "rpc" = "8400", "serf_lan" = "8301", "serf_wan" = "8302", "server" = "8300" }
+  consul_acl_agent_token    = var.consul_acl_token
+  consul_node_meta          = local.consul_node_meta
+  consul_dnsmasq_enable     = "True"
+  consul_dnsmasq_servers    = ["10.254.203.10"]
+  consul_dnsmasq_revservers = ["10.254.0.0/16"]
+  consul_version            = "1.1.4"
 
   #Nomad overrides
   nomad_region                = local.nomad_region
@@ -48,13 +49,16 @@ module "cluster" {
   nomad_meta                  = var.nomad_meta
   nomad_host_volumes          = var.nomad_host_volumes
   nomad_consul_token          = data.consul_acl_token_secret_id.nomad_client_token.secret_id
+  nomad_version               = "1.2.6"
 
   #Vault overrides
   vault_agent_role_id            = var.vault_agent_role_id
   vault_agent_secret_id          = var.vault_agent_secret_id
+  vault_agent_version            = "1.9.4"
   vault_consul_role_cluster_type = var.name
   vault_agent_templates          = var.vault_agent_templates
   vault_docker_secrets           = var.vault_docker_secrets
+
 
   #Docker overrides
   docker_vault_login = var.docker_vault_login
