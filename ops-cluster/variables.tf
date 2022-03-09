@@ -34,10 +34,6 @@ variable "vsphere_compute_cluster" {
   description = "vSphere compute cluster"
   type        = string
 }
-variable "vsphere_datacenter" {
-  description = "vSphere datacenter"
-  type        = string
-}
 variable "vsphere_resource_pool" {
   description = ""
   type        = string
