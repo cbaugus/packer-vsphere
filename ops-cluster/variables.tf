@@ -34,10 +34,6 @@ variable "vsphere_compute_cluster" {
   description = "vSphere compute cluster"
   type        = string
 }
-variable "vsphere_datacenter" {
-  description = "vSphere datacenter"
-  type        = string
-}
 variable "vsphere_resource_pool" {
   description = ""
   type        = string
@@ -84,11 +80,6 @@ variable "local_exec_user" {
   type        = string
   sensitive   = true
 }
-########## GROWR ##########
-variable "provisioned_disks" {
-  description = ""
-  type        = any
-}
 ########## CONSUL PROVIDER ##########
 variable "consul_provider_token" {
   description = "Token with which to authenticate to Consul"
@@ -115,14 +106,6 @@ variable "consul_acl_token" {
   sensitive   = true
 }
 ########## NOMAD ##########
-variable "nomad_node_class" {
-  description = ""
-  type        = string
-}
-variable "nomad_vault_address" {
-  description = ""
-  type        = string
-}
 variable "nomad_vault_tls_skip_verify" {
   description = ""
   type        = string
@@ -131,15 +114,17 @@ variable "nomad_options" {
   description = ""
   type        = any
 }
-variable "nomad_meta" {
-  description = ""
-  type        = any
-}
 variable "nomad_host_volumes" {
   description = ""
   type        = any
 }
 variable "nomad_plugins" {
+  description = ""
+  type        = any
+  default     = {}
+}
+########## DOCKER ##########
+variable "docker_vault_login" {
   description = ""
   type        = any
   default     = {}
@@ -156,6 +141,10 @@ variable "vault_agent_secret_id" {
   sensitive   = true
 }
 variable "vault_consul_role_cluster_type" {
+  description = ""
+  type        = any
+}
+variable "vault_docker_secrets" {
   description = ""
   type        = any
 }
