@@ -1,6 +1,6 @@
 module "cluster" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.3.5"
+  version = "0.3.8"
 
   #Cluster vars
   num_instances    = var.num_instances
