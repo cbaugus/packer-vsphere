@@ -3,10 +3,6 @@ variable "num_instances" {
   description = "Number of VMs to be provisioned in cluster"
   type        = string
 }
-variable "resource_pool_type" {
-  description = "Small, medium, large, or xl"
-  type        = string
-}
 variable "name" {
   description = ""
   type        = string
@@ -128,12 +124,12 @@ variable "docker_vault_login" {
 ########## VAULT ##########
 variable "vault_agent_role_id" {
   description = ""
-  type        = any
+  type        = string
   sensitive   = true
 }
 variable "vault_agent_secret_id" {
   description = ""
-  type        = any
+  type        = string
   sensitive   = true
 }
 variable "vault_docker_secrets" {
