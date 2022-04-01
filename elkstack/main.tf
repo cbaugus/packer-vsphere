@@ -1,6 +1,6 @@
 module "cluster" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.2.5"
+  version = "0.3.5"
 
   #Cluster vars
   num_instances      = var.num_instances
@@ -26,9 +26,8 @@ module "cluster" {
   local_exec_user          = var.local_exec_user
 
   #S3/Growr overrides
-  provisioned_disks    = var.provisioned_disks
-  s3_provisioned_disks = local.s3_provisioned_disks
   growr_provisioned_disks = local.growr_provisioned_disks
+  s3_provisioned_disks = local.s3_provisioned_disks
 
   #Consul overrides
   consul_pass            = var.consul_pass
@@ -36,6 +35,12 @@ module "cluster" {
   consul_addresses_http  = "{{ consul_bind_address }} 127.0.0.1"
   consul_ports           = { "grpc" = "8502", "dns" = "8600", "http" = "8500", "https" = "-1", "rpc" = "8400", "serf_lan" = "8301", "serf_wan" = "8302", "server" = "8300" }
   consul_acl_agent_token = var.consul_acl_token
+  //Will try to use the below when this ticket is resolved: https://github.com/hashicorp/terraform-provider-vault/issues/1215
+  //consul_acl_agent_token = data.vault_generic_secret.consul_token.data["token"]
+  consul_node_meta          = local.consul_node_meta
+  consul_dnsmasq_enable     = "True"
+  consul_dnsmasq_servers    = ["10.254.203.11", "10.254.203.12"]
+  consul_dnsmasq_revservers = ["10.254.0.0/16"]
 
   #Nomad overrides
   nomad_region                = var.nomad_region
@@ -43,13 +48,23 @@ module "cluster" {
   nomad_vault_address         = var.nomad_vault_address
   nomad_vault_tls_skip_verify = var.nomad_vault_tls_skip_verify
   nomad_options               = var.nomad_options
+  nomad_plugins               = var.nomad_plugins
   nomad_meta                  = var.nomad_meta
   nomad_host_volumes          = var.nomad_host_volumes
   nomad_consul_token          = var.nomad_consul_token
+  //Try to generate token when this issue is resolved: https://github.com/hashicorp/terraform-provider-vault/issues/1215
 
   #Vault overrides
   vault_agent_role_id            = var.vault_agent_role_id
   vault_agent_secret_id          = var.vault_agent_secret_id
   vault_consul_role_cluster_type = var.vault_consul_role_cluster_type
   vault_agent_templates          = var.vault_agent_templates
+  vault_docker_secrets           = var.vault_docker_secrets
+
+  #Docker overrides
+  docker_vault_login = var.docker_vault_login
+
+  #Known Hosts
+  known_hosts_targets = local.known_hosts_targets
+  known_hosts_user    = local.known_hosts_user
 }
