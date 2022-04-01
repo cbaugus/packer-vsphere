@@ -34,6 +34,7 @@ nomad_meta = {
 nomad_region                = "tmi"
 nomad_node_class            = "ops"
 vault_consul_role_cluster_type = "elkstack"
+nomad_vault_address         = "https://vault.service.tmi-w01-dc01.consul:8200"
 nomad_vault_tls_skip_verify = "yes"
 nomad_options = {
   "driver.raw_exec.enable" = "1"
