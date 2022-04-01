@@ -3,18 +3,18 @@ module "cluster" {
   version = "0.3.5"
 
   #Cluster vars
-  num_instances      = var.num_instances
-  cores_count_type = "xl"
-  mem_size_type    = "xxl"
-  disk_size_type   = "xxl"
-  name_prefix        = "${var.name}-${var.nomad_node_class}"
+  num_instances    = var.num_instances
+  cores_count_type = "xl"    # 4 cores
+  mem_size_type    = "xxl"    # 32 GB RAM
+  disk_size_type   = "medium" # 70 GB
+  name_prefix      = "${var.name}-${var.env}"
 
   #vSphere required inputs
   vsphere_compute_cluster = var.vsphere_compute_cluster
   vsphere_resource_pool   = var.vsphere_resource_pool
   vsphere_datastore       = var.vsphere_datastore
   vsphere_network         = var.vsphere_network
-  vsphere_folder          = var.vsphere_folder
+  vsphere_folder          = local.vsphere_folder
   vsphere_template        = var.vsphere_template
   vsphere_user            = var.vsphere_user
   vsphere_pass            = var.vsphere_pass
@@ -27,7 +27,7 @@ module "cluster" {
 
   #S3/Growr overrides
   growr_provisioned_disks = local.growr_provisioned_disks
-  s3_provisioned_disks = local.s3_provisioned_disks
+  s3_provisioned_disks    = local.s3_provisioned_disks
 
   #Consul overrides
   consul_pass            = var.consul_pass
@@ -43,22 +43,22 @@ module "cluster" {
   consul_dnsmasq_revservers = ["10.254.0.0/16"]
 
   #Nomad overrides
-  nomad_region                = var.nomad_region
-  nomad_node_class            = var.nomad_node_class
-  nomad_vault_address         = var.nomad_vault_address
+  nomad_region                = local.nomad_region
+  nomad_node_class            = var.env
+  nomad_vault_address         = local.nomad_vault_address
   nomad_vault_tls_skip_verify = var.nomad_vault_tls_skip_verify
   nomad_options               = var.nomad_options
   nomad_plugins               = var.nomad_plugins
-  nomad_meta                  = var.nomad_meta
-  nomad_host_volumes          = var.nomad_host_volumes
-  nomad_consul_token          = var.nomad_consul_token
+  nomad_meta                  = local.nomad_meta
+  nomad_host_volumes          = local.nomad_host_volumes
+  nomad_consul_token          = data.consul_acl_token_secret_id.nomad_client_token.secret_id
   //Try to generate token when this issue is resolved: https://github.com/hashicorp/terraform-provider-vault/issues/1215
 
   #Vault overrides
   vault_agent_role_id            = var.vault_agent_role_id
   vault_agent_secret_id          = var.vault_agent_secret_id
-  vault_consul_role_cluster_type = var.vault_consul_role_cluster_type
-  vault_agent_templates          = var.vault_agent_templates
+  vault_consul_role_cluster_type = var.name
+  vault_agent_templates          = local.vault_agent_templates
   vault_docker_secrets           = var.vault_docker_secrets
 
   #Docker overrides
