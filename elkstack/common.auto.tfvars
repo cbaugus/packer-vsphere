@@ -15,6 +15,22 @@ provisioned_disks = [
   }
 ]
 
+nomad_host_volumes = [
+  {
+    "name"      = "elastic"
+    "path"      = "/mnt/local/elastic"
+    "owner"     = "root"
+    "group"     = "bin"
+    "mode"      = "0777"
+    "read_only" = "false"
+  }
+]
+
+nomad_meta = {
+  "node-switcher" = "on"
+  "purpose"       = "elastic"
+}
+
 nomad_vault_tls_skip_verify = "yes"
 nomad_options = {
   "driver.raw_exec.enable" = "1"
