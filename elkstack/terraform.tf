@@ -4,7 +4,7 @@ terraform {
     organization = "JohnstonHowse"
 
     workspaces {
-      tags = ["web"]
+      tags = ["elkstack"]
     }
   }
 }
