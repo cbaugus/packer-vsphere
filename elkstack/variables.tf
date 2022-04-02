@@ -88,11 +88,6 @@ variable "local_exec_user" {
   type        = string
   sensitive   = true
 }
-########## GROWR ##########
-variable "provisioned_disks" {
-  description = ""
-  type        = any
-}
 ########## CONSUL ##########
 variable "consul_pass" {
   description = ""
