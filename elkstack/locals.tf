@@ -5,7 +5,8 @@ locals {
 
     ]
   )
-  #consul_token_vault_path = "consul/creds/${var.name}-node"
+  consul_token_vault_path = "consul/creds/elkstack-node"
+
   nomad_meta = {
     "node-switcher" = "on"
     "purpose"       = "${var.name}"
