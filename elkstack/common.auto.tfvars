@@ -8,7 +8,7 @@ provisioned_disks = [
   {
     device_drive              = "sdb"
     label                     = "elk_label"
-    disk_size                 = "large"
+    disk_size                 = "xxl"
     thin_provisioned          = "true"
     eagerly_scrub             = "false"
     data_disk_scsi_controller = "0"
