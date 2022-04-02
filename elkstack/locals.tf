@@ -65,12 +65,7 @@ locals {
     "class"   = "${var.env}"
     "version" = "{{ consul_version }}"
   }
-  growr_provisioned_disks = [
-    {
-      DEVICE_DRIVE = "sdb"
-      LABEL        = "elastic"
-    }
-  ]
+
   //    s3_provisioned_disks = [ for secret in data.vault_generic_secret.minio_s3 :
   //    {
   //      S3_HOST_1                 = secret.data["url"]

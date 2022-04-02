@@ -4,16 +4,17 @@ consul_src_def           = "/opt/devops-local/ssl/certs"
 remote_exec_ssh_key_file = "/opt/devops-local/ssl/keys/key.pem"
 local_exec_ssh_key_file  = "/opt/devops-local/ssl/keys/key.pem"
 
-provisioned_disks = [
+nomad_host_volumes = [
   {
-    device_drive              = "sdb"
-    label                     = "elk_label"
-    disk_size                 = "xxl"
-    thin_provisioned          = "true"
-    eagerly_scrub             = "false"
-    data_disk_scsi_controller = "0"
+    "name"      = "elastic"
+    "path"      = "/mnt/local/elastic"
+    "owner"     = "root"
+    "group"     = "bin"
+    "mode"      = "0777"
+    "read_only" = "false"
   }
 ]
+
 
 nomad_vault_tls_skip_verify = "yes"
 nomad_options = {
