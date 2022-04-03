@@ -6,7 +6,7 @@ module "cluster" {
   num_instances      = var.num_instances
   cores_count_type = var.resource_pool_type
   mem_size_type    = var.resource_pool_type
-  disk_size_type   = "xxl"
+  disk_size_type   = "xl"
   name_prefix        = "${var.name}-${var.nomad_node_class}"
 
   #vSphere required inputs

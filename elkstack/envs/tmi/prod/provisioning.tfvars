@@ -1,5 +1,14 @@
 
-provisioned_disks = []
+provisioned_disks = [
+  {
+    device_drive              = "sdb"
+    label                     = "elk_label"
+    disk_size                 = "xxl"
+    thin_provisioned          = "true"
+    eagerly_scrub             = "false"
+    data_disk_scsi_controller = "0"
+  }
+]
 
 nomad_region                = "tmi"
 nomad_node_class            = "prod"
@@ -16,7 +25,16 @@ nomad_meta = {
 // The nomad_host_volumes owner and group must match the same uid and gid as specified in provisioned_disks
 // if that is being uses. The ansible nomad role will try to create the directory before configuring it in
 // the client.hcl file.
-nomad_host_volumes = []
+nomad_host_volumes = [
+  {
+    "name"      = "elastic"
+    "path"      = "/mnt/local/elastic"
+    "owner"     = "root"
+    "group"     = "bin"
+    "mode"      = "0777"
+    "read_only" = "false"
+  }
+]
 
 // https://man7.org/linux/man-pages/man7/capabilities.7.html
 // https://www.nomadproject.io/docs/configuration/plugin
