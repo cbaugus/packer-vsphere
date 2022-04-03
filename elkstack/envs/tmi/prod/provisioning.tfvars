@@ -48,4 +48,4 @@ vault_docker_secrets = [
   }
 ]
 
-vault_consul_role_cluster_type = "elkstack-node"
+vault_consul_role_cluster_type = "elkstack"
