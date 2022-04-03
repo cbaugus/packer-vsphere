@@ -3,6 +3,10 @@ variable "num_instances" {
   description = "Number of VMs to be provisioned in cluster"
   type        = string
 }
+variable "resource_pool_type" {
+  description = "Small, medium, large, or xl"
+  type        = string
+}
 variable "name" {
   description = ""
   type        = string
@@ -11,10 +15,6 @@ variable "env" {
   description = ""
   type        = string
 }
-//variable "sub_envs" {
-//  description = ""
-//  type        = map(string)
-//}
 ########## VSPHERE PROVIDER ##########
 variable "vsphere_user" {
   description = "vSphere administrator username"
@@ -50,6 +50,10 @@ variable "vsphere_network" {
   description = ""
   type        = string
 }
+variable "vsphere_folder" {
+  description = ""
+  type        = string
+}
 variable "vsphere_template" {
   description = ""
   type        = string
@@ -57,6 +61,7 @@ variable "vsphere_template" {
 ########## VAULT PROVIDER ##########
 variable "vault_server_url" {
   description = "Vault server URL"
+  default     = ""
   sensitive   = true
 }
 variable "vault_approle_id" {
@@ -67,11 +72,6 @@ variable "vault_approle_id" {
 variable "vault_approle_secret_id" {
   description = "Vault server app role secret"
   default     = ""
-  sensitive   = true
-}
-########## CONSUL PROVIDER ##########
-variable "consul_provider_token" {
-  description = "Token with which to authenticate to Consul"
   sensitive   = true
 }
 ########## TERRAFORM ##########
@@ -109,12 +109,43 @@ variable "consul_acl_token" {
   type        = string
   sensitive   = true
 }
+variable "consul_provider_token" {
+  description = ""
+  type        = string
+  sensitive   = true
+}
 ########## NOMAD ##########
+variable "nomad_consul_acl_token" {
+  description = ""
+  type        = string
+  sensitive   = true
+  default = ""
+}
+variable "nomad_region" {
+  description = ""
+  type        = string
+}
+variable "nomad_node_class" {
+  description = ""
+  type        = string
+}
+variable "nomad_vault_address" {
+  description = ""
+  type        = string
+}
 variable "nomad_vault_tls_skip_verify" {
   description = ""
   type        = string
 }
 variable "nomad_options" {
+  description = ""
+  type        = any
+}
+variable "nomad_meta" {
+  description = ""
+  type        = any
+}
+variable "nomad_host_volumes" {
   description = ""
   type        = any
 }
@@ -126,21 +157,31 @@ variable "nomad_plugins" {
 ########## DOCKER ##########
 variable "docker_vault_login" {
   description = ""
-  type        = any
-  default     = {}
+  type = any
+  default = {}
 }
 ########## VAULT ##########
 variable "vault_agent_role_id" {
   description = ""
-  type        = string
+  type        = any
   sensitive   = true
 }
 variable "vault_agent_secret_id" {
   description = ""
-  type        = string
+  type        = any
   sensitive   = true
+}
+variable "vault_consul_role_cluster_type" {
+  description = ""
+  type        = any
+}
+variable "vault_agent_templates" {
+  description = ""
+  type        = any
+  default     = {}
 }
 variable "vault_docker_secrets" {
   description = ""
   type        = any
+  default     = {}
 }

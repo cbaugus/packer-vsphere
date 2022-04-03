@@ -1,6 +1,4 @@
-num_instances      = "3"
+num_instances      = "4"
+resource_pool_type = "xxl"
 name               = "elkstack"
 env                = "prod"
-//sub_envs           = [
-//  "prod"
-//]
