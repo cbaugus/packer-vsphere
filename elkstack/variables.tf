@@ -171,7 +171,7 @@ variable "vault_agent_secret_id" {
   description = ""
   type        = any
   sensitive   = true
-  default     = {}
+  default     = "foo"
 }
 variable "vault_consul_role_cluster_type" {
   description = ""
