@@ -165,11 +165,13 @@ variable "vault_agent_role_id" {
   description = ""
   type        = any
   sensitive   = true
+  default     = {}
 }
 variable "vault_agent_secret_id" {
   description = ""
   type        = any
   sensitive   = true
+  default     = {}
 }
 variable "vault_consul_role_cluster_type" {
   description = ""
