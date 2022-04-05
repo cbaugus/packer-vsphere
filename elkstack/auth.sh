@@ -50,3 +50,8 @@ export TF_VAR_vault_server_url="https://vault.service.${datacenter}.consul:8200"
 export TF_VAR_vault_approle_id=$(vault read -format=json auth/approle/role/terraform/role-id | jq '.data.role_id' | tr -d '"' )
 export TF_VAR_vault_approle_secret_id=$(vault write -f -format=json auth/approle/role/terraform/secret-id | jq '.data.secret_id' | tr -d '"' )
 echo "Vault provider credentials set"
+
+export remote_exec_ssh_key_file="/opt/devops-local/ssl/keys/key.pem"
+export local_exec_ssh_key_file="/opt/devops-local/ssl/keys/key.pem"
+export local_exec_user="cicduser"
+export remote_exec_user="cicduser"
