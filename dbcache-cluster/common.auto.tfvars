@@ -1,6 +1,8 @@
 name                 = "dbcache"
 consul_tls_src_files = "/opt/devops-local/ssl/certs"
 consul_src_def       = "/opt/devops-local/ssl/certs"
+remote_exec_ssh_key_file = "/opt/devops-local/ssl/keys/key.pem"
+local_exec_ssh_key_file  = "/opt/devops-local/ssl/keys/key.pem"
 
 nomad_vault_tls_skip_verify = "yes"
 nomad_options = {
