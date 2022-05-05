@@ -23,32 +23,32 @@ locals {
   // Uncomment this section when deploying for nonprod
 
   nomad_host_volumes = [
+    {
+      "name"      = "frank-nfs-dev"
+      "path"      = "/mnt/nfs/nonprod/dev/default/files"
+      "owner"     = "root"
+      "group"     = "bin"
+      "mode"      = "0777"
+      "read_only" = "false"
+    },
+    {
+      "name"      = "frank-nfs-test"
+      "path"      = "/mnt/nfs/nonprod/test/default/files"
+      "owner"     = "root"
+      "group"     = "bin"
+      "mode"      = "0777"
+      "read_only" = "false"
+    },
+    {
+      "name"      = "frank-nfs-stage"
+      "path"      = "/mnt/nfs/nonprod/stage/default/files"
+      "owner"     = "root"
+      "group"     = "bin"
+      "mode"      = "0777"
+      "read_only" = "false"
+    },
+
     /*
-    {
-      "name"      = "frank-nomad-dev"
-      "path"      = "${data.vault_generic_secret.dev_minio_s3.data["host_mount_path"]}/default/files"
-      "owner"     = "root"
-      "group"     = "bin"
-      "mode"      = "0777"
-      "read_only" = "false"
-    },
-    {
-      "name"      = "frank-nomad-test"
-      "path"      = "${data.vault_generic_secret.test_minio_s3.data["host_mount_path"]}/default/files"
-      "owner"     = "root"
-      "group"     = "bin"
-      "mode"      = "0777"
-      "read_only" = "false"
-    },
-    {
-      "name"      = "frank-nomad-stage"
-      "path"      = "${data.vault_generic_secret.stage_minio_s3.data["host_mount_path"]}/default/files"
-      "owner"     = "root"
-      "group"     = "bin"
-      "mode"      = "0777"
-      "read_only" = "false"
-    },
-  */
     // Uncomment this section when deploying for prod
     {
       "name"      = "frank-nomad-prod"
@@ -58,6 +58,7 @@ locals {
       "mode"      = "0777"
       "read_only" = "false"
     },
+   */
   ]
   consul_node_meta = {
     "purpose" = "${var.name}"
