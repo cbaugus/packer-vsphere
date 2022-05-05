@@ -25,7 +25,7 @@ locals {
   nomad_host_volumes = [
     {
       "name"      = "frank-nfs-dev"
-      "path"      = "/mnt/nfs/nonprod/dev/default/files"
+      "path"      = "/mnt/nfs/nonprod/dev/files"
       "owner"     = "root"
       "group"     = "bin"
       "mode"      = "0777"
@@ -33,7 +33,7 @@ locals {
     },
     {
       "name"      = "frank-nfs-test"
-      "path"      = "/mnt/nfs/nonprod/test/default/files"
+      "path"      = "/mnt/nfs/nonprod/test/files"
       "owner"     = "root"
       "group"     = "bin"
       "mode"      = "0777"
@@ -41,7 +41,7 @@ locals {
     },
     {
       "name"      = "frank-nfs-stage"
-      "path"      = "/mnt/nfs/nonprod/stage/default/files"
+      "path"      = "/mnt/nfs/nonprod/stage/files"
       "owner"     = "root"
       "group"     = "bin"
       "mode"      = "0777"

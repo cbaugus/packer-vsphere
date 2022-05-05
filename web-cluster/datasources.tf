@@ -16,9 +16,9 @@
 //  path = "stage/minio/${var.name}/${var.vsphere_datacenter}"
 //}
 
-data "vault_generic_secret" "prod_minio_s3" {
-  path = "prod/minio/${var.name}/${var.vsphere_datacenter}"
-}
+#data "vault_generic_secret" "prod_minio_s3" {
+#  path = "prod/minio/${var.name}/${var.vsphere_datacenter}"
+#}
 
 
 ########## TERRAFORM CLOUD ##########
