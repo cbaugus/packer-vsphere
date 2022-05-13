@@ -1,6 +1,6 @@
 module "cluster" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.3.9"
+  version = "0.3.10"
 
   #Cluster vars
   num_instances    = var.num_instances
@@ -68,8 +68,4 @@ module "cluster" {
   known_hosts_targets = local.known_hosts_targets
   known_hosts_user    = local.known_hosts_user
 
-  #NFS Vars
-  nfs_mount_server   = "10.254.225.100:/mnt/disk-pool/nfs-root"
-  nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
-  nfs_mount_path     = "/mnt/nfs/nonprod"
 }
