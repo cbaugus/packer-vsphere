@@ -69,7 +69,7 @@ module "cluster" {
   known_hosts_user    = local.known_hosts_user
 
   #NFS Vars
-  nfs_mount_server   = local.nfs_mount_server
-  nfs_mount_options  = local.nfs_mount_options
-  nfs_mount_path     = local.nfs_mount_path
+  nfs_mount_server   = var.nfs_mount_server
+  nfs_mount_options  = var.nfs_mount_options
+  nfs_mount_path     = var.nfs_mount_path
 }
