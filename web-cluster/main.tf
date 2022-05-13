@@ -69,7 +69,7 @@ module "cluster" {
   known_hosts_user    = local.known_hosts_user
 
   #NFS Vars
-  nfs_mount_server   = var.nfs_mount_server
-  nfs_mount_options  = var.nfs_mount_options
-  nfs_mount_path     = var.nfs_mount_path
+  nfs_mount_server   = "10.254.225.100:/mnt/disk-pool/nfs-root"
+  nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
+  nfs_mount_path     = "/mnt/nfs/nonprod"
 }
