@@ -1,6 +1,6 @@
 module "cluster" {
   source  = "app.terraform.io/JohnstonHowse/cluster-module/vsphere"
-  version = "0.3.5"
+  version = "0.3.10"
 
   #Cluster vars
   num_instances    = var.num_instances
@@ -20,7 +20,7 @@ module "cluster" {
   vsphere_pass            = var.vsphere_pass
 
   #Terraform Provisioner required inputs
-  path_to_ansible          = "../../ansible-deployments/cluster-bootstrap.yml"
+  path_to_ansible          = "../../ansible-deployments/web-cluster-bootstrap.yml"
   remote_exec_ssh_key_file = var.remote_exec_ssh_key_file
   local_exec_ssh_key_file  = var.local_exec_ssh_key_file
   local_exec_user          = var.local_exec_user
@@ -67,4 +67,19 @@ module "cluster" {
   #Known Hosts
   known_hosts_targets = local.known_hosts_targets
   known_hosts_user    = local.known_hosts_user
+
+
+
+  #NFS Vars for Prod
+/*
+  nfs_mount_server   = "10.254.205.25:/mnt/fs-pool-a/nfs-root"
+  nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
+  nfs_mount_path     = "/mnt/nfs/prod"
+*/
+
+  #NFS Vars for Nonprod
+  nfs_mount_server   = "10.254.225.100:/mnt/disk-pool/nfs-root"
+  nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
+  nfs_mount_path     = "/mnt/nfs/nonprod"
+
 }
