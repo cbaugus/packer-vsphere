@@ -31,7 +31,6 @@ module "cluster" {
   growr_provisioned_disks = local.growr_provisioned_disks
 
   #Consul overrides
-  consul_addresses_http       = "{{ consul_bind_address }} 127.0.0.1"
   consul_acl_agent_token      = var.consul_acl_token
   consul_pass    = var.consul_pass
   consul_raw_key = var.consul_raw_key

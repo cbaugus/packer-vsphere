@@ -33,5 +33,5 @@ locals {
       "right_delimiter" = "]]"
     }
   ]
-  vsphere_folder = "${var.env}/${var.name}"
+  vsphere_folder = "prod/${var.name}"
 }

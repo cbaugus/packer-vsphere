@@ -1,4 +1,4 @@
-num_instances      = "10"
+num_instances      = "15"
 name               = "web"
 env                = "nonprod"
 //sub_envs           = {
