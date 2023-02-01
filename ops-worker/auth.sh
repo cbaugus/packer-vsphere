@@ -51,7 +51,7 @@ export TF_VAR_vault_approle_id=$(vault read -format=json auth/approle/role/terra
 export TF_VAR_vault_approle_secret_id=$(vault write -f -format=json auth/approle/role/terraform/secret-id | jq '.data.secret_id' | tr -d '"' )
 echo "Vault provider credentials set"
 
-export TF_VAR_remote_exec_ssh_key_file="/opt/devops-local/ssl/keys/key.pem"
-export TF_VAR_local_exec_ssh_key_file="/opt/devops-local/ssl/keys/key.pem"
+export TF_VAR_remote_exec_ssh_key_file="/opt/devops-local/ssh/cicduser"
+export TF_VAR_local_exec_ssh_key_file="/opt/devops-local/ssh/cicduser"
 export TF_VAR_local_exec_user="cicduser"
 export TF_VAR_remote_exec_user="cicduser"
