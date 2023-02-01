@@ -58,7 +58,27 @@ variable "vsphere_template" {
   description = ""
   type        = string
 }
+########## VAULT PROVIDER ##########
+variable "vault_server_url" {
+  description = "Vault server URL"
+  default     = ""
+  sensitive   = true
+}
+variable "vault_approle_id" {
+  description = "Vault server app role ID"
+  default     = ""
+  sensitive   = true
+}
+variable "vault_approle_secret_id" {
+  description = "Vault server app role secret"
+  default     = ""
+  sensitive   = true
+}
 ########## TERRAFORM ##########
+variable "remote_exec_ssh_key_file" {
+  description = ""
+  type        = string
+}
 variable "local_exec_ssh_key_file" {
   description = ""
   type        = string
@@ -68,23 +88,100 @@ variable "local_exec_user" {
   type        = string
   sensitive   = true
 }
-
-########## ANSIBLE ##########
-variable "path_to_ansible" {
-  description = ""
-  type        = any
-}
-variable "remote_exec_ssh_key_file" {
-  description = ""
-  type        = any
-}
-variable "remote_exec_user" {
-  description = ""
-  type        = any
-}
-
 ########## GROWR ##########
 variable "provisioned_disks" {
   description = ""
   type        = any
+}
+########## CONSUL ##########
+variable "consul_pass" {
+  description = ""
+  type        = string
+  sensitive   = true
+}
+variable "consul_raw_key" {
+  description = ""
+  type        = string
+  sensitive   = true
+}
+variable "consul_acl_token" {
+  description = ""
+  type        = string
+  sensitive   = true
+}
+variable "consul_provider_token" {
+  description = ""
+  type        = string
+  sensitive   = true
+}
+########## NOMAD ##########
+variable "nomad_consul_acl_token" {
+  description = ""
+  type        = string
+  sensitive   = true
+  default = ""
+}
+variable "nomad_region" {
+  description = ""
+  type        = string
+}
+variable "nomad_node_class" {
+  description = ""
+  type        = string
+}
+variable "nomad_vault_address" {
+  description = ""
+  type        = string
+}
+variable "nomad_vault_tls_skip_verify" {
+  description = ""
+  type        = string
+}
+variable "nomad_options" {
+  description = ""
+  type        = any
+}
+variable "nomad_meta" {
+  description = ""
+  type        = any
+}
+variable "nomad_host_volumes" {
+  description = ""
+  type        = any
+}
+variable "nomad_plugins" {
+  description = ""
+  type        = any
+  default     = {}
+}
+########## DOCKER ##########
+variable "docker_vault_login" {
+  description = ""
+  type = any
+  default = {}
+}
+########## VAULT ##########
+variable "vault_agent_role_id" {
+  description = ""
+  type        = string
+  sensitive   = true
+}
+variable "vault_agent_secret_id" {
+  description = ""
+  type        = string
+  sensitive   = true
+}
+variable "vault_consul_role_cluster_type" {
+  description = ""
+  type        = any
+}
+variable "vault_agent_templates" {
+  description = ""
+  type        = any
+  default     = {}
+}
+variable "vault_docker_secrets" {
+  description = ""
+  type        = any
+  default     = {}
 }
