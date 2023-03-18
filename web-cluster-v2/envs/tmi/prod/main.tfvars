@@ -7,8 +7,8 @@ vsphere_folder          = "prod/web"
 vsphere_template        = "debian-11.6-prod"
 
 num_instances      = "2"
-resource_pool_type = "xl"
-name               = "web-prod-v2"
+resource_pool_type = "xxl"
+name               = "web-v2"
 env                = "prod"
 
 provisioned_disks = [
