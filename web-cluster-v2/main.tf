@@ -37,7 +37,7 @@ module "cluster" {
 
 
   #NFS Vars for Nonprod
-  nfs_mount_server   = var.nfs_mount_server
-  nfs_mount_options  = var.nfs_mount_options
-  nfs_mount_path     = var.nfs_mount_path
+  #nfs_mount_server   = var.nfs_mount_server
+  #nfs_mount_options  = var.nfs_mount_options
+  #nfs_mount_path     = var.nfs_mount_path
 }
