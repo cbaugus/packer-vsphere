@@ -129,10 +129,6 @@ variable "nomad_node_class" {
   description = ""
   type        = string
 }
-variable "nomad_node_token" {
-  description = ""
-  type        = string
-}
 variable "nomad_purpose" {
   description = ""
   type        = string

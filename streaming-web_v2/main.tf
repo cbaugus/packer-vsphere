@@ -20,7 +20,7 @@ module "cluster" {
   vsphere_pass            = var.vsphere_pass
 
   #Terraform Provisioner required inputs
-  path_to_ansible          = "../../ansible-deployments/elk.yml"
+  path_to_ansible          = "../../ansible-deployments/cluster-bootstrap.yml"
   remote_exec_ssh_key_file = var.remote_exec_ssh_key_file
   local_exec_ssh_key_file  = var.local_exec_ssh_key_file
   local_exec_user          = var.local_exec_user
@@ -50,7 +50,7 @@ module "cluster" {
   nomad_plugins               = var.nomad_plugins
   nomad_meta                  = var.nomad_meta
   nomad_host_volumes          = var.nomad_host_volumes
-  nomad_consul_token          = var.nomad_node_token
+  nomad_consul_token          = var.consul_acl_token
   //nomad_consul_token          = var.consul_acl_token  //data.consul_acl_token_secret_id.nomad_client_token.secret_id
   //nomad_consul_token          = data.consul_acl_token_secret_id.nomad_client_token.secret_id
 
