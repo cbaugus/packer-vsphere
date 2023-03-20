@@ -43,6 +43,7 @@ module "cluster" {
   #Nomad overrides
   nomad_region                = var.nomad_region
   nomad_node_class            = var.nomad_node_class
+  nomad_node_token            = var.consul_acl_token
   nomad_purpose               = var.nomad_purpose
   nomad_vault_address         = var.nomad_vault_address
   nomad_vault_tls_skip_verify = var.nomad_vault_tls_skip_verify

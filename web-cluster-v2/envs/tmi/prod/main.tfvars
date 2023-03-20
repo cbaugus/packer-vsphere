@@ -2,8 +2,8 @@ vsphere_datacenter      = "tmi-w01-dc01"
 vsphere_compute_cluster = "tmi-w01-cl01-prod"
 vsphere_resource_pool   = "tmi-w01-dc01/tmi-w01-cl01-prod/Resources"
 vsphere_datastore       = "tmi-w01-cl01-prod-ds-vsan01"
-vsphere_network         = "tmi-w01-cl01-vds01-pg-ops-203"
-vsphere_folder          = "prod/ops/worker"
+vsphere_network         = "tmi-w01-cl01-vds01-pg-web-200"
+vsphere_folder          = "prod/web"
 vsphere_template        = "debian-11.6-prod"
 
 
@@ -13,7 +13,7 @@ consul_src_def          = "/opt/devops-local/ssl/certs"
 
 num_instances      = "2"
 resource_pool_type = "xxl"
-name               = "ops-worker"
+name               = "web-v2"
 env                = "prod"
 
 provisioned_disks = [
@@ -37,8 +37,8 @@ nomad_meta = {
 // the client.hcl file.
 nomad_host_volumes = [
   {
-    "name"      = "elastic"
-    "path"      = "/mnt/local/elastic"
+    "name"      = "mnt"
+    "path"      = "/mnt"
     "owner"     = "root"
     "group"     = "bin"
     "mode"      = "0777"
