@@ -3,55 +3,45 @@ locals {
   // streaming_minio_vault_path     = "${var.nomad_node_class}/minio/streaming"
   // streaming_public_minio_vault_path     = "${var.nomad_node_class}/minio/streaming_public"
   growr_provisioned_disks = [
-   // {
-   //   DEVICE_DRIVE              = "sdb"
-   //   LABEL                     = "data"
-   // }
+  //  {
+  //    DEVICE_DRIVE              = "sdb"
+  //    LABEL                     = "elastic"
+  //  }
   ]
+  s3_provisioned_disks = []
 
   known_hosts_user = "root"
   known_hosts_targets = [
     "bitbucket.org"
   ]
 
-  nomad_host_volumes = [
-    /*
+  vault_agent_templates = [
     {
-      "name"      = "frank-nfs-dev"
-      "path"      = "/mnt/nfs/nonprod/dev/files"
-      "owner"     = "root"
-      "group"     = "bin"
-      "mode"      = "0777"
-      "read_only" = "false"
+      "name" = "consul-token"
+      "template" = "[[ with secret \"consul/creds/{{ vault_consul_role_cluster_type }}-node\" ]][[ .Data.token ]][[ end ]]"
+      "destination" = {
+        "path" = "/opt/consul/acl-token.txt"
+        "setup_parent_directory" = true
+        "parent_directory" = {
+          "owner" = "consul"
+          "group" = "consul"
+          "mode"  = ""
+        }
+      }
+      "perms" = "0644"
+      "command" = "consul acl set-agent-token -token=`cat /opt/consul/acl-token.txt` agent `cat /opt/consul/acl-token.txt`"
+      "left_delimiter" = "[["
+      "right_delimiter" = "]]"
     },
-    {
-      "name"      = "frank-nfs-test"
-      "path"      = "/mnt/nfs/nonprod/test/files"
-      "owner"     = "root"
-      "group"     = "bin"
-      "mode"      = "0777"
-      "read_only" = "false"
-    },
-    {
-      "name"      = "frank-nfs-stage"
-      "path"      = "/mnt/nfs/nonprod/stage/files"
-      "owner"     = "root"
-      "group"     = "bin"
-      "mode"      = "0777"
-      "read_only" = "false"
-    },
-
-    */
-
-    // Uncomment this section when deploying for prod
-    {
-      "name"      = "frank-nfs-prod"
-      "path"      = "/mnt/nfs/prod/prod/files"
-      "owner"     = "root"
-      "group"     = "bin"
-      "mode"      = "0777"
-      "read_only" = "false"
-    },
-
+  //  {
+  //    "name" = "docker-auth"
+  //    "template" = "{\"auths\": {\"https://index.docker.io/v1/\": {\"username\": \"[[ with secret \"ops/docker\" ]][[ .Data.data.username ]][[ end ]]\", \"password\": \"[[ with secret \"ops/docker\" ]][[ .Data.data.password ]][[ end ]]\" } } }"
+  //    "destination" = {
+  //      "path" = "/etc/docker/docker-auth.json"
+  //    }
+  //    "perms" = "0644"
+  //    "left_delimiter" = "[["
+  //    "right_delimiter" = "]]"
+  //  }
   ]
 }
