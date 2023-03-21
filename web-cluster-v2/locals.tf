@@ -1,52 +1,7 @@
 
 locals {
-  growr_provisioned_disks = [
-  //  {
-  //    DEVICE_DRIVE              = "sdb"
-  //    LABEL                     = "elastic"
-  //  }
-  ]
+  growr_provisioned_disks = []
   s3_provisioned_disks = []
-
-  nomad_host_volumes = [
-    /*
-    {
-      "name"      = "frank-nfs-dev"
-      "path"      = "/mnt/nfs/nonprod/dev/files"
-      "owner"     = "root"
-      "group"     = "bin"
-      "mode"      = "0777"
-      "read_only" = "false"
-    },
-    {
-      "name"      = "frank-nfs-test"
-      "path"      = "/mnt/nfs/nonprod/test/files"
-      "owner"     = "root"
-      "group"     = "bin"
-      "mode"      = "0777"
-      "read_only" = "false"
-    },
-    {
-      "name"      = "frank-nfs-stage"
-      "path"      = "/mnt/nfs/nonprod/stage/files"
-      "owner"     = "root"
-      "group"     = "bin"
-      "mode"      = "0777"
-      "read_only" = "false"
-    },
-*/
-
-    // Uncomment this section when deploying for prod
-    {
-      "name"      = "frank-nomad-prod"
-      "path"      = "/mnt/nfs/prod/prod/files"
-      "owner"     = "root"
-      "group"     = "bin"
-      "mode"      = "0777"
-      "read_only" = "false"
-    },
-
-  ]
 
   known_hosts_user = "root"
   known_hosts_targets = [
