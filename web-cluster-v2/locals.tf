@@ -34,18 +34,18 @@ locals {
       "mode"      = "0777"
       "read_only" = "false"
     },
-
+*/
 
     // Uncomment this section when deploying for prod
     {
       "name"      = "frank-nomad-prod"
-      "path"      = "${data.vault_generic_secret.prod_minio_s3.data["host_mount_path"]}/default/files"
+      "path"      = "/mnt/nfs/prod/prod/files"
       "owner"     = "root"
       "group"     = "bin"
       "mode"      = "0777"
       "read_only" = "false"
     },
-   */
+
   ]
 
   known_hosts_user = "root"
