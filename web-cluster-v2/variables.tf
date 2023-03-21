@@ -153,10 +153,10 @@ variable "nomad_meta" {
   description = ""
   type        = any
 }
-variable "nomad_host_volumes" {
-  description = ""
-  type        = any
-}
+//variable "nomad_host_volumes" {
+//  description = ""
+//  type        = any
+//}
 variable "nomad_plugins" {
   description = ""
   type        = any
