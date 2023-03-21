@@ -8,6 +8,46 @@ locals {
   ]
   s3_provisioned_disks = []
 
+  nomad_host_volumes = [
+    /*
+    {
+      "name"      = "frank-nfs-dev"
+      "path"      = "/mnt/nfs/nonprod/dev/files"
+      "owner"     = "root"
+      "group"     = "bin"
+      "mode"      = "0777"
+      "read_only" = "false"
+    },
+    {
+      "name"      = "frank-nfs-test"
+      "path"      = "/mnt/nfs/nonprod/test/files"
+      "owner"     = "root"
+      "group"     = "bin"
+      "mode"      = "0777"
+      "read_only" = "false"
+    },
+    {
+      "name"      = "frank-nfs-stage"
+      "path"      = "/mnt/nfs/nonprod/stage/files"
+      "owner"     = "root"
+      "group"     = "bin"
+      "mode"      = "0777"
+      "read_only" = "false"
+    },
+
+
+    // Uncomment this section when deploying for prod
+    {
+      "name"      = "frank-nomad-prod"
+      "path"      = "${data.vault_generic_secret.prod_minio_s3.data["host_mount_path"]}/default/files"
+      "owner"     = "root"
+      "group"     = "bin"
+      "mode"      = "0777"
+      "read_only" = "false"
+    },
+   */
+  ]
+
   known_hosts_user = "root"
   known_hosts_targets = [
     "bitbucket.org"
