@@ -1,7 +1,5 @@
 
 locals {
-  // streaming_minio_vault_path     = "${var.nomad_node_class}/minio/streaming"
-  // streaming_public_minio_vault_path     = "${var.nomad_node_class}/minio/streaming_public"
   growr_provisioned_disks = [
   //  {
   //    DEVICE_DRIVE              = "sdb"
