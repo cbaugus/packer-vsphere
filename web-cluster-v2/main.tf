@@ -26,8 +26,9 @@ module "cluster" {
   local_exec_user          = var.local_exec_user
 
   #S3/Growr overrides
-  provisioned_disks    = var.provisioned_disks
+  provisioned_disks       = var.provisioned_disks
   growr_provisioned_disks = local.growr_provisioned_disks
+  nomad_host_volumes      = var.nomad_host_volumes
 
   #Consul overrides
   consul_acl_agent_token      = var.consul_acl_token
