@@ -1,6 +1,6 @@
 module "cluster" {
   source  = "app.terraform.io/baugus-lab/cluster-module/vsphere"
-  version = "2.0.5"
+  version = "2.0.4"
 
   #Cluster vars
   num_instances      = var.num_instances
@@ -28,7 +28,6 @@ module "cluster" {
   #S3/Growr overrides
   provisioned_disks       = var.provisioned_disks
   growr_provisioned_disks = local.growr_provisioned_disks
-  nomad_host_volumes      = var.nomad_host_volumes
 
   #Consul overrides
   consul_acl_agent_token      = var.consul_acl_token
@@ -49,7 +48,7 @@ module "cluster" {
   nomad_options               = var.nomad_options
   nomad_plugins               = var.nomad_plugins
   nomad_meta                  = var.nomad_meta
-  //nomad_host_volumes          = var.nomad_host_volumes
+  nomad_host_volumes          = var.nomad_host_volumes
   nomad_consul_token          = var.nomad_node_token
   //nomad_consul_token          = var.consul_acl_token  //data.consul_acl_token_secret_id.nomad_client_token.secret_id
   //nomad_consul_token          = data.consul_acl_token_secret_id.nomad_client_token.secret_id
@@ -70,13 +69,8 @@ module "cluster" {
   known_hosts_user               = local.known_hosts_user
 
   #NFS Vars for Prod
-    nfs_mount_server   = "10.254.205.25:/mnt/fs-pool-a/nfs-root"
-    nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
-    nfs_mount_path     = "/mnt/nfs/prod"
-/*
- #NFS Vars for Nonprod
- nfs_mount_server   = "10.254.225.100:/mnt/disk-pool/nfs-root"
- nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
- nfs_mount_path     = "/mnt/nfs/nonprod"
-   */
+    nfs_mount_server   = var.nfs_mount_server
+    nfs_mount_options  = var.nfs_mount_options
+    nfs_mount_path     = var.nfs_mount_path
+
 }

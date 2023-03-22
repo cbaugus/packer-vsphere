@@ -19,6 +19,11 @@ env                = "prod"
 provisioned_disks = [
 ]
 
+#NFS Vars for Prod
+nfs_mount_server   = "10.254.205.25:/mnt/fs-pool-a/nfs-root"
+nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
+nfs_mount_path     = "/mnt/nfs/prod"
+
 nomad_host_volumes = [
   {
     "name"      = "frank-nfs-prod"
