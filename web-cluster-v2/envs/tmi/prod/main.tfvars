@@ -21,8 +21,8 @@ provisioned_disks = [
 
 nomad_host_volumes = [
   {
-    "name"      = "frank-nomad-prod"
-    "path"      = "/mnt/nfs/prod/prod/default/files"
+    "name"      = "frank-nfs-prod"
+    "path"      = "/mnt/nfs/prod/prod/files"
     "owner"     = "root"
     "group"     = "bin"
     "mode"      = "0777"
