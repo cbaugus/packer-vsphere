@@ -19,6 +19,17 @@ env                = "prod"
 provisioned_disks = [
 ]
 
+nomad_host_volumes = [
+  {
+    "name"      = "frank-nomad-prod"
+    "path"      = "/mnt/nfs/prod/prod/default/files"
+    "owner"     = "root"
+    "group"     = "bin"
+    "mode"      = "0777"
+    "read_only" = "false"
+  },
+]
+
 nomad_region                = "tmi"
 nomad_node_class            = "prod"
 nomad_purpose               = "web"
