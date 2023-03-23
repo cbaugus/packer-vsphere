@@ -1,6 +1,6 @@
 module "cluster" {
   source  = "app.terraform.io/baugus-lab/cluster-module/vsphere"
-  version = "2.0.4"
+  version = "2.0.6"
 
   #Cluster vars
   num_instances      = var.num_instances
@@ -49,9 +49,8 @@ module "cluster" {
   nomad_plugins               = var.nomad_plugins
   nomad_meta                  = var.nomad_meta
   nomad_host_volumes          = var.nomad_host_volumes
-  nomad_consul_token          = var.nomad_node_token
-  //nomad_consul_token          = var.consul_acl_token  //data.consul_acl_token_secret_id.nomad_client_token.secret_id
-  //nomad_consul_token          = data.consul_acl_token_secret_id.nomad_client_token.secret_id
+  nomad_node_token            = var.nomad_node_token
+
 
 
   #Vault overrides
