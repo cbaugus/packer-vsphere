@@ -34,8 +34,10 @@ echo "Consul provider credentials set"
 
 #This is used for the Consul agent to initially authenticate to the cluster
 export TF_VAR_consul_acl_token=$(vault read -format=json consul/creds/prod-web-node | jq '.data.token' | tr -d '"')
-export TF_VAR_nomad_node_token=$TF_VAR_consul_acl_token
 echo "Consul agent credentials set"
+
+export TF_VAR_nomad_node_token=$(vault read -format=json consul/creds/nomad-node | jq '.data.token' | tr -d '"')
+echo "Nomad Node Token set"
 
 #This is used for encrypted gossip communication (Serf) in the Consul cluster
 export TF_VAR_consul_raw_key=$(vault read -format=json ops/data/consul | jq '.data.data.gossip_key' | tr -d '"')
