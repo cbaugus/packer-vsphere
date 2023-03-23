@@ -49,7 +49,7 @@ module "cluster" {
   nomad_plugins               = var.nomad_plugins
   nomad_meta                  = var.nomad_meta
   nomad_host_volumes          = var.nomad_host_volumes
-  nomad_consul_token          = var.nomad_node_token
+  nomad_consul_token          = var.nomad_consul_token
   //nomad_consul_token          = var.consul_acl_token  //data.consul_acl_token_secret_id.nomad_client_token.secret_id
   //nomad_consul_token          = data.consul_acl_token_secret_id.nomad_client_token.secret_id
 

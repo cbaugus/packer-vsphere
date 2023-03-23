@@ -129,7 +129,7 @@ variable "nomad_node_class" {
   description = ""
   type        = string
 }
-variable "nomad_node_token" {
+variable "nomad_consul_token" {
   description = ""
   type        = string
 }
