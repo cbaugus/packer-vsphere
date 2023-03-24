@@ -17,6 +17,14 @@ name               = "wvw-v2"
 env                = "dev"
 
 provisioned_disks = [
+  {
+    device_drive              = "sdb"
+    label                     = "wvw-data"
+    disk_size                 = "large"
+    thin_provisioned          = "true"
+    eagerly_scrub             = "false"
+    data_disk_scsi_controller = "0"
+  }
 ]
 
 #NFS Vars for Prod
