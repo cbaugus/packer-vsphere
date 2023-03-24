@@ -129,7 +129,7 @@ variable "nomad_node_class" {
   description = ""
   type        = string
 }
-variable "nomad_node_token" {
+variable "nomad_consul_token" {
   description = ""
   type        = string
 }
@@ -161,6 +161,19 @@ variable "nomad_plugins" {
   description = ""
   type        = any
   default     = {}
+}
+########## DOCKER ##########
+variable "nfs_mount_server" {
+  description = ""
+  type        = any
+}
+variable "nfs_mount_options" {
+  description = ""
+  type        = any
+}
+variable "nfs_mount_path" {
+  description = ""
+  type        = any
 }
 ########## DOCKER ##########
 variable "docker_vault_login" {
