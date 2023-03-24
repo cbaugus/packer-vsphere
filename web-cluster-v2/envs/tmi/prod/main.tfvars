@@ -17,6 +17,14 @@ name               = "web-v2"
 env                = "prod"
 
 provisioned_disks = [
+  {
+    device_drive              = "sdb"
+    label                     = "sqldata"
+    disk_size                 = "large"
+    thin_provisioned          = "true"
+    eagerly_scrub             = "false"
+    data_disk_scsi_controller = "0"
+  }
 ]
 
 #NFS Vars for Prod
