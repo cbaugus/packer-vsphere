@@ -4,7 +4,7 @@ vsphere_resource_pool   = "tmi-w01-dc01/tmi-w01-cl01-dev/Resources"
 vsphere_datastore       = "troy-nonprod-ds-vsan"
 vsphere_network         = "tmi-w01-cl01-dev-vds02-pg-web-220"
 vsphere_folder          = "nonprod/wvw"
-vsphere_template        = "debian-11.6-prod"
+vsphere_template        = "debian-11.6-nonprod"
 
 
 name_prefix             = "wvw-v2"
