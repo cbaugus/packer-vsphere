@@ -5,7 +5,7 @@ locals {
   growr_provisioned_disks = [
     {
       DEVICE_DRIVE              = "sdb"
-      LABEL                     = "data"
+      LABEL                     = "elastic"
     }
   ]
   s3_provisioned_disks = []
