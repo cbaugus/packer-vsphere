@@ -66,9 +66,4 @@ module "cluster" {
   known_hosts_targets            = local.known_hosts_targets
   known_hosts_user               = local.known_hosts_user
 
-  #NFS Vars for Prod
-    nfs_mount_server   = var.nfs_mount_server
-    nfs_mount_options  = var.nfs_mount_options
-    nfs_mount_path     = var.nfs_mount_path
-
 }
