@@ -3,11 +3,11 @@ module "cluster" {
   version = "2.1.2"
 
   #Cluster vars
-  num_instances      = var.num_instances
+  num_instances    = var.num_instances
   cores_count_type = var.resource_pool_type
   mem_size_type    = var.resource_pool_type
   disk_size_type   = "medium"
-  name_prefix        = "${var.name}-${var.nomad_node_class}"
+  name_prefix      = "${var.name}"
 
   #vSphere required inputs
   vsphere_compute_cluster = var.vsphere_compute_cluster
