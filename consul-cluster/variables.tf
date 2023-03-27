@@ -163,18 +163,18 @@ variable "nomad_plugins" {
   default     = {}
 }
 ########## DOCKER ##########
-variable "nfs_mount_server" {
-  description = ""
-  type        = any
-}
-variable "nfs_mount_options" {
-  description = ""
-  type        = any
-}
-variable "nfs_mount_path" {
-  description = ""
-  type        = any
-}
+#variable "nfs_mount_server" {
+#  description = ""
+#  type        = any
+#}
+#variable "nfs_mount_options" {
+#  description = ""
+#  type        = any
+#}
+#variable "nfs_mount_path" {
+#  description = ""
+#  type        = any
+#}
 ########## DOCKER ##########
 variable "docker_vault_login" {
   description = ""
