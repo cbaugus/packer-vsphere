@@ -1,42 +1,42 @@
 vsphere_datacenter      = "tmi-w01-dc01"
-vsphere_compute_cluster = "tmi-w01-cl01-prod"
-vsphere_resource_pool   = "tmi-w01-dc01/tmi-w01-cl01-prod/Resources"
-vsphere_datastore       = "tmi-w01-cl01-prod-ds-vsan01"
-vsphere_network         = "tmi-w01-cl01-vds01-pg-web-200"
-vsphere_folder          = "prod/web"
-vsphere_template        = "debian-11.6-prod"
+vsphere_compute_cluster = "tmi-w01-cl01-dev"
+vsphere_resource_pool   = "tmi-w01-dc01/tmi-w01-cl01-dev/Resources"
+vsphere_datastore       = "troy-nonprod-ds-vsan"
+vsphere_network         = "tmi-w01-cl01-dev-vds02-pg-web-220"
+vsphere_folder          = "nonprod/wvw"
+vsphere_template        = "debian-11.6-nonprod"
 
 
-name_prefix             = "web-v2"
+name_prefix             = "wvw-v2"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
-num_instances      = "15"
-resource_pool_type = "xxl"
-name               = "web-v2"
-env                = "prod"
+num_instances      = "1"
+resource_pool_type = "xl"
+name               = "wvw-v2"
+env                = "dev"
 
 provisioned_disks = [
-
+  {
+    device_drive              = "sdb"
+    label                     = "wvw-data"
+    disk_size                 = "large"
+    thin_provisioned          = "true"
+    eagerly_scrub             = "false"
+    data_disk_scsi_controller = "0"
+  }
 ]
 
 #NFS Vars for Prod
-nfs_mount_server   = "10.254.205.25:/mnt/fs-pool-a/nfs-root"
+nfs_mount_server   = "10.254.225.97:/mnt/disk-pool/nfs-root"
 nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
-nfs_mount_path     = "/mnt/nfs/prod"
-
-/*
- #NFS Vars for Nonprod
- nfs_mount_server   = "10.254.225.100:/mnt/disk-pool/nfs-root"
- nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
- nfs_mount_path     = "/mnt/nfs/nonprod"
-*/
+nfs_mount_path     = "/mnt/nfs/nonprod"
 
 
 nomad_host_volumes = [
   {
     "name"      = "frank-nfs-prod"
-    "path"      = "/mnt/nfs/prod/prod/files"
+    "path"      = "/mnt/nfs/nonprod/wvw/dev"
     "owner"     = "root"
     "group"     = "bin"
     "mode"      = "0777"
@@ -55,7 +55,7 @@ nomad_options = {
 }
 nomad_meta = {
   "node-switcher" = "on"
-  "purpose"       = "web"
+  "purpose"       = "wvw"
 }
 
 
@@ -89,5 +89,5 @@ vault_docker_secrets = [
   }
 ]
 
-vault_consul_role_cluster_type = "prod-web"
+vault_consul_role_cluster_type = "nonprod-web"
 
