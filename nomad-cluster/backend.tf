@@ -4,7 +4,7 @@ terraform {
     organization = "JohnstonHowse"
 
     workspaces {
-      prefix = "consul-cluster-"
+      prefix = "nomad-cluster-"
     }
   }
 }
