@@ -11,7 +11,7 @@ name_prefix             = "vault"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
-num_instances      = "3"
+num_instances      = "4"
 resource_pool_type = "xxl"
 name               = "vault"
 env                = "prod"
