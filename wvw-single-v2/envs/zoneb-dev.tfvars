@@ -8,6 +8,7 @@ vsphere_template        = "debian-11.6-prod"
 
 
 name_prefix             = "wvw-v2"
+consul_acl_datacenter   = "tmi-zonb"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
@@ -44,7 +45,8 @@ nomad_host_volumes = [
   },
 ]
 
-nomad_region                = "tmi"
+nomad_datacenter            = "tmi"
+nomad_region                = "zoneb"
 nomad_node_class            = "dev"
 nomad_purpose               = "web"
 nomad_vault_address         = "https://vault.service.tmi-w01-dc01.consul:8200"
