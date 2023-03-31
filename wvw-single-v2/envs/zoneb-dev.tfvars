@@ -45,7 +45,7 @@ nomad_host_volumes = [
 ]
 
 nomad_region                = "tmi"
-nomad_node_class            = "prod"
+nomad_node_class            = "dev"
 nomad_purpose               = "web"
 nomad_vault_address         = "https://vault.service.tmi-w01-dc01.consul:8200"
 nomad_vault_tls_skip_verify = "yes"
