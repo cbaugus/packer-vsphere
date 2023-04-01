@@ -8,7 +8,7 @@ vsphere_template        = "debian-11.6-prod"
 
 
 name_prefix             = "wvw-v2"
-consul_datacenter   = "tmi-zonb"
+consul_datacenter       = "tmi-zoneb"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
