@@ -16,6 +16,7 @@ module "cluster" {
   vsphere_network         = var.vsphere_network
   vsphere_folder          = var.vsphere_folder
   vsphere_template        = var.vsphere_template
+  vsphere_server            = var.vsphere_server
   vsphere_user            = var.vsphere_user
   vsphere_pass            = var.vsphere_pass
 
@@ -32,6 +33,7 @@ module "cluster" {
   #Consul overrides
   consul_acl_agent_token      = var.consul_acl_token
   consul_acl_token            = var.consul_acl_token
+  consul_datacenter           = var.consul_datacenter
   consul_pass    = var.consul_pass
   consul_raw_key = var.consul_raw_key
   consul_iptables_enable = "false"
@@ -41,6 +43,7 @@ module "cluster" {
 
   #Nomad overrides
   nomad_region                = var.nomad_region
+  nomad_datacenter            = var.nomad_datacenter
   nomad_node_class            = var.nomad_node_class
   nomad_purpose               = var.nomad_purpose
   nomad_vault_address         = var.nomad_vault_address
