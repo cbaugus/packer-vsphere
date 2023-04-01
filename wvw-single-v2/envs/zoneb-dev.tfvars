@@ -36,8 +36,8 @@ nfs_mount_path     = "/mnt/nfs/nonprod"
 
 nomad_host_volumes = [
   {
-    "name"      = "frank-nfs-prod"
-    "path"      = "/mnt/nfs/nonprod/wvw/dev"
+    "name"      = "host_volume"
+    "path"      = "/mnt/local/"
     "owner"     = "root"
     "group"     = "bin"
     "mode"      = "0777"
@@ -49,7 +49,7 @@ nomad_datacenter            = "tmi"
 nomad_region                = "zoneb"
 nomad_node_class            = "dev"
 nomad_purpose               = "web"
-nomad_vault_address         = "https://vault.service.tmi-w01-dc01.consul:8200"
+nomad_vault_address         = "https://vault.service.consul:8200"
 nomad_vault_tls_skip_verify = "yes"
 nomad_options = {
   "driver.raw_exec.enable" = "1"
