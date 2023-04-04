@@ -4,7 +4,7 @@ terraform {
     organization = "JohnstonHowse"
 
     workspaces {
-      prefix = "wvw-single-v2-"
+      prefix = "waypoint-v2-"
     }
   }
 }
