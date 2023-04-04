@@ -15,7 +15,7 @@ consul_src_def          = "/opt/devops-local/ssl/certs"
 num_instances      = "1"
 resource_pool_type = "xxl"
 name               = "waypoint"
-env                = "dev"
+env                = "prod"
 
 provisioned_disks = [
   {
@@ -47,7 +47,7 @@ nomad_host_volumes = [
 
 nomad_datacenter            = "tmi"
 nomad_region                = "zoneb"
-nomad_node_class            = "ops"
+nomad_node_class            = "prod"
 nomad_purpose               = "waypoint"
 nomad_vault_address         = "https://vault.service.consul:8200"
 nomad_vault_tls_skip_verify = "yes"

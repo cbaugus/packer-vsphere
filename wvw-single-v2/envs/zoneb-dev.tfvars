@@ -1,6 +1,6 @@
 vsphere_datacenter      = "TMI"
 vsphere_compute_cluster = "Zone-B"
-vsphere_resource_pool   = "NonProd"
+vsphere_resource_pool   = "OPS"
 vsphere_datastore       = "Zone-B-vSAN"
 vsphere_network         = "180-Web-ZoneB-NonProd"
 vsphere_folder          = "NonProd/wvw"
