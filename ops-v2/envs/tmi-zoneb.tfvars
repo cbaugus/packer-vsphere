@@ -1,27 +1,27 @@
 vsphere_datacenter      = "TMI"
 vsphere_compute_cluster = "Zone-B"
-vsphere_resource_pool   = "Prod"
+vsphere_resource_pool   = "OPS"
 vsphere_datastore       = "Zone-B-vSAN"
 vsphere_network         = "175-OPS-ZoneB-Prod"
 vsphere_folder          = "Prod/ops"
 vsphere_template        = "debian-11.6-prod"
 
 
-name_prefix             = "waypoint"
+name_prefix             = "ops"
 consul_datacenter       = "tmi-zoneb"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
-num_instances      = "1"
+num_instances      = "4"
 resource_pool_type = "xxl"
-name               = "waypoint"
+name               = "ops"
 env                = "prod"
 
 provisioned_disks = [
   {
     device_drive              = "sdb"
     label                     = "waypoint-data"
-    disk_size                 = "large"
+    disk_size                 = "xxxl"
     thin_provisioned          = "true"
     eagerly_scrub             = "false"
     data_disk_scsi_controller = "0"
@@ -48,7 +48,7 @@ nomad_host_volumes = [
 nomad_datacenter            = "tmi"
 nomad_region                = "zoneb"
 nomad_node_class            = "prod"
-nomad_purpose               = "waypoint"
+nomad_purpose               = "ops"
 nomad_vault_address         = "https://vault.service.consul:8200"
 nomad_vault_tls_skip_verify = "yes"
 nomad_options = {
@@ -57,7 +57,7 @@ nomad_options = {
 }
 nomad_meta = {
   "node-switcher" = "on"
-  "purpose"       = "wvw"
+  "purpose"       = "ops"
 }
 
 
@@ -91,6 +91,6 @@ vault_docker_secrets = [
   }
 ]
 
-vault_consul_role_cluster_type = "prod-waypoint"
+vault_consul_role_cluster_type = "prod-ops"
 
 vault_server_url = "https://vault.service.tmi-zoneb.consul:8200"
