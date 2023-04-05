@@ -21,7 +21,7 @@ provisioned_disks = [
   {
     device_drive              = "sdb"
     label                     = "waypoint-data"
-    disk_size                 = "xxxxl"
+    disk_size                 = "4xl"
     thin_provisioned          = "true"
     eagerly_scrub             = "false"
     data_disk_scsi_controller = "0"
