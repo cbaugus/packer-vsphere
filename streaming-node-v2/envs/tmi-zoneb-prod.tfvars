@@ -18,14 +18,31 @@ name               = "streaming"
 env                = "prod"
 
 provisioned_disks = [
-
+  {
+    device_drive              = "sdb"
+    label                     = "waypoint-data"
+    disk_size                 = "nano"
+    thin_provisioned          = "true"
+    eagerly_scrub             = "false"
+    data_disk_scsi_controller = "0"
+  }
 ]
 
-
+#NFS Vars for Prod
+nfs_mount_server   = "10.254.225.97:/mnt/disk-pool/nfs-root"
+nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
+nfs_mount_path     = "/mnt/nfs/nonprod"
 
 
 nomad_host_volumes = [
-
+  {
+    "name"      = "host_volume"
+    "path"      = "/mnt/local/"
+    "owner"     = "root"
+    "group"     = "bin"
+    "mode"      = "0777"
+    "read_only" = "false"
+  },
 ]
 
 nomad_datacenter            = "tmi"
