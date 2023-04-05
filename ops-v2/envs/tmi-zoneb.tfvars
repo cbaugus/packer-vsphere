@@ -13,7 +13,7 @@ consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
 num_instances      = "4"
-resource_pool_type = "4xl"
+resource_pool_type = "xl"
 name               = "ops"
 env                = "prod"
 
@@ -21,7 +21,7 @@ provisioned_disks = [
   {
     device_drive              = "sdb"
     label                     = "waypoint-data"
-    disk_size                 = "xxxl"
+    disk_size                 = "xxxxl"
     thin_provisioned          = "true"
     eagerly_scrub             = "false"
     data_disk_scsi_controller = "0"
