@@ -3,7 +3,7 @@ vsphere_compute_cluster = "Zone-B"
 vsphere_resource_pool   = "NonProd"
 vsphere_datastore       = "Zone-B-vSAN"
 vsphere_network         = "183-Streaming-ZoneB-NonProd"
-vsphere_folder          = "Prod/ops"
+vsphere_folder          = "Prod/Streaming"
 vsphere_template        = "debian-11.6-prod"
 
 
