@@ -1,6 +1,6 @@
 module "cluster" {
   source  = "app.terraform.io/baugus-lab/cluster-module/vsphere"
-  version = "2.0.4"
+  version = "2.1.6"
 
   #Cluster vars
   num_instances      = var.num_instances
@@ -16,23 +16,24 @@ module "cluster" {
   vsphere_network         = var.vsphere_network
   vsphere_folder          = var.vsphere_folder
   vsphere_template        = var.vsphere_template
+  vsphere_server            = var.vsphere_server
   vsphere_user            = var.vsphere_user
   vsphere_pass            = var.vsphere_pass
 
   #Terraform Provisioner required inputs
-  path_to_ansible          = "../../ansible-deployments/cluster-bootstrap.yml"
+  path_to_ansible          = "../../ansible-deployments/streaming-bootstrap.yml"
   remote_exec_ssh_key_file = var.remote_exec_ssh_key_file
   local_exec_ssh_key_file  = var.local_exec_ssh_key_file
   local_exec_user          = var.local_exec_user
 
   #S3/Growr overrides
-  provisioned_disks    = var.provisioned_disks
-  s3_provisioned_disks = local.s3_provisioned_disks
+  provisioned_disks       = var.provisioned_disks
   growr_provisioned_disks = local.growr_provisioned_disks
 
   #Consul overrides
   consul_acl_agent_token      = var.consul_acl_token
   consul_acl_token            = var.consul_acl_token
+  consul_datacenter           = var.consul_datacenter
   consul_pass    = var.consul_pass
   consul_raw_key = var.consul_raw_key
   consul_iptables_enable = "false"
@@ -42,6 +43,7 @@ module "cluster" {
 
   #Nomad overrides
   nomad_region                = var.nomad_region
+  nomad_datacenter            = var.nomad_datacenter
   nomad_node_class            = var.nomad_node_class
   nomad_purpose               = var.nomad_purpose
   nomad_vault_address         = var.nomad_vault_address
@@ -50,9 +52,7 @@ module "cluster" {
   nomad_plugins               = var.nomad_plugins
   nomad_meta                  = var.nomad_meta
   nomad_host_volumes          = var.nomad_host_volumes
-  nomad_consul_token          = var.consul_acl_token
-  //nomad_consul_token          = var.consul_acl_token  //data.consul_acl_token_secret_id.nomad_client_token.secret_id
-  //nomad_consul_token          = data.consul_acl_token_secret_id.nomad_client_token.secret_id
+  nomad_consul_token          = var.nomad_consul_token
 
 
   #Vault overrides
@@ -68,4 +68,10 @@ module "cluster" {
   #Known Hosts
   known_hosts_targets            = local.known_hosts_targets
   known_hosts_user               = local.known_hosts_user
+
+  #NFS Vars for Prod
+    nfs_mount_server   = var.nfs_mount_server
+    nfs_mount_options  = var.nfs_mount_options
+    nfs_mount_path     = var.nfs_mount_path
+
 }
