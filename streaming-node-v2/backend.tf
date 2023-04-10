@@ -1,7 +1,7 @@
 terraform {
   backend "remote" {
     hostname     = "app.terraform.io"
-    organization = "JohnstonHowse"
+    organization = "frankspeech"
 
     workspaces {
       prefix = "streaming-v2-"
