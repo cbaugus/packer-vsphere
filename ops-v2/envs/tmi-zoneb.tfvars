@@ -63,22 +63,6 @@ nomad_meta = {
 
 // https://man7.org/linux/man-pages/man7/capabilities.7.html
 // https://www.nomadproject.io/docs/configuration/plugin
-nomad_plugins = {
-  "docker" = {
-    "config" = {
-      "auth" = {
-        //"config" = "/etc/docker-auth.json"
-        "helper" = "vault-login"
-      }
-      "gc" = {
-        "image" = true
-      }
-      "volumes" = {
-        "enabled" = true
-      }
-    }
-  }
-}
 
 docker_vault_login = {
   "config_path" = "/etc/vault/agent.hcl"

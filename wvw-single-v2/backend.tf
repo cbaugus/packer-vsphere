@@ -1,10 +1,10 @@
 terraform {
   backend "remote" {
     hostname     = "app.terraform.io"
-    organization = "JohnstonHowse"
+    organization = "frankspeech"
 
     workspaces {
-      prefix = "wvw-single-v2-"
+      prefix = "wvw-v2-"
     }
   }
 }
