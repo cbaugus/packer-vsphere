@@ -94,10 +94,10 @@ variable "provisioned_disks" {
   type        = any
 }
 ########## CONSUL ##########
-variable "consul_dnsmasq_servers" {
-  description = ""
-  type        = any
-}
+//variable "consul_dnsmasq_servers" {
+//  description = ""
+//  type        = any
+//}
 
 variable "consul_pass" {
   description = ""
