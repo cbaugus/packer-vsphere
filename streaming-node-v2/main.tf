@@ -38,7 +38,7 @@ module "cluster" {
   consul_raw_key = var.consul_raw_key
   consul_iptables_enable = "false"
   consul_dnsmasq_enable = "True"
-  consul_dnsmasq_servers = var.consul_dnsmasq_servers
+  consul_dnsmasq_servers = [ "10.254/175.10:", "10.254.175.11" ]
   consul_dnsmasq_revservers = [ "10.254.0.0/16" ]
 
   #Nomad overrides
