@@ -6,6 +6,7 @@ vsphere_network         = "175-OPS-ZoneB-Prod"
 vsphere_folder          = "Prod/ops"
 vsphere_template        = "debian-11.6-prod"
 
+consul_dnsmasq_servers = [ "10.254.175.10",  "10.254.175.11" ]
 
 name_prefix             = "ops"
 consul_datacenter       = "tmi-zoneb"
@@ -21,7 +22,7 @@ provisioned_disks = [
   {
     device_drive              = "sdb"
     label                     = "waypoint-data"
-    disk_size                 = "4xl"
+    disk_size                 = "xxxxl"
     thin_provisioned          = "true"
     eagerly_scrub             = "false"
     data_disk_scsi_controller = "0"
