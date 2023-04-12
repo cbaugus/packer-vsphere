@@ -12,7 +12,7 @@ consul_datacenter       = "tmi-zoneb"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
-num_instances      = "4"
+num_instances      = "8"
 resource_pool_type = "xxxl"
 name               = "streaming"
 env                = "prod"
@@ -64,20 +64,7 @@ nomad_meta = {
 // https://man7.org/linux/man-pages/man7/capabilities.7.html
 // https://www.nomadproject.io/docs/configuration/plugin
 nomad_plugins = {
-  "docker" = {
-    "config" = {
-      "auth" = {
-        //"config" = "/etc/docker-auth.json"
-        "helper" = "vault-login"
-      }
-      "gc" = {
-        "image" = true
-      }
-      "volumes" = {
-        "enabled" = true
-      }
-    }
-  }
+
 }
 
 docker_vault_login = {
