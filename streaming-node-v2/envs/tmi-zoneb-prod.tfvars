@@ -7,12 +7,8 @@ vsphere_folder          = "Prod/Streaming"
 vsphere_template        = "debian-11.6-prod"
 
 consul_dnsmasq_servers = [
-  {
-    "ip"      = "10.254.175.10"
-  },
-  {
-    "ip"      = "10.254.175.11"
-  },
+  { ip = "10.254.175.10" },
+  { ip = "10.254.175.11" },
 ]
 
 name_prefix             = "streaming"
