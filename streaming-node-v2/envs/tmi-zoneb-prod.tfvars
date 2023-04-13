@@ -2,7 +2,7 @@ vsphere_datacenter      = "TMI"
 vsphere_compute_cluster = "Zone-B"
 vsphere_resource_pool   = "Prod"
 vsphere_datastore       = "Zone-B-vSAN"
-vsphere_network         = "173-Streaming-ZoneB-Prod"
+vsphere_network         = "170-Streaming-ZoneB-Prod"
 vsphere_folder          = "Prod/Streaming"
 vsphere_template        = "debian-11.6-prod"
 
@@ -20,7 +20,7 @@ env                = "prod"
 provisioned_disks = [
   {
     device_drive              = "sdb"
-    label                     = "waypoint-data"
+    label                     = "data"
     disk_size                 = "nano"
     thin_provisioned          = "true"
     eagerly_scrub             = "false"
