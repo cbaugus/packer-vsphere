@@ -9,7 +9,8 @@
 # 1. Run "source ./auth.sh"
 
 # TODO: Interpolate paths to secrets based on DC (don't hard-code DC)
-
+printf "Environment (nonprod or prod): "
+read env
 
 
 #vSphere provider credentials
@@ -33,8 +34,11 @@ export TF_VAR_consul_provider_token=$(vault read -format=json consul/creds/opera
 echo "Consul provider credentials set"
 
 #This is used for the Consul agent to initially authenticate to the cluster
-export TF_VAR_consul_acl_token=$(vault read -format=json consul/creds/streaming-node | jq '.data.token' | tr -d '"')
+export TF_VAR_consul_acl_token=$(vault read -format=json consul/creds/${env}-streaming-node | jq '.data.token' | tr -d '"')
 echo "Consul agent credentials set"
+
+export TF_VAR_nomad_consul_token=$(vault read -format=json consul/creds/nomad-node | jq '.data.token' | tr -d '"')
+echo "Nomad Node Token set"
 
 #This is used for encrypted gossip communication (Serf) in the Consul cluster
 export TF_VAR_consul_raw_key=$(vault read -format=json ops/data/consul | jq '.data.data.gossip_key' | tr -d '"')
@@ -47,8 +51,6 @@ echo "Vault Agent auto-auth credentials set"
 
 #These are used by the Vault provider to authenticate to Vault
 export TF_VAR_vault_server_url="https://vault.service.${datacenter}.consul:8200"
-export TF_VAR_vault_approle_id=$(vault read -format=json auth/approle/role/terraform/role-id | jq '.data.role_id' | tr -d '"' )
-export TF_VAR_vault_approle_secret_id=$(vault write -f -format=json auth/approle/role/terraform/secret-id | jq '.data.secret_id' | tr -d '"' )
 echo "Vault provider credentials set"
 
 export TF_VAR_remote_exec_ssh_key_file="~/.ssh/frank/cicduser"
