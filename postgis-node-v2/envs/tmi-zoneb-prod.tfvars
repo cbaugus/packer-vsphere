@@ -78,6 +78,6 @@ vault_docker_secrets = [
  # }
 ]
 
-vault_consul_role_cluster_type = "postgis"
+vault_consul_role_cluster_type = "prod-postgis"
 
 vault_server_url = "https://vault.service.tmi-zoneb.consul:8200"
