@@ -21,7 +21,7 @@ provisioned_disks = [
   {
     device_drive              = "sdb"
     label                     = "data"
-    disk_size                 = "nano"
+    disk_size                 = "xxxxxl"
     thin_provisioned          = "true"
     eagerly_scrub             = "false"
     data_disk_scsi_controller = "0"
