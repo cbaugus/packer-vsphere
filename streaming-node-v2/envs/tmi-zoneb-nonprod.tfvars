@@ -2,18 +2,18 @@ vsphere_datacenter      = "TMI"
 vsphere_compute_cluster = "Zone-B"
 vsphere_resource_pool   = "NonProd"
 vsphere_datastore       = "Zone-B-vSAN"
-vsphere_network         = "183-Streaming-ZoneB-NonProd"
-vsphere_folder          = "Prod/Streaming"
+vsphere_network         = "183-Storage-ZoneB-NonProd"
+vsphere_folder          = "Prod/Storage"
 vsphere_template        = "debian-11.6-prod"
 
-name_prefix             = "streaming"
+name_prefix             = "storage"
 consul_datacenter       = "tmi-zoneb"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
 num_instances      = "2"
 resource_pool_type = "xxxl"
-name               = "streaming"
+name               = "storage"
 env                = "dev"
 
 provisioned_disks = [
@@ -47,7 +47,7 @@ nomad_host_volumes = [
 nomad_datacenter            = "tmi"
 nomad_region                = "zoneb"
 nomad_node_class            = "dev"
-nomad_purpose               = "streaming"
+nomad_purpose               = "storage"
 nomad_vault_address         = "https://vault.service.consul:8200"
 nomad_vault_tls_skip_verify = "yes"
 nomad_options = {
@@ -56,7 +56,7 @@ nomad_options = {
 }
 nomad_meta = {
   "node-switcher" = "on"
-  "purpose"       = "streaming"
+  "purpose"       = "storage"
 }
 
 
@@ -90,6 +90,6 @@ vault_docker_secrets = [
   }
 ]
 
-vault_consul_role_cluster_type = "streaming"
+vault_consul_role_cluster_type = "storage"
 
 vault_server_url = "https://vault.service.tmi-zoneb.consul:8200"
