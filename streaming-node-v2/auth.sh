@@ -40,6 +40,9 @@ echo "Consul agent credentials set"
 export TF_VAR_nomad_consul_token=$(vault read -format=json consul/creds/nomad-node | jq '.data.token' | tr -d '"')
 echo "Nomad Node Token set"
 
+export TF_VAR_nomad_vault_token=$(vault token create -policy nomad-server -period 72h -orphan)
+echo "Nomad Vault Token set"
+
 #This is used for encrypted gossip communication (Serf) in the Consul cluster
 export TF_VAR_consul_raw_key=$(vault read -format=json ops/data/consul | jq '.data.data.gossip_key' | tr -d '"')
 echo "Consul gossip key set"
