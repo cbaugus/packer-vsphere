@@ -47,7 +47,7 @@ nomad_host_volumes = [
 nomad_datacenter            = "tmi"
 nomad_region                = "zoneb"
 nomad_node_class            = "dev"
-nomad_purpose               = "storage"
+nomad_purpose               = "streaming"
 nomad_vault_address         = "https://vault.service.consul:8200"
 nomad_vault_tls_skip_verify = "yes"
 nomad_options = {
@@ -56,27 +56,13 @@ nomad_options = {
 }
 nomad_meta = {
   "node-switcher" = "on"
-  "purpose"       = "storage"
+  "purpose"       = "streaming"
 }
 
 
 // https://man7.org/linux/man-pages/man7/capabilities.7.html
 // https://www.nomadproject.io/docs/configuration/plugin
 nomad_plugins = {
-  "docker" = {
-    "config" = {
-      "auth" = {
-        //"config" = "/etc/docker-auth.json"
-        "helper" = "vault-login"
-      }
-      "gc" = {
-        "image" = true
-      }
-      "volumes" = {
-        "enabled" = true
-      }
-    }
-  }
 }
 
 docker_vault_login = {
@@ -90,6 +76,6 @@ vault_docker_secrets = [
   }
 ]
 
-vault_consul_role_cluster_type = "storage"
+vault_consul_role_cluster_type = "nonprod-streaming"
 
 vault_server_url = "https://vault.service.tmi-zoneb.consul:8200"
