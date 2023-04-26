@@ -147,6 +147,10 @@ variable "nomad_consul_token" {
   description = ""
   type        = string
 }
+variable "nomad_vault_token" {
+  description = ""
+  type        = string
+}
 variable "nomad_purpose" {
   description = ""
   type        = string

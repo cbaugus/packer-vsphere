@@ -12,7 +12,7 @@ consul_datacenter       = "tmi-zoneb"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
-num_instances      = "12"
+num_instances      = "10"
 resource_pool_type = "xl"
 name               = "streaming-web"
 env                = "prod"
@@ -78,6 +78,6 @@ vault_docker_secrets = [
  # }
 ]
 
-vault_consul_role_cluster_type = "streaming"
+vault_consul_role_cluster_type = "prod-streaming"
 
 vault_server_url = "https://vault.service.tmi-zoneb.consul:8200"
