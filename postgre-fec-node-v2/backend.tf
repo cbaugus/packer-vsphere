@@ -4,7 +4,7 @@ terraform {
     organization = "frankspeech"
 
     workspaces {
-      prefix = "postgis-v2-"
+      prefix = "postgre-fec-v2-"
     }
   }
 }
