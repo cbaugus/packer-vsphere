@@ -69,6 +69,6 @@ docker_vault_login = {
 vault_docker_secrets = [
 ]
 
-vault_consul_role_cluster_type = "prod-postgre-fec"
+vault_consul_role_cluster_type = "prod-pg"
 
 vault_server_url = "https://vault.service.tmi-zoneb.consul:8200"
