@@ -29,11 +29,13 @@ provisioned_disks = [
 ]
 
 #NFS Vars for Prod
+nfs_configure      = "false"
 nfs_mount_server   = "10.254.225.97:/mnt/disk-pool/nfs-root"
 nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
 nfs_mount_path     = "/mnt/nfs/nonprod"
 
 
+nomad_host_folder = "/mnt/local/elk
 nomad_host_volumes = [
   {
     "name"      = "elk"
@@ -62,12 +64,6 @@ nomad_meta = {
 
 nomad_plugins = {
 }
-
-docker_vault_login = {
-}
-
-vault_docker_secrets = [
-]
 
 vault_consul_role_cluster_type = "prod-elk"
 
