@@ -35,7 +35,7 @@ nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
 nfs_mount_path     = "/mnt/nfs/nonprod"
 
 
-nomad_host_folder = "/mnt/local/elk
+nomad_host_folder = "/mnt/local/elk"
 nomad_host_volumes = [
   {
     "name"      = "elk"
