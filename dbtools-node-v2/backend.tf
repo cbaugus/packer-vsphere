@@ -4,7 +4,7 @@ terraform {
     organization = "frankspeech"
 
     workspaces {
-      prefix = "elk-v2-"
+      prefix = "dbtools-v2-"
     }
   }
 }
