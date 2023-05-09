@@ -3,7 +3,7 @@ vsphere_compute_cluster = "Zone-B"
 vsphere_resource_pool   = "OPS"
 vsphere_datastore       = "Zone-B-vSAN"
 vsphere_network         = "170-Web-ZoneB-Prod"
-vsphere_folder          = "Prod/swiss"
+vsphere_folder          = "Prod/Swiss"
 vsphere_template        = "debian-11.6-prod"
 
 
