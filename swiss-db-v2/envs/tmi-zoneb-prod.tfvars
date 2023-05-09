@@ -20,7 +20,7 @@ env                = "prod"
 provisioned_disks = [
   {
     device_drive              = "sdb"
-    label                     = "data"
+    label                     = "mysql"
     disk_size                 = "xxl"
     thin_provisioned          = "true"
     eagerly_scrub             = "false"
@@ -38,8 +38,8 @@ nfs_mount_path     = "/mnt/nfs/nonprod"
 nomad_host_folder = "/mnt/local/mysql"
 nomad_host_volumes = [
   {
-    "name"      = "data"
-    "path"      = "/mnt/local/data"
+    "name"      = "mysql"
+    "path"      = "/mnt/local/mysql"
     "owner"     = "root"
     "group"     = "bin"
     "mode"      = "0777"
