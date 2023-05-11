@@ -12,7 +12,7 @@ consul_datacenter       = "tmi-zoneb"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
-num_instances      = "2"
+num_instances      = "3"
 resource_pool_type = "xxl"
 name               = "mongodb-social"
 env                = "prod"
@@ -20,7 +20,7 @@ env                = "prod"
 provisioned_disks = [
   {
     device_drive              = "sdb"
-    label                     = "mysql"
+    label                     = "mongodb"
     disk_size                 = "xxxl"
     thin_provisioned          = "true"
     eagerly_scrub             = "false"
@@ -38,7 +38,7 @@ nfs_mount_path     = "/mnt/nfs/nonprod"
 nomad_host_folder = "/mnt/local/mongodb"
 nomad_host_volumes = [
   {
-    "name"      = "mysql"
+    "name"      = "mongodb"
     "path"      = "/mnt/local/mongodb"
     "owner"     = "root"
     "group"     = "bin"
