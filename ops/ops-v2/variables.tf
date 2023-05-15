@@ -94,10 +94,10 @@ variable "provisioned_disks" {
   type        = any
 }
 ########## CONSUL ##########
-variable "consul_dnsmasq_servers" {
-  description = ""
-  type        = any
-}
+//variable "consul_dnsmasq_servers" {
+//  description = ""
+//  type        = any
+//}
 
 variable "consul_pass" {
   description = ""
@@ -167,6 +167,11 @@ variable "nomad_meta" {
   description = ""
   type        = any
 }
+
+variable "nomad_host_folder" {
+  description = ""
+  type        = any
+}
 variable "nomad_host_volumes" {
   description = ""
   type        = any
@@ -177,6 +182,11 @@ variable "nomad_plugins" {
   default     = {}
 }
 ########## DOCKER ##########
+
+variable "nfs_configure" {
+  description = ""
+  type        = any
+}
 variable "nfs_mount_server" {
   description = ""
   type        = any

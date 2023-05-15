@@ -1,6 +1,6 @@
 module "cluster" {
   source  = "app.terraform.io/baugus-lab/cluster-module/vsphere"
-  version = "2.1.8"
+  version = "2.1.11"
 
   #Cluster vars
   num_instances      = var.num_instances
@@ -21,7 +21,7 @@ module "cluster" {
   vsphere_pass            = var.vsphere_pass
 
   #Terraform Provisioner required inputs
-  path_to_ansible          = "../../ansible-deployments/web-cluster-bootstrap.yml"
+  path_to_ansible          = "../../../ansible-deployments/database-bootstrap.yml"
   remote_exec_ssh_key_file = var.remote_exec_ssh_key_file
   local_exec_ssh_key_file  = var.local_exec_ssh_key_file
   local_exec_user          = var.local_exec_user
@@ -38,7 +38,7 @@ module "cluster" {
   consul_raw_key = var.consul_raw_key
   consul_iptables_enable = "false"
   consul_dnsmasq_enable = "True"
-  consul_dnsmasq_servers = var.consul_dnsmasq_servers
+  consul_dnsmasq_servers = [ "10.254.175.10", "10.254.175.11" ]
   consul_dnsmasq_revservers = [ "10.254.0.0/16" ]
 
   #Nomad overrides
@@ -51,6 +51,7 @@ module "cluster" {
   nomad_options               = var.nomad_options
   nomad_plugins               = var.nomad_plugins
   nomad_meta                  = var.nomad_meta
+  nomad_host_folder           = var.nomad_host_folder
   nomad_host_volumes          = var.nomad_host_volumes
   nomad_consul_token          = var.nomad_consul_token
 
@@ -70,6 +71,7 @@ module "cluster" {
   known_hosts_user               = local.known_hosts_user
 
   #NFS Vars for Prod
+    nfs_configure      = var.nfs_configure
     nfs_mount_server   = var.nfs_mount_server
     nfs_mount_options  = var.nfs_mount_options
     nfs_mount_path     = var.nfs_mount_path

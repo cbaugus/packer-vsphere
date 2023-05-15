@@ -6,14 +6,13 @@ vsphere_network         = "175-OPS-ZoneB-Prod"
 vsphere_folder          = "Prod/ops"
 vsphere_template        = "debian-11.6-prod"
 
-consul_dnsmasq_servers = [ "10.254.175.10",  "10.254.175.11" ]
 
-name_prefix             = "ops"
+name_prefix             = "mysql-speech"
 consul_datacenter       = "tmi-zoneb"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
-num_instances      = "4"
+num_instances      = "3"
 resource_pool_type = "xl"
 name               = "ops"
 env                = "prod"
@@ -21,8 +20,8 @@ env                = "prod"
 provisioned_disks = [
   {
     device_drive              = "sdb"
-    label                     = "waypoint-data"
-    disk_size                 = "xxxxl"
+    label                     = "prometheus"
+    disk_size                 = "xxxl"
     thin_provisioned          = "true"
     eagerly_scrub             = "false"
     data_disk_scsi_controller = "0"
@@ -30,15 +29,17 @@ provisioned_disks = [
 ]
 
 #NFS Vars for Prod
+nfs_configure      = "false"
 nfs_mount_server   = "10.254.225.97:/mnt/disk-pool/nfs-root"
 nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
 nfs_mount_path     = "/mnt/nfs/nonprod"
 
 
+nomad_host_folder = "/mnt/local/prometheus"
 nomad_host_volumes = [
   {
-    "name"      = "host_volume"
-    "path"      = "/mnt/local/"
+    "name"      = "prometheus"
+    "path"      = "/mnt/local/prometheus"
     "owner"     = "root"
     "group"     = "bin"
     "mode"      = "0777"
@@ -61,20 +62,8 @@ nomad_meta = {
   "purpose"       = "ops"
 }
 
-
-// https://man7.org/linux/man-pages/man7/capabilities.7.html
-// https://www.nomadproject.io/docs/configuration/plugin
-
-docker_vault_login = {
-  "config_path" = "/etc/vault/agent.hcl"
+nomad_plugins = {
 }
-
-vault_docker_secrets = [
-  {
-    "registry" = "docker.io"
-    "secret" = "ops/data/docker"
-  }
-]
 
 vault_consul_role_cluster_type = "prod-ops"
 
