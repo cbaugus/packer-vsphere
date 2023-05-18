@@ -1,6 +1,6 @@
 vsphere_datacenter      = "TMI"
 vsphere_compute_cluster = "Zone-B"
-vsphere_resource_pool   = "OPS"
+vsphere_resource_pool   = "Prod"
 vsphere_datastore       = "Zone-B-vSAN"
 vsphere_network         = "171-DB-ZoneB-Prod"
 vsphere_folder          = "Prod/Database"
@@ -13,7 +13,7 @@ consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
 num_instances      = "3"
-resource_pool_type = "xxxl"
+resource_pool_type = "xxl"
 name               = "mysql-speech"
 env                = "prod"
 
