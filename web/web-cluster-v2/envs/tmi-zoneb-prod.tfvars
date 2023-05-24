@@ -12,7 +12,7 @@ consul_datacenter       = "tmi-zoneb"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
-num_instances      = "1"
+num_instances      = "5"
 resource_pool_type = "xxl"
 name               = "wvw-v2"
 env                = "dev"
@@ -34,6 +34,7 @@ nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
 nfs_mount_path     = "/mnt/nfs/zoneb/prod"
 
 
+nomad_host_folder = "/mnt/nfs/zoneb/prod"
 nomad_host_volumes = [
   {
     "name"      = "frank-nfs-prod"
