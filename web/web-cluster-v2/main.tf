@@ -1,6 +1,6 @@
 module "cluster" {
   source  = "app.terraform.io/baugus-lab/cluster-module/vsphere"
-  version = "2.0.4"
+  version = "2.1.8"
 
   #Cluster vars
   num_instances      = var.num_instances
@@ -16,6 +16,7 @@ module "cluster" {
   vsphere_network         = var.vsphere_network
   vsphere_folder          = var.vsphere_folder
   vsphere_template        = var.vsphere_template
+  vsphere_server            = var.vsphere_server
   vsphere_user            = var.vsphere_user
   vsphere_pass            = var.vsphere_pass
 
@@ -32,15 +33,17 @@ module "cluster" {
   #Consul overrides
   consul_acl_agent_token      = var.consul_acl_token
   consul_acl_token            = var.consul_acl_token
+  consul_datacenter           = var.consul_datacenter
   consul_pass    = var.consul_pass
   consul_raw_key = var.consul_raw_key
   consul_iptables_enable = "false"
   consul_dnsmasq_enable = "True"
-  consul_dnsmasq_servers = [ "10.254.203.11",  "10.254.203.12" ]
+  consul_dnsmasq_servers = [ "10.254.172.10",  "10.254.175.11" ]
   consul_dnsmasq_revservers = [ "10.254.0.0/16" ]
 
   #Nomad overrides
   nomad_region                = var.nomad_region
+  nomad_datacenter            = var.nomad_datacenter
   nomad_node_class            = var.nomad_node_class
   nomad_purpose               = var.nomad_purpose
   nomad_vault_address         = var.nomad_vault_address
@@ -50,8 +53,6 @@ module "cluster" {
   nomad_meta                  = var.nomad_meta
   nomad_host_volumes          = var.nomad_host_volumes
   nomad_consul_token          = var.nomad_consul_token
-  //nomad_consul_token          = var.consul_acl_token  //data.consul_acl_token_secret_id.nomad_client_token.secret_id
-  //nomad_consul_token          = data.consul_acl_token_secret_id.nomad_client_token.secret_id
 
 
   #Vault overrides

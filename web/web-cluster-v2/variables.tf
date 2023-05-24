@@ -99,6 +99,11 @@ variable "consul_pass" {
   type        = string
   sensitive   = true
 }
+variable "consul_datacenter" {
+  description = ""
+  type        = string
+  sensitive   = true
+}
 variable "consul_raw_key" {
   description = ""
   type        = string
@@ -122,6 +127,10 @@ variable "nomad_consul_acl_token" {
   default = ""
 }
 variable "nomad_region" {
+  description = ""
+  type        = string
+}
+variable "nomad_datacenter" {
   description = ""
   type        = string
 }

@@ -1,42 +1,43 @@
-vsphere_datacenter      = "tmi-w01-dc01"
-vsphere_compute_cluster = "tmi-w01-cl01-prod"
-vsphere_resource_pool   = "tmi-w01-dc01/tmi-w01-cl01-prod/Resources"
-vsphere_datastore       = "tmi-w01-cl01-prod-ds-vsan01"
-vsphere_network         = "tmi-w01-cl01-vds01-pg-web-200"
-vsphere_folder          = "prod/web"
+vsphere_datacenter      = "TMI"
+vsphere_compute_cluster = "Zone-B"
+vsphere_resource_pool   = "NonProd"
+vsphere_datastore       = "Zone-B-vSAN"
+vsphere_network         = "180-Web-ZoneB-NonProd"
+vsphere_folder          = "NonProd/Web"
 vsphere_template        = "debian-11.6-prod"
 
 
-name_prefix             = "web-v2"
+name_prefix             = "web-node-v2"
+consul_datacenter       = "tmi-zoneb"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
-num_instances      = "15"
+num_instances      = "1"
 resource_pool_type = "xxl"
-name               = "web-v2"
-env                = "prod"
+name               = "wvw-v2"
+env                = "dev"
 
 provisioned_disks = [
-
+  {
+    device_drive              = "sdb"
+    label                     = "local-data"
+    disk_size                 = "small"
+    thin_provisioned          = "true"
+    eagerly_scrub             = "false"
+    data_disk_scsi_controller = "0"
+  }
 ]
 
 #NFS Vars for Prod
-nfs_mount_server   = "10.254.205.25:/mnt/fs-pool-a/nfs-root"
+nfs_mount_server   = "10.254.182.20:/mnt/pool1/dataset/webnodes"
 nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
-nfs_mount_path     = "/mnt/nfs/prod"
-
-/*
- #NFS Vars for Nonprod
- nfs_mount_server   = "10.254.225.100:/mnt/disk-pool/nfs-root"
- nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
- nfs_mount_path     = "/mnt/nfs/nonprod"
-*/
+nfs_mount_path     = "/mnt/nfs/zoneb/nonprod"
 
 
 nomad_host_volumes = [
   {
-    "name"      = "frank-nfs-prod"
-    "path"      = "/mnt/nfs/prod/prod/files"
+    "name"      = "frank-nfs-nonprod"
+    "path"      = "/mnt/nfs/zoneb/nonprod/files"
     "owner"     = "root"
     "group"     = "bin"
     "mode"      = "0777"
@@ -44,10 +45,11 @@ nomad_host_volumes = [
   },
 ]
 
-nomad_region                = "tmi"
-nomad_node_class            = "prod"
+nomad_datacenter            = "tmi"
+nomad_region                = "zoneb"
+nomad_node_class            = "nonprod"
 nomad_purpose               = "web"
-nomad_vault_address         = "https://vault.service.tmi-w01-dc01.consul:8200"
+nomad_vault_address         = "https://vault.service.consul:8200"
 nomad_vault_tls_skip_verify = "yes"
 nomad_options = {
   "driver.raw_exec.enable" = "1"
@@ -89,5 +91,5 @@ vault_docker_secrets = [
   }
 ]
 
-vault_consul_role_cluster_type = "prod-web"
+vault_consul_role_cluster_type = "nonprod-web"
 

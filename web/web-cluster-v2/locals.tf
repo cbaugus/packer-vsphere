@@ -26,15 +26,5 @@ locals {
       "left_delimiter" = "[["
       "right_delimiter" = "]]"
     },
-  //  {
-  //    "name" = "docker-auth"
-  //    "template" = "{\"auths\": {\"https://index.docker.io/v1/\": {\"username\": \"[[ with secret \"ops/docker\" ]][[ .Data.data.username ]][[ end ]]\", \"password\": \"[[ with secret \"ops/docker\" ]][[ .Data.data.password ]][[ end ]]\" } } }"
-  //    "destination" = {
-  //      "path" = "/etc/docker/docker-auth.json"
-  //    }
-  //    "perms" = "0644"
-  //    "left_delimiter" = "[["
-  //    "right_delimiter" = "]]"
-  //  }
   ]
 }

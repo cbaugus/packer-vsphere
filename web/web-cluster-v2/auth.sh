@@ -33,10 +33,10 @@ export TF_VAR_consul_provider_token=$(vault read -format=json consul/creds/opera
 echo "Consul provider credentials set"
 
 #This is used for the Consul agent to initially authenticate to the cluster
-export TF_VAR_consul_acl_token=$(vault read -format=json consul/creds/prod-web-node | jq '.data.token' | tr -d '"')
+export TF_VAR_consul_acl_token=$(vault read -format=json consul/creds/nonprod-wvw-node | jq '.data.token' | tr -d '"')
 echo "Consul agent credentials set"
 
-export TF_VAR_nomad_node_token=$(vault read -format=json consul/creds/nomad-node | jq '.data.token' | tr -d '"')
+export TF_VAR_nomad_consul_token=$(vault read -format=json consul/creds/nomad-node | jq '.data.token' | tr -d '"')
 echo "Nomad Node Token set"
 
 #This is used for encrypted gossip communication (Serf) in the Consul cluster
@@ -44,14 +44,12 @@ export TF_VAR_consul_raw_key=$(vault read -format=json ops/data/consul | jq '.da
 echo "Consul gossip key set"
 
 #These vars are used for Vault Agent to authenticate to Vault
-export TF_VAR_vault_agent_role_id=$(vault read -format=json auth/approle/role/prod-agent-role/role-id | jq '.data.role_id' | tr -d '"' )
-export TF_VAR_vault_agent_secret_id=$(vault write -f -format=json auth/approle/role/prod-agent-role/secret-id | jq '.data.secret_id' | tr -d '"' )
+export TF_VAR_vault_agent_role_id=$(vault read -format=json auth/approle/role/nonprod-agent-role/role-id | jq '.data.role_id' | tr -d '"' )
+export TF_VAR_vault_agent_secret_id=$(vault write -f -format=json auth/approle/role/nonprod-agent-role/secret-id | jq '.data.secret_id' | tr -d '"' )
 echo "Vault Agent auto-auth credentials set"
 
 #These are used by the Vault provider to authenticate to Vault
 export TF_VAR_vault_server_url="https://vault.service.${datacenter}.consul:8200"
-export TF_VAR_vault_approle_id=$(vault read -format=json auth/approle/role/terraform/role-id | jq '.data.role_id' | tr -d '"' )
-export TF_VAR_vault_approle_secret_id=$(vault write -f -format=json auth/approle/role/terraform/secret-id | jq '.data.secret_id' | tr -d '"' )
 echo "Vault provider credentials set"
 
 export TF_VAR_remote_exec_ssh_key_file="~/.ssh/frank/cicduser"
