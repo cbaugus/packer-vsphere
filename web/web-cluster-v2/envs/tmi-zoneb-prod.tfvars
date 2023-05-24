@@ -12,9 +12,9 @@ consul_datacenter       = "tmi-zoneb"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
-num_instances      = "5"
+num_instances      = "10"
 resource_pool_type = "xxl"
-name               = "wvw-v2"
+name               = "web-v2"
 env                = "dev"
 
 provisioned_disks = [
