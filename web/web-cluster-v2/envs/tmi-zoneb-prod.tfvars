@@ -12,10 +12,10 @@ consul_datacenter       = "tmi-zoneb"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
-num_instances      = "10"
+num_instances      = "15"
 resource_pool_type = "xxl"
 name               = "web-v2"
-env                = "dev"
+env                = "prod"
 
 provisioned_disks = [
   {
@@ -38,7 +38,7 @@ nomad_host_folder = "/mnt/nfs/zoneb/prod"
 nomad_host_volumes = [
   {
     "name"      = "frank-nfs-prod"
-    "path"      = "/mnt/nfs/zoneb/prod/files"
+    "path"      = "/mnt/nfs/zoneb/prod/prod/files"
     "owner"     = "root"
     "group"     = "bin"
     "mode"      = "0777"
