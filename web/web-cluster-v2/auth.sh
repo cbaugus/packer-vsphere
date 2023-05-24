@@ -33,7 +33,7 @@ export TF_VAR_consul_provider_token=$(vault read -format=json consul/creds/opera
 echo "Consul provider credentials set"
 
 #This is used for the Consul agent to initially authenticate to the cluster
-export TF_VAR_consul_acl_token=$(vault read -format=json consul/creds/nonprod-wvw-node | jq '.data.token' | tr -d '"')
+export TF_VAR_consul_acl_token=$(vault read -format=json consul/creds/prod-web-node | jq '.data.token' | tr -d '"')
 echo "Consul agent credentials set"
 
 export TF_VAR_nomad_consul_token=$(vault read -format=json consul/creds/nomad-node | jq '.data.token' | tr -d '"')
