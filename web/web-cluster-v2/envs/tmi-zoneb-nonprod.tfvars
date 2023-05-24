@@ -14,7 +14,7 @@ consul_src_def          = "/opt/devops-local/ssl/certs"
 
 num_instances      = "1"
 resource_pool_type = "xxl"
-name               = "wvw-v2"
+name               = "web-v2"
 env                = "dev"
 
 provisioned_disks = [
