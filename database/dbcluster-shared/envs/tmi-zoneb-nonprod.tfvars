@@ -7,21 +7,21 @@ vsphere_folder          = "NonProd/Database"
 vsphere_template        = "debian-11.6-prod"
 
 
-name_prefix             = "mysql-nonprod"
+name_prefix             = "mysql-shared"
 consul_datacenter       = "tmi-zoneb"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
 num_instances      = "3"
 resource_pool_type = "xxl"
-name               = "mysql-nonprod"
-env                = "dev"
+name               = "mysql-shared"
+env                = "nonprod"
 
 provisioned_disks = [
   {
     device_drive              = "sdb"
     label                     = "mysql"
-    disk_size                 = "xxxxl"
+    disk_size                 = "xxxl"
     thin_provisioned          = "true"
     eagerly_scrub             = "false"
     data_disk_scsi_controller = "0"
@@ -49,8 +49,8 @@ nomad_host_volumes = [
 
 nomad_datacenter            = "tmi"
 nomad_region                = "zoneb"
-nomad_node_class            = "dev"
-nomad_purpose               = "mysql-nonprod"
+nomad_node_class            = "nonprod"
+nomad_purpose               = "mysql-shared"
 nomad_vault_address         = "https://vault.service.consul:8200"
 nomad_vault_tls_skip_verify = "yes"
 nomad_options = {
@@ -59,7 +59,7 @@ nomad_options = {
 }
 nomad_meta = {
   "node-switcher" = "on"
-  "purpose"       = "mysql-nonprod"
+  "purpose"       = "mysql-shared"
 }
 
 nomad_plugins = {
