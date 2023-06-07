@@ -14,7 +14,7 @@ consul_src_def          = "/opt/devops-local/ssl/certs"
 num_instances      = "2"
 resource_pool_type = "xxxl"
 name               = "streaming"
-env                = "dev"
+env                = "nonprod"
 
 provisioned_disks = [
   {
@@ -46,7 +46,7 @@ nomad_host_volumes = [
 
 nomad_datacenter            = "tmi"
 nomad_region                = "zoneb"
-nomad_node_class            = "dev"
+nomad_node_class            = "nonprod"
 nomad_purpose               = "streaming"
 nomad_vault_address         = "https://vault.service.tmi-zoneb.consul:8200"
 nomad_vault_tls_skip_verify = "yes"
