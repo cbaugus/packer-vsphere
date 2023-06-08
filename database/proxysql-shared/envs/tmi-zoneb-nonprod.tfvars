@@ -7,14 +7,14 @@ vsphere_folder          = "NonProd/Database"
 vsphere_template        = "debian-11.6-prod"
 
 
-name_prefix             = "proxysql-shared"
+name_prefix             = "proxysql"
 consul_datacenter       = "tmi-zoneb"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
-num_instances      = "3"
+num_instances      = "2"
 resource_pool_type = "xl"
-name               = "proxysql-shared"
+name               = "proxysql"
 env                = "nonprod"
 
 provisioned_disks = [
