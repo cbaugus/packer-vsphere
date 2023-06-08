@@ -7,14 +7,14 @@ vsphere_folder          = "NonProd/Database"
 vsphere_template        = "debian-11.6-prod"
 
 
-name_prefix             = "mysql-shared"
+name_prefix             = "mysql-"
 consul_datacenter       = "tmi-zoneb"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
 num_instances      = "3"
 resource_pool_type = "xxl"
-name               = "mysql-shared"
+name               = "mysql-"
 env                = "nonprod"
 
 provisioned_disks = [

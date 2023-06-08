@@ -7,21 +7,21 @@ vsphere_folder          = "Prod/Database"
 vsphere_template        = "debian-11.6-prod"
 
 
-name_prefix             = "mysql"
+name_prefix             = "proxysql-shared"
 consul_datacenter       = "tmi-zoneb"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
 num_instances      = "3"
-resource_pool_type = "xxl"
-name               = "mysql"
+resource_pool_type = "xl"
+name               = "proxysql-shared"
 env                = "prod"
 
 provisioned_disks = [
   {
     device_drive              = "sdb"
-    label                     = "mysql"
-    disk_size                 = "xxxl"
+    label                     = "proxysql"
+    disk_size                 = "xl"
     thin_provisioned          = "true"
     eagerly_scrub             = "false"
     data_disk_scsi_controller = "0"
@@ -35,11 +35,11 @@ nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
 nfs_mount_path     = "/mnt/nfs/nonprod"
 
 
-nomad_host_folder = "/mnt/local/mysql"
+nomad_host_folder = "/mnt/local/proxysql"
 nomad_host_volumes = [
   {
-    "name"      = "mysql"
-    "path"      = "/mnt/local/mysql"
+    "name"      = "proxysql"
+    "path"      = "/mnt/local/proxysql"
     "owner"     = "root"
     "group"     = "bin"
     "mode"      = "0777"
@@ -50,7 +50,7 @@ nomad_host_volumes = [
 nomad_datacenter            = "tmi"
 nomad_region                = "zoneb"
 nomad_node_class            = "prod"
-nomad_purpose               = "mysql-shared"
+nomad_purpose               = "proxysql-shared"
 nomad_vault_address         = "https://vault.service.consul:8200"
 nomad_vault_tls_skip_verify = "yes"
 nomad_options = {
@@ -59,7 +59,7 @@ nomad_options = {
 }
 nomad_meta = {
   "node-switcher" = "on"
-  "purpose"       = "mysql-shared"
+  "purpose"       = "proxysql-shared"
 }
 
 nomad_plugins = {

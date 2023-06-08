@@ -1,27 +1,27 @@
 vsphere_datacenter      = "TMI"
 vsphere_compute_cluster = "Zone-B"
-vsphere_resource_pool   = "Prod"
+vsphere_resource_pool   = "NonProd"
 vsphere_datastore       = "Zone-B-vSAN"
-vsphere_network         = "171-DB-ZoneB-Prod"
-vsphere_folder          = "Prod/Database"
+vsphere_network         = "181-DB-ZoneB-NonProd"
+vsphere_folder          = "NonProd/Database"
 vsphere_template        = "debian-11.6-prod"
 
 
-name_prefix             = "mysql"
+name_prefix             = "proxysql-shared"
 consul_datacenter       = "tmi-zoneb"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
 num_instances      = "3"
-resource_pool_type = "xxl"
-name               = "mysql"
-env                = "prod"
+resource_pool_type = "xl"
+name               = "proxysql-shared"
+env                = "nonprod"
 
 provisioned_disks = [
   {
     device_drive              = "sdb"
-    label                     = "mysql"
-    disk_size                 = "xxxl"
+    label                     = "proxysql"
+    disk_size                 = "xl"
     thin_provisioned          = "true"
     eagerly_scrub             = "false"
     data_disk_scsi_controller = "0"
@@ -35,11 +35,11 @@ nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
 nfs_mount_path     = "/mnt/nfs/nonprod"
 
 
-nomad_host_folder = "/mnt/local/mysql"
+nomad_host_folder = "/mnt/local/proxysql"
 nomad_host_volumes = [
   {
-    "name"      = "mysql"
-    "path"      = "/mnt/local/mysql"
+    "name"      = "proxysql"
+    "path"      = "/mnt/local/proxysql"
     "owner"     = "root"
     "group"     = "bin"
     "mode"      = "0777"
@@ -49,8 +49,8 @@ nomad_host_volumes = [
 
 nomad_datacenter            = "tmi"
 nomad_region                = "zoneb"
-nomad_node_class            = "prod"
-nomad_purpose               = "mysql-shared"
+nomad_node_class            = "nonprod"
+nomad_purpose               = "proxysql-shared"
 nomad_vault_address         = "https://vault.service.consul:8200"
 nomad_vault_tls_skip_verify = "yes"
 nomad_options = {
@@ -59,12 +59,12 @@ nomad_options = {
 }
 nomad_meta = {
   "node-switcher" = "on"
-  "purpose"       = "mysql-shared"
+  "purpose"       = "proxysql-shared"
 }
 
 nomad_plugins = {
 }
 
-vault_consul_role_cluster_type = "prod-dbcluster"
+vault_consul_role_cluster_type = "nonprod-dbcluster"
 
 vault_server_url = "https://vault.service.tmi-zoneb.consul:8200"
