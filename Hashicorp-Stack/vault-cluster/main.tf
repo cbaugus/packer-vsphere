@@ -1,6 +1,6 @@
 module "cluster" {
   source  = "app.terraform.io/baugus-lab/cluster-module/vsphere"
-  version = "2.1.2"
+  version = "2.1.12"
 
   #Cluster vars
   num_instances    = var.num_instances
