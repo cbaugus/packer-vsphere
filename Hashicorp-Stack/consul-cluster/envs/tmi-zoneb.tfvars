@@ -3,8 +3,8 @@ vsphere_compute_cluster = "Zone-B"
 vsphere_resource_pool   = "TMI/Zone-B/Prod"
 vsphere_datastore       = "Zone-B-vSAN"
 vsphere_network         = "ZoneB-Prod-OPS-175"
-vsphere_folder          = "Prod/ops/Consul"
-vsphere_template        = "debian-11.6-prod"
+vsphere_folder          = "Prod/OPS/Consul"
+vsphere_template        = "debian-12-prod"
 
 
 name_prefix             = "consul"
@@ -40,31 +40,12 @@ nomad_meta = {
 // https://man7.org/linux/man-pages/man7/capabilities.7.html
 // https://www.nomadproject.io/docs/configuration/plugin
 nomad_plugins = {
-  "docker" = {
-    "config" = {
-      "auth" = {
-        //"config" = "/etc/docker-auth.json"
-        "helper" = "vault-login"
-      }
-      "gc" = {
-        "image" = true
-      }
-      "volumes" = {
-        "enabled" = true
-      }
-    }
-  }
 }
 
 docker_vault_login = {
-  "config_path" = "/etc/vault/agent.hcl"
 }
 
 vault_docker_secrets = [
-  {
-    "registry" = "docker.io"
-    "secret" = "ops/data/docker"
-  }
 ]
 
 vault_consul_role_cluster_type = "nonprod-web"
