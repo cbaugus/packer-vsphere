@@ -1,6 +1,6 @@
 vsphere_datacenter      = "TMI"
 vsphere_compute_cluster = "Zone-B"
-vsphere_resource_pool   = "Prod"
+vsphere_resource_pool   = "OPS"
 vsphere_datastore       = "Zone-B-vSAN"
 vsphere_network         = "ZoneB-Prod-OPS-175"
 vsphere_folder          = "Prod/OPS/Consul"
