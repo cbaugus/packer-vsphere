@@ -2,9 +2,9 @@ vsphere_datacenter      = "TMI"
 vsphere_compute_cluster = "Zone-B"
 vsphere_resource_pool   = "OPS"
 vsphere_datastore       = "Zone-B-vSAN"
-vsphere_network         = "175-OPS-ZoneB-Prod"
-vsphere_folder          = "Prod/ops"
-vsphere_template        = "debian-11.6-prod"
+vsphere_network         = "ZoneB-Prod-OPS-175"
+vsphere_folder          = "Prod/OPS"
+vsphere_template        = "debian-12-prod"
 
 
 name_prefix             = "mysql-speech"
