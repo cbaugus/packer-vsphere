@@ -3,7 +3,7 @@ vsphere_compute_cluster = "Zone-B"
 vsphere_resource_pool   = "OPS"
 vsphere_datastore       = "Zone-B-vSAN"
 vsphere_network         = "ZoneB-Prod-OPS-175"
-vsphere_folder          = "Prod/ops/Vault"
+vsphere_folder          = "Prod/OPS/Vault"
 vsphere_template        = "debian-12-prod"
 
 
