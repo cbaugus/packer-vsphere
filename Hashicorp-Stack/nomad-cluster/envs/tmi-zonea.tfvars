@@ -1,8 +1,8 @@
 vsphere_datacenter      = "TMI"
-vsphere_compute_cluster = "Zone-B"
+vsphere_compute_cluster = "Zone-A"
 vsphere_resource_pool   = "Prod"
-vsphere_datastore       = "Zone-B-vSAN"
-vsphere_network         = "ZoneB-Prod-OPS-175"
+vsphere_datastore       = "Zone-A-vSAN"
+vsphere_network         = "ZoneB-Prod-OPS-203"
 vsphere_folder          = "Prod/OPS/Nomad"
 vsphere_template        = "debian-12-prod"
 
