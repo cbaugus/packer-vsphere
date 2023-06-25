@@ -1,9 +1,9 @@
 vsphere_datacenter      = "TMI"
 vsphere_compute_cluster = "Zone-B"
-vsphere_resource_pool   = "Prod"
+vsphere_resource_pool   = "OPS"
 vsphere_datastore       = "Zone-B-vSAN"
-vsphere_network         = "175-OPS-ZoneB-Prod"
-vsphere_folder          = "Prod/ops"
+vsphere_network         = "ZoneB-Prod-OPS-175"
+vsphere_folder          = "Prod/OPS"
 vsphere_template        = "debian-12-prod"
 
 
@@ -33,10 +33,10 @@ nfs_mount_server   = "10.254.225.97:/mnt/disk-pool/nfs-root"
 nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
 nfs_mount_path     = "/mnt/nfs/nonprod"
 
-
+nomad_host_folder = "/mnt/local/waypoint"
 nomad_host_volumes = [
   {
-    "name"      = "host_volume"
+    "name"      = "waypoint"
     "path"      = "/mnt/local/"
     "owner"     = "root"
     "group"     = "bin"
@@ -64,31 +64,12 @@ nomad_meta = {
 // https://man7.org/linux/man-pages/man7/capabilities.7.html
 // https://www.nomadproject.io/docs/configuration/plugin
 nomad_plugins = {
-  "docker" = {
-    "config" = {
-      "auth" = {
-        //"config" = "/etc/docker-auth.json"
-        "helper" = "vault-login"
-      }
-      "gc" = {
-        "image" = true
-      }
-      "volumes" = {
-        "enabled" = true
-      }
-    }
-  }
 }
 
 docker_vault_login = {
-  "config_path" = "/etc/vault/agent.hcl"
 }
 
 vault_docker_secrets = [
-  {
-    "registry" = "docker.io"
-    "secret" = "ops/data/docker"
-  }
 ]
 
 vault_consul_role_cluster_type = "prod-waypoint"
