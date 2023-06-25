@@ -4,7 +4,7 @@ vsphere_resource_pool   = "Prod"
 vsphere_datastore       = "Zone-B-vSAN"
 vsphere_network         = "171-DB-ZoneB-Prod"
 vsphere_folder          = "Prod/Database"
-vsphere_template        = "debian-11.6-prod"
+vsphere_template        = "debian-12-prod"
 
 
 name_prefix             = "proxysql-speech"

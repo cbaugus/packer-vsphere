@@ -4,7 +4,7 @@ vsphere_resource_pool   = "NonProd"
 vsphere_datastore       = "Zone-B-vSAN"
 vsphere_network         = "181-DB-ZoneB-NonProd"
 vsphere_folder          = "NonProd/Database"
-vsphere_template        = "debian-11.6-prod"
+vsphere_template        = "debian-12-prod"
 
 
 name_prefix             = "mongodb-social"

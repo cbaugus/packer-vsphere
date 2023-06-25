@@ -4,7 +4,7 @@ vsphere_resource_pool   = "OPS"
 vsphere_datastore       = "Zone-B-vSAN"
 vsphere_network         = "180-Web-ZoneB-NonProd"
 vsphere_folder          = "NonProd/wvw"
-vsphere_template        = "debian-11.6-prod"
+vsphere_template        = "debian-12-prod"
 
 
 name_prefix             = "wvw-v2"
