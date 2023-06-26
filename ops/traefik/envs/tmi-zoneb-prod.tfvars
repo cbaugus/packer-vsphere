@@ -38,7 +38,7 @@ nfs_mount_path     = "/mnt/nfs/nonprod"
 nomad_host_folder = "/mnt/local/traefik"
 nomad_host_volumes = [
   {
-    "name"      = "graylog-mongo"
+    "name"      = "traefik"
     "path"      = "/mnt/local/traefik"
     "owner"     = "root"
     "group"     = "bin"
