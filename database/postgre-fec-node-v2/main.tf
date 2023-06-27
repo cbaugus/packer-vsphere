@@ -21,7 +21,7 @@ module "cluster" {
   vsphere_pass            = var.vsphere_pass
 
   #Terraform Provisioner required inputs
-  path_to_ansible          = "../../../ansible-deployments/host-volume-node-bootstrap.yml.yml"
+  path_to_ansible          = "../../../ansible-deployments/host-volume-node-bootstrap.yml"
   remote_exec_ssh_key_file = var.remote_exec_ssh_key_file
   local_exec_ssh_key_file  = var.local_exec_ssh_key_file
   local_exec_user          = var.local_exec_user
