@@ -4,7 +4,7 @@ terraform {
     organization = "frankspeech"
 
     workspaces {
-      prefix = "traefik"
+      prefix = "pmm"
     }
   }
 }
