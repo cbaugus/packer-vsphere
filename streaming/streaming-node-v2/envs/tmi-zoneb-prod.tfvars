@@ -2,7 +2,7 @@ vsphere_datacenter      = "TMI"
 vsphere_compute_cluster = "Zone-B"
 vsphere_resource_pool   = "Prod"
 vsphere_datastore       = "Zone-B-vSAN"
-vsphere_network         = "173-Streaming-ZoneB-Prod"
+vsphere_network         = "ZoneB-Prod-Streaming-173"
 vsphere_folder          = "Prod/Streaming"
 vsphere_template        = "debian-12-prod"
 
