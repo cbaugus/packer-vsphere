@@ -17,6 +17,7 @@ resource_pool_type = "medium"
 name               = "postgis"
 env                = "prod"
 
+nomad_host_folder = "/mnt/local/postgis"
 provisioned_disks = [
   {
     device_drive              = "sdb"
