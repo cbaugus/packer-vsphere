@@ -2,7 +2,7 @@ vsphere_datacenter      = "TMI"
 vsphere_compute_cluster = "Zone-B"
 vsphere_resource_pool   = "Prod"
 vsphere_datastore       = "Zone-B-vSAN"
-vsphere_network         = "171-DB-ZoneB-Prod"
+vsphere_network         = "ZoneB-Prod-DB-171"
 vsphere_folder          = "Prod/Database"
 vsphere_template        = "debian-12-prod"
 
@@ -13,7 +13,7 @@ consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
 num_instances      = "1"
-resource_pool_type = "xxl"
+resource_pool_type = "medium"
 name               = "postgis"
 env                = "prod"
 
@@ -34,6 +34,7 @@ nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
 nfs_mount_path     = "/mnt/nfs/nonprod"
 
 
+nomad_host_folder = "/mnt/local/postgis"
 nomad_host_volumes = [
   {
     "name"      = "postgis"

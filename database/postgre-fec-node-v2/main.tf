@@ -1,6 +1,6 @@
 module "cluster" {
   source  = "app.terraform.io/baugus-lab/cluster-module/vsphere"
-  version = "2.1.9"
+  version = "2.1.12"
 
   #Cluster vars
   num_instances      = var.num_instances
@@ -21,7 +21,7 @@ module "cluster" {
   vsphere_pass            = var.vsphere_pass
 
   #Terraform Provisioner required inputs
-  path_to_ansible          = "../../ansible-deployments/database-bootstrap.yml"
+  path_to_ansible          = "../../../ansible-deployments/host-volume-node-bootstrap.yml.yml"
   remote_exec_ssh_key_file = var.remote_exec_ssh_key_file
   local_exec_ssh_key_file  = var.local_exec_ssh_key_file
   local_exec_user          = var.local_exec_user
