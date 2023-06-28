@@ -50,7 +50,7 @@ nomad_host_volumes = [
 nomad_datacenter            = "tmi"
 nomad_region                = "zoneb"
 nomad_node_class            = "prod"
-nomad_purpose               = "pmm"
+nomad_purpose               = "postgre-fec"
 nomad_vault_address         = "https://vault.service.consul:8200"
 nomad_vault_tls_skip_verify = "yes"
 nomad_options = {
@@ -59,7 +59,7 @@ nomad_options = {
 }
 nomad_meta = {
   "node-switcher" = "on"
-  "purpose"       = "pmm"
+  "purpose"       = "postgre-fec"
 }
 
 nomad_plugins = {
