@@ -4,7 +4,7 @@ terraform {
     organization = "frankspeech"
 
     workspaces {
-      prefix = "mysql-"
+      prefix = "mysql-speech-"
     }
   }
 }
