@@ -2,7 +2,7 @@ vsphere_datacenter      = "TMI"
 vsphere_compute_cluster = "Zone-B"
 vsphere_resource_pool   = "Prod"
 vsphere_datastore       = "Zone-B-vSAN"
-vsphere_network         = "171-DB-ZoneB-Prod"
+vsphere_network         = "ZoneB-Prod-DB-171"
 vsphere_folder          = "Prod/Database"
 vsphere_template        = "debian-12-prod"
 
@@ -30,9 +30,9 @@ provisioned_disks = [
 
 #NFS Vars for Prod
 nfs_configure      = "false"
-nfs_mount_server   = "10.254.225.97:/mnt/disk-pool/nfs-root"
-nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
-nfs_mount_path     = "/mnt/nfs/nonprod"
+nfs_mount_server   = " "
+nfs_mount_options  = " "
+nfs_mount_path     = " "
 
 
 nomad_host_folder = "/mnt/local/mysql"
