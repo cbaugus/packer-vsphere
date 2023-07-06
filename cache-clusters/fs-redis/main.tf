@@ -51,9 +51,9 @@ module "cluster" {
   nomad_options               = var.nomad_options
   nomad_plugins               = var.nomad_plugins
   nomad_meta                  = var.nomad_meta
+  nomad_host_folder           = var.nomad_host_folder
   nomad_host_volumes          = var.nomad_host_volumes
   nomad_consul_token          = var.nomad_consul_token
-  nomad_vault_token           = var.nomad_vault_token
 
 
   #Vault overrides
@@ -71,6 +71,7 @@ module "cluster" {
   known_hosts_user               = local.known_hosts_user
 
   #NFS Vars for Prod
+    nfs_configure      = var.nfs_configure
     nfs_mount_server   = var.nfs_mount_server
     nfs_mount_options  = var.nfs_mount_options
     nfs_mount_path     = var.nfs_mount_path
