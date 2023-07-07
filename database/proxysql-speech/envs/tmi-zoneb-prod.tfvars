@@ -2,7 +2,7 @@ vsphere_datacenter      = "TMI"
 vsphere_compute_cluster = "Zone-B"
 vsphere_resource_pool   = "Prod"
 vsphere_datastore       = "Zone-B-vSAN"
-vsphere_network         = "171-DB-ZoneB-Prod"
+vsphere_network         = "ZoneB-Prod-DB-171"
 vsphere_folder          = "Prod/Database"
 vsphere_template        = "debian-12-prod"
 
