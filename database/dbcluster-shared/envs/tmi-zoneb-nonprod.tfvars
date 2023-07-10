@@ -14,7 +14,7 @@ consul_src_def          = "/opt/devops-local/ssl/certs"
 
 num_instances      = "3"
 resource_pool_type = "xxl"
-name               = "mysql-"
+name               = "mysql"
 env                = "nonprod"
 
 provisioned_disks = [
