@@ -7,14 +7,14 @@ vsphere_folder          = "Prod/Cache"
 vsphere_template        = "debian-12-prod"
 
 
-name_prefix             = "fs-mencache"
+name_prefix             = "fs-memcache"
 consul_datacenter       = "tmi-zoneb"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
 num_instances      = "3"
 resource_pool_type = "xl"
-name               = "fs-mencache"
+name               = "fs-memcache"
 env                = "prod"
 
 provisioned_disks = [
@@ -34,7 +34,7 @@ nomad_host_volumes = [
 nomad_datacenter            = "tmi"
 nomad_region                = "zoneb"
 nomad_node_class            = "prod"
-nomad_purpose               = "fs-mencache"
+nomad_purpose               = "fs-memcache"
 nomad_vault_address         = "https://vault.service.consul:8200"
 nomad_vault_tls_skip_verify = "yes"
 nomad_options = {
@@ -43,7 +43,7 @@ nomad_options = {
 }
 nomad_meta = {
   "node-switcher" = "on"
-  "purpose"       = "fs-mencache"
+  "purpose"       = "fs-memcache"
 }
 
 nomad_plugins = {
