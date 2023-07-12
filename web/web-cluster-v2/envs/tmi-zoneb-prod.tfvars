@@ -29,16 +29,16 @@ provisioned_disks = [
 ]
 
 #NFS Vars for Prod
-nfs_mount_server   = "10.254.205.25:/mnt/pool1/dataset/webnodes"
+nfs_mount_server   = "10.254.172.20:/mnt/pool1/dataset/webnodes"
 nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
 nfs_mount_path     = "/mnt/nfs/zoneb/prod"
 
 
-nomad_host_folder = "/mnt/nfs/zonea/prod"
+nomad_host_folder = "/mnt/nfs/zoneb/prod"
 nomad_host_volumes = [
   {
     "name"      = "frank-nfs-prod"
-    "path"      = "/mnt/nfs/zonea/prod/prod/files"
+    "path"      = "/mnt/nfs/zoneb/prod/prod/files"
     "owner"     = "root"
     "group"     = "bin"
     "mode"      = "0777"
