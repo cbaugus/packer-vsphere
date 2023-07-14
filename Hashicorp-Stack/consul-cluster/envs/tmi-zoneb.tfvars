@@ -11,7 +11,7 @@ name_prefix             = "consul"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
-num_instances      = "3"
+num_instances      = "5"
 resource_pool_type = "xxl"
 name               = "consul"
 env                = "prod"
