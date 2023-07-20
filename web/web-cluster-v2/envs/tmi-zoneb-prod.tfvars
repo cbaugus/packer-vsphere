@@ -12,7 +12,7 @@ consul_datacenter       = "tmi-zoneb"
 consul_tls_src_files    = "/opt/devops-local/ssl/certs"
 consul_src_def          = "/opt/devops-local/ssl/certs"
 
-num_instances      = "25"
+num_instances      = "30"
 resource_pool_type = "xxl"
 name               = "web-v2"
 env                = "prod"
@@ -29,7 +29,7 @@ provisioned_disks = [
 ]
 
 #NFS Vars for Prod
-nfs_mount_server   = "10.254.175.20:/mnt/pool1/dataset/webnodes"
+nfs_mount_server   = "10.254.172.20:/mnt/pool1/dataset/webnodes"
 nfs_mount_options  = "rw,nolock,hard,rsize=8192,wsize=8192,timeo=30,vers=3"
 nfs_mount_path     = "/mnt/nfs/zoneb/prod"
 
