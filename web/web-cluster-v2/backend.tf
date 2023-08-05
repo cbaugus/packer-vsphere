@@ -4,7 +4,7 @@ terraform {
     organization = "frankspeech"
 
     workspaces {
-      prefix = "web-cluster-v2-"
+      prefix = "web-cluster-"
     }
   }
 }
